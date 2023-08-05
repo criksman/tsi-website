@@ -1,0 +1,19 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+
+$light:      #fae498;
+$dark:       #05080a;
+$primary:    #4e3a17;
+$secondary:  #077636;
+$info:       #53c5cc;
+$success:    #4aa206;
+$warning:    #ffbf42;
+$danger:     #f1025c;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
+
+// https://huemint.com/bootstrap-basic/#palette=fae498-ffffff-05080a-4e3a17-077636-53c5cc
