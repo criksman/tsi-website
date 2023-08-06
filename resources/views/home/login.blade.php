@@ -10,14 +10,15 @@
         <div class="card bg-white">
           <div class="card-body">
             <h2 class="card-title text-center font-weight-bold my-3">Inicio de sesión</h5>
-            <form>
+            <form method="POST" action="{{ route('home.userLogin') }}">
+              @csrf
               <div class="form-group my-3">
-                <label for="usuario">Nombre de usuario</label>
-                <input type="text" class="form-control mt-2" id="usuario">
+                <label for="usuario_id">Nombre de usuario</label>
+                <input type="text" class="form-control mt-2" id="usuario_id" name="usuario_id">
               </div>
               <div class="form-group mb-3">
                 <label for="password">Password</label>
-                <input type="password" class="form-control mt-2" id="password">
+                <input type="password" class="form-control mt-2" id="password" name="password">
               </div>
               <div class="d-grid">
                 <button type="submit" class="btn btn-success text-white mt-3 mb-3">Iniciar Sesión</button>
