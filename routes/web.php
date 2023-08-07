@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsuariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,4 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'login'])->name('home.login');
 Route::get('/index', [HomeController::class, 'index'])->name('home.index');
-Route::post('/userLogin', [HomeController::class, 'userLogin'])->name('home.userLogin');
+Route::post('/userLogin', [UsuariosController::class, 'userLogin'])->name('home.userLogin');
