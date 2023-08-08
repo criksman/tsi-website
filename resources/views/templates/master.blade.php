@@ -13,7 +13,7 @@
     <div class="container-fluid p-0">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Bienvenido, Usuario</a>
+          <a class="navbar-brand" href="#">Bienvenido, {{Auth::user()->usuario_id}}</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -40,9 +40,7 @@
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">    
                 <li class="nav-item">
-                    <form class="d-flex">
-                        <button class="btn btn-outline-warning" type="submit">Cerrar sesión</button>
-                    </form>
+                  <a href="{{ route('user.logout') }}" class="btn btn-outline-warning">Cerrar sesión</a></button>
                 </li>
             </ul> 
           </div>

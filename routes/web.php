@@ -21,4 +21,5 @@ use App\Http\Controllers\UsuariosController;
 
 Route::get('/', [HomeController::class, 'login'])->name('home.login');
 Route::get('/index', [HomeController::class, 'index'])->name('home.index');
-Route::post('/userLogin', [UsuariosController::class, 'userLogin'])->name('home.userLogin');
+Route::post('/userLogin', [UsuariosController::class, 'userLogin'])->name('user.login');
+Route::get('/userLogout', [UsuariosController::class, 'userLogout'])->name('user.logout');

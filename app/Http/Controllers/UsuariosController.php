@@ -8,16 +8,25 @@ use Illuminate\Support\Facades\Auth;
 
 class UsuariosController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['userLogin', 'userLogout']);
+    }
+    
     public function userLogin(Request $request){
         $usuario_id = $request->usuario_id;
         $password = $request->password;
-
-        if(Auth::attempt(['usuario_id'=>$usuario_id,'password'=>$password, 'estado'=>true])){
+    
+        if(Auth::attempt(['usuario_id' => $usuario_id, 'password' => $password, 'estado' => true])){
             return redirect()->route('home.index');
         }
-
+    
         return back()->withErrors([
             'usuario_id' => 'Credenciales Incorrectas',
         ])->onlyInput('usuario_id');
+    }
+
+    public function userLogout(){
+        Auth::logout();
+        return redirect()->route('home.login');
     }
 }

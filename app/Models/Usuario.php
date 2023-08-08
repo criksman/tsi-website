@@ -10,8 +10,8 @@ class Usuario extends Authenticable
 {
     use HasFactory;
 
-    protected $table = "users";
-    protected $primaryKey = ['usuario_id', 'email'];
+    protected $table = 'users';
+    protected $primaryKey = 'usuario_id';
     protected $keyType = 'string';
     public $incrementing = false;
     public $timestamps = false;
