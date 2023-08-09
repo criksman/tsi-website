@@ -10,6 +10,15 @@
         <div class="card bg-white">
           <div class="card-body">
             <h2 class="card-title text-center font-weight-bold my-3">Inicio de sesión</h5>
+            @if ($errors->any())
+            <div class="alert alert-warning">
+              @foreach ($errors->all() as $error)
+                <div class="row">
+                  <span>- {{ $error }}</span>
+                </div>
+              @endforeach
+            </div>
+            @endif
             <form method="POST" action="{{ route('user.login') }}">
               @csrf
               <div class="form-group my-3">

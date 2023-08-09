@@ -23,3 +23,5 @@ Route::get('/', [HomeController::class, 'login'])->name('home.login');
 Route::get('/index', [HomeController::class, 'index'])->name('home.index');
 Route::post('/userLogin', [UsuariosController::class, 'userLogin'])->name('user.login');
 Route::get('/userLogout', [UsuariosController::class, 'userLogout'])->name('user.logout');
+Route::put('/userUpdateCredenciales', [UsuariosController::class, 'userUpdateCredenciales'])->name('user.updateCredenciales');
+Route::put('/userUpdateFoto', [UsuariosController::class, 'userUpdateFoto'])->name('user.updateFoto');
