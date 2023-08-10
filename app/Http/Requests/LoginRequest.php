@@ -23,7 +23,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'usuario_id' => 'required',
+            'username' => 'required',
             'password' => 'required',
         ];
     }
@@ -31,7 +31,7 @@ class LoginRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'usuario_id.required' => 'El Nombre de usuario es requerido.',
+            'username.required' => 'El Nombre de usuario es requerido.',
             'password.required' => 'La contraseña es requerida',
         ];
     }

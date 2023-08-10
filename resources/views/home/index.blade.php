@@ -30,8 +30,8 @@
             <div class="row">
               <div class="col-6">
                 <div class="mb-3">
-                  <label for="usuario_id" class="form-label">Nombre de usuario</label>
-                  <input type="text" class="form-control" id="usuario_id" name="usuario_id" placeholder="{{ Auth::user()->usuario_id }}">
+                  <label for="username" class="form-label">Nombre de usuario</label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="{{ Auth::user()->username }}">
                 </div>              
               </div>
               <div class="col-6">
@@ -64,7 +64,7 @@
           </div>
           <div class="row">
             <div class="col text-center">
-              <img src="{{ asset('storage/documentos/img/users/' . Auth::user()->usuario_id . '/' . Auth::user()->foto) }}" class="img-fluid" style="height: 200px;">
+              <img src="{{ asset('storage/documentos/img/users/' . Auth::user()->id . '/' . Auth::user()->foto) }}" class="img-fluid" style="height: 200px;">
             </div>
           </div>
           <form method="POST" action="{{ route('user.updateFoto') }}" enctype="multipart/form-data">

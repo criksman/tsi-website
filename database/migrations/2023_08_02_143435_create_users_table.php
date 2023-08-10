@@ -12,12 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('usuario_id',30)->primary();
+            $table->integer('id')->autoIncrement();
+            $table->string('username', 30);
             $table->string('email');
             $table->string('password');
             $table->smallInteger('rol_id');
             $table->string('foto', 100);
             $table->boolean('estado')->default(true);
+            
+            //FKs
+            $table->foreign('rol_id')->references('id')->on('roles');
         });
     }
 

@@ -22,8 +22,8 @@
             <form method="POST" action="{{ route('user.login') }}">
               @csrf
               <div class="form-group my-3">
-                <label for="usuario_id">Nombre de usuario</label>
-                <input type="text" class="form-control mt-2" id="usuario_id" name="usuario_id">
+                <label for="username">Nombre de usuario</label>
+                <input type="text" class="form-control mt-2" id="username" name="username">
               </div>
               <div class="form-group mb-3">
                 <label for="password">Password</label>

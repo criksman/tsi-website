@@ -16,10 +16,10 @@ class UsuariosController extends Controller
     }
     
     public function userLogin(LoginRequest $request){
-        $usuario_id = $request->usuario_id;
+        $username = $request->username;
         $password = $request->password;
     
-        if(Auth::attempt(['usuario_id' => $usuario_id, 'password' => $password, 'estado' => true])){
+        if(Auth::attempt(['username' => $username, 'password' => $password, 'estado' => true])){
             return redirect()->route('home.index');
         }
     
@@ -35,13 +35,13 @@ class UsuariosController extends Controller
 
     public function userUpdateCredenciales(UsuarioEditarCredencialesRequest $request){
         
-        $usuario_id = $request->usuario_id;
+        $username = $request->username;
         $email = $request->email;
 
         $user = Auth::user();
 
-        if ($usuario_id != null){
-            $user->usuario_id = $usuario_id;
+        if ($username != null){
+            $user->username = $username;
         }
 
         if ($email != null){
@@ -58,7 +58,7 @@ class UsuariosController extends Controller
 
         $archivo = $request->file('foto');
         $nombre = $archivo->getClientOriginalName();
-        $dir = 'public/documentos/img/users/' . $user->usuario_id;
+        $dir = 'public/documentos/img/users/' . $user->id;
 
         $path = $archivo->storeAs($dir, $nombre);
 

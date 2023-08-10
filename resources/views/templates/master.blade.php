@@ -13,7 +13,7 @@
     <div class="container-fluid p-0">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Bienvenido, {{Auth::user()->usuario_id}}</a>
+          <a class="navbar-brand" href="#">Bienvenido, {{Auth::user()->username}}</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -33,8 +33,8 @@
                   Administración
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Idiomas</a></li>
-                  <li><a class="dropdown-item" href="admin-usuarios.html">Usuarios</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.idiomas') }}">Idiomas</a></li>
+                  <li><a class="dropdown-item" href="#">Usuarios</a></li>
                 </ul>
               </li>
             </ul>
