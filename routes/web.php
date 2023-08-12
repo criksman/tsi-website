@@ -28,6 +28,7 @@ Route::get('/userLogout', [UsuariosController::class, 'userLogout'])->name('user
 Route::put('/userUpdateCredenciales', [UsuariosController::class, 'userUpdateCredenciales'])->name('user.updateCredenciales');
 Route::put('/userUpdateFoto', [UsuariosController::class, 'userUpdateFoto'])->name('user.updateFoto');
 
-
 //admin
 Route::get('/admin/idiomas', [AdminController::class, 'idiomas'])->name('admin.idiomas');
+Route::post('/admin/storeIdioma', [AdminController::class, 'storeIdioma'])->name('admin.storeIdioma');
+Route::delete('/admin/destroyIdioma/{idioma}', [AdminController::class, 'destroyIdioma'])->name('admin.destroyIdioma');
