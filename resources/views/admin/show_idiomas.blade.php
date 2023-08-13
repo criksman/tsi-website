@@ -15,7 +15,7 @@
     @foreach($idiomas as $idioma)
     <div class="col-lg-4 rounded col-md-6 col-sm-12 mt-md-3 mt-sm-3 mt-lg-0 d-flex flex-column justify-content-center align-items-center">
         <div class="card" style="width: 18rem;">
-            <img src="{{ asset('storage/documentos/img/idiomas/' . $idioma->id . '/' . $idioma->foto) }}" class="card-img-top" alt="foto">
+            <img src="{{ asset('storage/documentos/img/idiomas/' . $idioma->idioma_id . '/' . $idioma->foto) }}" class="card-img-top img-fluid" alt="foto">
             <div class="card-body">
                 <div class="row">
                     <div class="col-7">
@@ -39,23 +39,23 @@
                 </form>
                 <div class="row">
                     <div class="col-6 text-start mt-3">
-                        <a href="#" class="btn btn-secondary text-white">Temáticas</a>
+                        <a href="{{ route('admin.show_tematicas', $idioma->idioma_id) }}" class="btn btn-secondary text-white">Temáticas</a>
                     </div>
                     <div class="col-6 text-end mt-3">
-                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#borrarModal{{$idioma->id}}">Borrar</button></form>
+                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#borrarModal{{$idioma->idioma_id}}">Borrar</button></form>
                     </div>
 
-                    <div class="modal fade" id="borrarModal{{$idioma->id}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$idioma->id}}" aria-hidden="true">
+                    <div class="modal fade" id="borrarModal{{$idioma->idioma_id}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$idioma->idioma_id}}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="borrarModalLabel{{$idioma->id}}">Confirmación</h1>
+                                    <h1 class="modal-title fs-5" id="borrarModalLabel{{$idioma->idioma_id}}">Confirmación</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <p>¿Esta seguro que desea eliminar el idioma (todos sus temáticas serán eliminadas)</p>
                                 </div>
-                                <form method="POST" action="{{ route('admin.destroyIdioma', $idioma->id) }}">
+                                <form method="POST" action="{{ route('idioma.destroy', $idioma->idioma_id) }}">
                                     @method('delete')
                                     @csrf
                                     <div class="modal-footer">
@@ -87,7 +87,7 @@
                 </div>
                 @endforeach
             </div>
-            <form method="POST" action="{{ route('admin.storeIdioma') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('idioma.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="col mb-2">

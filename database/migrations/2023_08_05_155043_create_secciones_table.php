@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tematicas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('secciones', function (Blueprint $table) {
+            $table->smallInteger('seccion_id')->autoIncrement();
+            $table->string('nombre', 20);
+            $table->string('descripcion', 100);
+            
+            //$table->timestamps();
         });
     }
 
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tematicas');
+        Schema::dropIfExists('secciones');
     }
 };

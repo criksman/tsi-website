@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
+            $table->integer('user_id')->autoIncrement();
             $table->string('username', 30);
             $table->string('email');
             $table->string('password');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->boolean('estado')->default(true);
             
             //FKs
-            $table->foreign('rol_id')->references('id')->on('roles');
+            $table->foreign('rol_id')->references('rol_id')->on('roles');
         });
     }
 

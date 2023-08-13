@@ -64,7 +64,7 @@
           </div>
           <div class="row">
             <div class="col text-center">
-              <img src="{{ asset('storage/documentos/img/users/' . Auth::user()->id . '/' . Auth::user()->foto) }}" class="img-fluid" style="height: 200px;">
+              <img src="{{ asset('storage/documentos/img/users/' . Auth::user()->user_id . '/' . Auth::user()->foto) }}" class="img-fluid" style="height: 200px;">
             </div>
           </div>
           <form method="POST" action="{{ route('user.updateFoto') }}" enctype="multipart/form-data">

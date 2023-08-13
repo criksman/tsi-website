@@ -4,19 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Usuario extends Authenticable
+class Respuesta extends Model
 {
     use HasFactory;
-
-    protected $table = 'users';
-    protected $primaryKey = 'user_id';
+    protected $table = 'preguntas';
+    protected $primaryKey = 'pregunta_id';
     public $timestamps = false;
 
-    public function rol():BelongsTo
+    public function tematica(): BelongsTo
     {
-        return $this->belongsTo(Rol::class);
+        return $this->belongsTo(Tematica::class);
     }
 }

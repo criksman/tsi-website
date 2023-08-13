@@ -33,7 +33,7 @@
                   Administración
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{{ route('admin.idiomas') }}">Idiomas</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.show_idiomas') }}">Idiomas</a></li>
                   <li><a class="dropdown-item" href="#">Usuarios</a></li>
                 </ul>
               </li>

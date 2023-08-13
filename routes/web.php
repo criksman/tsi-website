@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\IdiomasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +24,15 @@ use App\Http\Controllers\AdminController;
 //user
 Route::get('/', [HomeController::class, 'login'])->name('home.login');
 Route::get('/index', [HomeController::class, 'index'])->name('home.index');
-Route::post('/userLogin', [UsuariosController::class, 'userLogin'])->name('user.login');
-Route::get('/userLogout', [UsuariosController::class, 'userLogout'])->name('user.logout');
-Route::put('/userUpdateCredenciales', [UsuariosController::class, 'userUpdateCredenciales'])->name('user.updateCredenciales');
-Route::put('/userUpdateFoto', [UsuariosController::class, 'userUpdateFoto'])->name('user.updateFoto');
+Route::post('/login', [UsuariosController::class, 'login'])->name('user.login');
+Route::get('/logout', [UsuariosController::class, 'logout'])->name('user.logout');
+Route::put('/updateCredenciales', [UsuariosController::class, 'updateCredenciales'])->name('user.updateCredenciales');
+Route::put('/updateFoto', [UsuariosController::class, 'updateFoto'])->name('user.updateFoto');
 
 //admin
-Route::get('/admin/idiomas', [AdminController::class, 'idiomas'])->name('admin.idiomas');
-Route::post('/admin/storeIdioma', [AdminController::class, 'storeIdioma'])->name('admin.storeIdioma');
-Route::delete('/admin/destroyIdioma/{idioma}', [AdminController::class, 'destroyIdioma'])->name('admin.destroyIdioma');
+Route::get('/admin/idiomas', [AdminController::class, 'showIdiomas'])->name('admin.show_idiomas');
+Route::get('/admin/{idioma}/tematicas', [AdminController::class, 'showTematicas'])->name('admin.show_tematicas');
+
+//idioma
+Route::post('/idiomas/store', [IdiomasController::class, 'store'])->name('idioma.store');
+Route::delete('/idiomas/destroy/{idioma}', [IdiomasController::class, 'destroy'])->name('idioma.destroy');

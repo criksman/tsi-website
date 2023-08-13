@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Idioma;
-use App\Http\Requests\CrearIdiomaRequest;
-use App\Http\Requests\EditarIdiomaRequest;
-use App\Http\Requests\EditarIdiomaImagenRequest;
+use App\Models\Tematica;
 
 class AdminController extends Controller
 {   
@@ -15,34 +13,16 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    public function idiomas(){
+    public function showIdiomas(){
         $idiomas = Idioma::all();
 
-        return view('admin.idiomas', compact('idiomas'));
+        return view('admin.show_idiomas', compact('idiomas'));
     }
 
-    public function storeIdioma(CrearIdiomaRequest $request){
-        
-        $idioma = new Idioma();
+    public function showTematicas(Idioma $idioma){
+        $tematicas = $idioma->tematicas();
 
-        $idioma->nombre = $request->nombre;
-        
-        $archivo = $request->file('foto');
-        $nombre = $archivo->getClientOriginalName();
-
-        $idioma->foto = $nombre;
-        $idioma->save();
-
-        $dir = 'public/documentos/img/idiomas/' . $idioma->id;
-
-        $path = $archivo->storeAs($dir, $nombre);
-        
-        return redirect()->route('admin.idiomas');
+        return view('admin.show_tematicas', compact('tematicas'));
     }
 
-    public function destroyIdioma(Idioma $idioma){
-        $idioma->delete();
-
-        return redirect()->route('admin.idiomas');
-    }
 }

@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Storage;
 class UsuariosController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth')->except(['userLogin', 'userLogout']);
+        $this->middleware('auth')->except(['login', 'logout']);
     }
     
-    public function userLogin(LoginRequest $request){
+    public function login(LoginRequest $request){
         $username = $request->username;
         $password = $request->password;
     
@@ -28,12 +28,12 @@ class UsuariosController extends Controller
         ])->onlyInput('usuario_id');
     }
 
-    public function userLogout(){
+    public function logout(){
         Auth::logout();
         return redirect()->route('home.login');
     }
 
-    public function userUpdateCredenciales(UsuarioEditarCredencialesRequest $request){
+    public function updateCredenciales(UsuarioEditarCredencialesRequest $request){
         
         $username = $request->username;
         $email = $request->email;
@@ -53,12 +53,12 @@ class UsuariosController extends Controller
         return redirect()->route('home.index');
     }
 
-    public function userUpdateFoto(Request $request){
+    public function updateFoto(Request $request){
         $user = Auth::user();
 
         $archivo = $request->file('foto');
         $nombre = $archivo->getClientOriginalName();
-        $dir = 'public/documentos/img/users/' . $user->id;
+        $dir = 'public/documentos/img/users/' . $user->user_id;
 
         $path = $archivo->storeAs($dir, $nombre);
 

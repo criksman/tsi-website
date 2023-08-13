@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Idioma extends Model
+class Seccion extends Model
 {
     use HasFactory;
-    protected $table = 'idiomas';
-    protected $primaryKey = 'idioma_id';
+    protected $table = 'secciones';
+    protected $primaryKey = 'seccion_id';
     public $timestamps = false;
 
     public function tematicas(): HasMany
