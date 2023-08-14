@@ -16,21 +16,21 @@ class Tematica extends Model
 
     public function preguntas(): HasMany
     {
-        return $this->hasMany(Pregunta::class);
+        return $this->hasMany(Pregunta::class, 'pregunta_id');
     }
 
     public function idioma(): BelongsTo
     {
-        return $this->belongsTo(Idioma::class);
+        return $this->belongsTo(Idioma::class, 'idioma_id');
     }
 
     public function seccion(): BelongsTo
     {
-        return $this->belongsTo(Seccion::class);
+        return $this->belongsTo(Seccion::class, 'seccion_id');
     }
 
     public function dificultad(): BelongsTo
     {
-        return $this->belongsTo(Dificultad::class);
+        return $this->belongsTo(Dificultad::class, 'dificultad_id');
     }
 }

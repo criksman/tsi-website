@@ -20,11 +20,9 @@ class AdminController extends Controller
     }
 
     public function showTematicas(Idioma $idioma){
-        $facilTematicas = $idioma->tematicas()->dificultad()->where('nombre', 'facil')->get();
-        $medioTematicas = $idioma->tematicas()->dificultad()->where('nombre', 'medio')->get();
-        $dificilTematicas = $idioma->tematicas()->dificultad()->where('nombre', 'dificil')->get();
+        $tematicas = $idioma->tematicas;
 
-        return view('admin.show_tematicas', compact('tematicas'));
+        return view('admin.show_tematicas', compact('idioma','tematicas'));
     }
 
 }

@@ -15,6 +15,6 @@ class Seccion extends Model
 
     public function tematicas(): HasMany
     {
-        return $this->hasMany(Tematica::class);
+        return $this->hasMany(Tematica::class, 'tematica_id');
     }
 }

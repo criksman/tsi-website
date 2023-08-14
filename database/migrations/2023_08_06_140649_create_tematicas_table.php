@@ -17,8 +17,8 @@ return new class extends Migration
             $table->smallInteger('dificultad_id');
             $table->smallInteger('seccion_id');
             $table->string('nombre', 30);
-            $table->string('descripción',200);
-            $table->string('foto')->defaut('none');
+            $table->string('descripcion',200);
+            $table->string('foto')->default('none');
 
             $table->foreign('idioma_id')->references('idioma_id')->on('idiomas');
             $table->foreign('dificultad_id')->references('dificultad_id')->on('dificultades');

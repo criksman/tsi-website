@@ -15,6 +15,7 @@ return new class extends Migration
             $table->smallInteger('dificultad_id')->autoIncrement();
             $table->string('nombre', 20);
             $table->string('descripcion', 100);
+            
             //$table->timestamps();
         });
     }

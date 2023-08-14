@@ -15,6 +15,6 @@ class Idioma extends Model
 
     public function tematicas(): HasMany
     {
-        return $this->hasMany(Tematica::class);
+        return $this->hasMany(Tematica::class, 'idioma_id');
     }
 }

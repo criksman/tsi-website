@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Respuesta extends Model
+class Pregunta extends Model
 {
     use HasFactory;
     protected $table = 'preguntas';
@@ -15,6 +15,6 @@ class Respuesta extends Model
 
     public function tematica(): BelongsTo
     {
-        return $this->belongsTo(Tematica::class);
+        return $this->belongsTo(Tematica::class, 'tematica_id');
     }
 }
