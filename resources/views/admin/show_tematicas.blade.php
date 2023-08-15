@@ -17,6 +17,15 @@
                         <h1 class="modal-title fs-5" id="crearModalLabel">Crear temática</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    @if ($errors->CrearTematicaBag->any())
+                    <div class="text-start alert alert-warning">
+                        @foreach ($errors->CrearTematicaBag->all() as $error)
+                        <div class="row">
+                            <span>- {{ $error }}</span>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
                     <form method="POST" action="{{ route('tematica.store', $idioma->idioma_id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body text-start">
@@ -61,9 +70,10 @@
 </div>
 <hr class="mt-2">
 
+@foreach($dificultades as $dificultad)
 <div class="row">
     <div class="col text-center mt-3">
-        <h3><b>Fácil</b></h3>
+        <h3><b>{{ $dificultad->nombre }}</b></h3>
     </div>
 </div>
 
@@ -87,16 +97,40 @@
 
             <tbody class="table-group-divider">
                 @foreach($tematicas as $tematica)
-                @if($tematica->dificultad->dificultad_id === 1)
+                @if($tematica->dificultad->dificultad_id === $dificultad->dificultad_id)
                 <tr>
                     <td class="text-center">{{$tematica->nombre}} </td>
                     <td class="text-center"><span class="mx-2">{{ $tematica->foto }}</span><a href="{{ asset('storage/documentos/img/tematicas/' . $tematica->tematica_id . '/' . $tematica->foto) }}" class="btn btn-success fa-solid fa-magnifying-glass"></a></td>
                     <td class="text-center">{{$tematica->seccion->nombre}}</td>
                     <td class="text-center">
-                        <form>
-                            <a href="#" class="btn btn-warning fa-solid fa-pencil"></a>
-                            <button type="submit" class="btn btn-danger text-white fa-solid fa-trash"></button>
-                        </form>
+                        <a href="#" class="btn btn-warning fa-solid fa-pencil"></a>
+                        {{-- <button type="submit" class="btn btn-danger text-white fa-solid fa-trash"></button> --}}
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger text-white fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#borrarModal{{ $tematica->tematica_id }}"></button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="borrarModal{{ $tematica->tematica_id }}" tabindex="-1" aria-labelledby="borrarModalLabel{{ $tematica->tematica_id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="borrarModalLabel{{ $tematica->tematica_id }}">Borrar temática</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Está seguro que desea eliminar la temática: {{ $tematica->nombre }}?
+                                        Se eliminarán todas las preguntas asociadas.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <form method="POST" action="{{ route('tematica.destroy', [$idioma->idioma_id,$tematica->tematica_id]) }}">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 @endif
@@ -107,95 +141,5 @@
 </div>
 
 <hr>
-
-<div class="row">
-    <div class="col text-center mt-3">
-        <h3><b>Medio</b></h3>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <table class="table table-striped table-bordered align-middle">
-            <thead>
-                <colgroup>
-                    <col style="width: 30%;">
-                    <col style="width: 30%;">
-                    <col style="width: 20%;">
-                    <col style="width: 20%;">
-                </colgroup>
-                <tr class="text-center">
-                    <th scope="col">Temática</th>
-                    <th scope="col">Foto</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                @foreach($tematicas as $tematica)
-                @if($tematica->dificultad->dificultad_id === 2)
-                <tr>
-                    <td class="text-center">{{$tematica->nombre}} </td>
-                    <td class="text-center"><span class="mx-2">Nombre_Archivo</span><a href="#" class="btn btn-success fa-solid fa-magnifying-glass"></a></td>
-                    <td class="text-center">Enunciado escrito</td>
-                    <td class="text-center">
-                        <form>
-                            <a href="#" class="btn btn-warning fa-solid fa-pencil"></a>
-                            <button type="submit" class="btn btn-danger text-white fa-solid fa-trash"></button>
-                        </form>
-                    </td>
-                </tr>
-                @endif
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<hr>
-
-<div class="row">
-    <div class="col text-center mt-3">
-        <h3><b>Difícil</b></h3>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <table class="table table-striped table-bordered align-middle">
-            <thead>
-                <colgroup>
-                    <col style="width: 30%;">
-                    <col style="width: 30%;">
-                    <col style="width: 20%;">
-                    <col style="width: 20%;">
-                </colgroup>
-                <tr class="text-center">
-                    <th scope="col">Temática</th>
-                    <th scope="col">Foto</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                @foreach($tematicas as $tematica)
-                @if($tematica->dificultad->dificultad_id === 3)
-                <tr>
-                    <td class="text-center">{{$tematica->nombre}} </td>
-                    <td class="text-center"><span class="mx-2">Nombre_Archivo</span><a href="#" class="btn btn-success fa-solid fa-magnifying-glass"></a></td>
-                    <td class="text-center">Enunciado escrito</td>
-                    <td class="text-center">
-                        <form>
-                            <a href="#" class="btn btn-warning fa-solid fa-pencil"></a>
-                            <button type="submit" class="btn btn-danger text-white fa-solid fa-trash"></button>
-                        </form>
-                    </td>
-                </tr>
-                @endif
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
+@endforeach
 @endsection

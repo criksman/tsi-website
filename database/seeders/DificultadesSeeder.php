@@ -14,9 +14,9 @@ class DificultadesSeeder extends Seeder
     public function run(): void
     {
         DB::table('dificultades')->insert([
-            ['nombre' => 'facil', 'descripcion' => '(En construcción)'],
-            ['nombre' => 'medio', 'descripcion' => '(En construcción)'],   
-            ['nombre' => 'dificil', 'descripcion' => '(En construcción)'],              
+            ['nombre' => 'Facil', 'descripcion' => '(En construcción)'],
+            ['nombre' => 'Medio', 'descripcion' => '(En construcción)'],   
+            ['nombre' => 'Dificil', 'descripcion' => '(En construcción)'],              
         ]);
     }
 }

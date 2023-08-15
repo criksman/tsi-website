@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Idioma;
 use App\Models\Tematica;
+use App\Models\Dificultad;
 
 class AdminController extends Controller
 {   
@@ -21,8 +22,9 @@ class AdminController extends Controller
 
     public function showTematicas(Idioma $idioma){
         $tematicas = $idioma->tematicas;
+        $dificultades = Dificultad::orderBy('dificultad_id')->get();
 
-        return view('admin.show_tematicas', compact('idioma','tematicas'));
+        return view('admin.show_tematicas', compact('idioma','tematicas', 'dificultades'));
     }
 
 }

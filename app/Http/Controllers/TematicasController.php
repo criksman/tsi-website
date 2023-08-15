@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Idioma;
 use App\Models\Tematica;
+use App\Models\Dificultad;
+use App\Http\Requests\CrearTematicaRequest;
 
 class TematicasController extends Controller
 {
@@ -12,7 +14,7 @@ class TematicasController extends Controller
         $this->middleware('auth');
     }
     
-    public function store(Request $request, Idioma $idioma){
+    public function store(CrearTematicaRequest $request, Idioma $idioma){
         $tematica = new Tematica();
 
         $tematica->idioma_id = $idioma->idioma_id;
@@ -33,8 +35,17 @@ class TematicasController extends Controller
         $path = $archivo->storeAs($dir, $nombre);
 
         $tematicas = $idioma->tematicas;
+        $dificultades = Dificultad::orderBy('dificultad_id')->get();
 
-        return view('admin.show_tematicas', compact('idioma', 'tematicas'));
+        return redirect()->route('admin.show_tematicas', compact('idioma', 'tematicas', 'dificultades'));
     }
 
+    public function destroy(Idioma $idioma, Tematica $tematica){
+        $tematica->delete();
+
+        $tematicas = $idioma->tematicas;
+        $dificultades = Dificultad::orderBy('dificultad_id')->get();
+    
+        return redirect()->route('admin.show_tematicas', compact('idioma', 'tematicas', 'dificultades'));
+    }
 }

@@ -38,6 +38,7 @@ Route::get('/admin/{idioma}/tematicas', [AdminController::class, 'showTematicas'
 
 //tematica
 Route::post('{idioma}/tematica/store', [TematicasController::class, 'store'])->name('tematica.store');
+Route::delete('{idioma}/tematica/destroy/{tematica}', [TematicasController::class, 'destroy'])->name('tematica.destroy');
 
 //idioma
 Route::post('/idiomas/store', [IdiomasController::class, 'store'])->name('idioma.store');

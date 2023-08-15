@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('respuesta_inc1');
             $table->string('respuesta_inc2');
             $table->string('respuesta_inc3');
-            $table->boolean('estado')->default(false);
 
             $table->foreign('tematica_id')->references('tematica_id')->on('tematicas');
             //$table->timestamps();
