@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CrearTematicaRequest extends FormRequest
+class EditarTematicaDetallesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,16 +19,14 @@ class CrearTematicaRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    protected $errorBag = 'CrearTematicaBag';
-    
+    protected $errorBag = 'EditarTematicaDetallesBag';
+
     public function rules(): array
     {
         return [
-            'nombre' => 'required|unique:tematicas|min:2|max:30',
-            'dificultad_id' => 'required|exists:dificultades,dificultad_id',
-            'seccion_id' => 'required|exists:secciones,seccion_id',
-            'descripcion' => 'required',
-            'foto' => 'required',
+            'nombre' => 'nullable|bail|sometimes|min:2|max:30',
+            'seccion_id' => 'nullable|bail|sometimes|exists:secciones,seccion_id',
+            'descripcion' => 'nullable|bail|sometimes|min:2|max:200'
         ];
     }
 }

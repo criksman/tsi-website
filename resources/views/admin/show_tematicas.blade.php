@@ -103,12 +103,9 @@
                     <td class="text-center"><span class="mx-2">{{ $tematica->foto }}</span><a href="{{ asset('storage/documentos/img/tematicas/' . $tematica->tematica_id . '/' . $tematica->foto) }}" class="btn btn-success fa-solid fa-magnifying-glass"></a></td>
                     <td class="text-center">{{$tematica->seccion->nombre}}</td>
                     <td class="text-center">
-                        <a href="#" class="btn btn-warning fa-solid fa-pencil"></a>
-                        {{-- <button type="submit" class="btn btn-danger text-white fa-solid fa-trash"></button> --}}
-                        <!-- Button trigger modal -->
+                        <a href="{{ route('admin.edit_tematica', [$idioma->idioma_id, $tematica->tematica_id]) }}" class="btn btn-warning fa-solid fa-pencil"></a>
                         <button type="button" class="btn btn-danger text-white fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#borrarModal{{ $tematica->tematica_id }}"></button>
 
-                        <!-- Modal -->
                         <div class="modal fade" id="borrarModal{{ $tematica->tematica_id }}" tabindex="-1" aria-labelledby="borrarModalLabel{{ $tematica->tematica_id }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">

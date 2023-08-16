@@ -30,7 +30,7 @@ class IdiomasController extends Controller
 
         $path = $archivo->storeAs($dir, $nombre);
         
-        return redirect()->route('admin.show_idiomas');
+        return redirect()->back();
     }
 
     public function destroy(Idioma $idioma){
@@ -44,6 +44,6 @@ class IdiomasController extends Controller
         $idioma->delete();
         
 
-        return redirect()->route('admin.show_idiomas');
+        return redirect()->back();
     }
 }

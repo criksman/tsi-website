@@ -7,6 +7,8 @@ use App\Models\Idioma;
 use App\Models\Tematica;
 use App\Models\Dificultad;
 use App\Http\Requests\CrearTematicaRequest;
+use App\Http\Requests\EditarTematicaDetallesRequest;
+use App\Http\Requests\EditarTematicaFotoRequest;
 
 class TematicasController extends Controller
 {
@@ -37,7 +39,7 @@ class TematicasController extends Controller
         $tematicas = $idioma->tematicas;
         $dificultades = Dificultad::orderBy('dificultad_id')->get();
 
-        return redirect()->route('admin.show_tematicas', compact('idioma', 'tematicas', 'dificultades'));
+        return redirect()->back();
     }
 
     public function destroy(Idioma $idioma, Tematica $tematica){
@@ -46,6 +48,45 @@ class TematicasController extends Controller
         $tematicas = $idioma->tematicas;
         $dificultades = Dificultad::orderBy('dificultad_id')->get();
     
-        return redirect()->route('admin.show_tematicas', compact('idioma', 'tematicas', 'dificultades'));
+        return redirect()->back();
+    }
+
+    public function updateDetalles(EditarTematicaDetallesRequest $request, Idioma $idioma, Tematica $tematica){
+        $nombre = $request->nombre;
+        $descripcion = $request->descripcion;
+        $seccion_id = $request->seccion_id;
+
+        if ($nombre != null){
+            $tematica->nombre = $nombre;
+        }
+
+        if ($descripcion != null){
+            $tematica->descripcion = $descripcion;
+        }
+
+        $tematica->seccion_id = $seccion_id;
+
+        $tematica->save();
+
+        $preguntas = $tematica->preguntas;
+
+        return redirect()->back();
+    }
+
+    public function updateFoto(EditarTematicaFotoRequest $request, Idioma $idioma, Tematica $tematica){
+        $archivo = $request->file('foto');
+        $nombre = $archivo->getClientOriginalName();
+        
+        $tematica->foto = $nombre;
+        
+        $dir = 'public/documentos/img/tematicas/' . $tematica->tematica_id;
+
+        $path = $archivo->storeAs($dir, $nombre);
+
+        $tematica->save();
+
+        $preguntas = $tematica->preguntas;
+
+        return redirect()->back();
     }
 }

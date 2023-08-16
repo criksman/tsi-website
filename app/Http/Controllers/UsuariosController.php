@@ -30,7 +30,7 @@ class UsuariosController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('home.login');
+        return redirect()->back();
     }
 
     public function updateCredenciales(UsuarioEditarCredencialesRequest $request){
@@ -50,7 +50,7 @@ class UsuariosController extends Controller
 
         $user->save();
 
-        return redirect()->route('home.index');
+        return redirect()->back();
     }
 
     public function updateFoto(Request $request){
@@ -65,6 +65,6 @@ class UsuariosController extends Controller
         $user->foto = $nombre;
         $user->save();
 
-        return redirect()->route('home.index');
+        return redirect()->back();
     }
 }
