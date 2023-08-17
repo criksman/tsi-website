@@ -34,15 +34,7 @@ class IdiomasController extends Controller
     }
 
     public function destroy(Idioma $idioma){
-        $tematicas = $idioma->tematicas;
-
-        foreach ($tematicas as $tematica) {
-            //falta eliminar las fotos y sus carpetas
-            $tematica->delete();
-        }
-        
         $idioma->delete();
-        
 
         return redirect()->back();
     }

@@ -36,22 +36,16 @@ class TematicasController extends Controller
 
         $path = $archivo->storeAs($dir, $nombre);
 
-        $tematicas = $idioma->tematicas;
-        $dificultades = Dificultad::orderBy('dificultad_id')->get();
-
         return redirect()->back();
     }
 
-    public function destroy(Idioma $idioma, Tematica $tematica){
+    public function destroy(Tematica $tematica){
         $tematica->delete();
-
-        $tematicas = $idioma->tematicas;
-        $dificultades = Dificultad::orderBy('dificultad_id')->get();
     
         return redirect()->back();
     }
 
-    public function updateDetalles(EditarTematicaDetallesRequest $request, Idioma $idioma, Tematica $tematica){
+    public function updateDetalles(EditarTematicaDetallesRequest $request, Tematica $tematica){
         $nombre = $request->nombre;
         $descripcion = $request->descripcion;
         $seccion_id = $request->seccion_id;
@@ -68,12 +62,10 @@ class TematicasController extends Controller
 
         $tematica->save();
 
-        $preguntas = $tematica->preguntas;
-
         return redirect()->back();
     }
 
-    public function updateFoto(EditarTematicaFotoRequest $request, Idioma $idioma, Tematica $tematica){
+    public function updateFoto(EditarTematicaFotoRequest $request, Tematica $tematica){
         $archivo = $request->file('foto');
         $nombre = $archivo->getClientOriginalName();
         
@@ -84,8 +76,6 @@ class TematicasController extends Controller
         $path = $archivo->storeAs($dir, $nombre);
 
         $tematica->save();
-
-        $preguntas = $tematica->preguntas;
 
         return redirect()->back();
     }

@@ -80,13 +80,15 @@
                 <h1 class="modal-title fs-5" id="agregarModalLabel">Agregar Idioma</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="botonAgregarIdioma"></button>
             </div>
-            @foreach ($errors->CrearIdiomaBag->all() as $error)
-            <div class="alert alert-warning">
+            @if ($errors->CrearIdiomaBag->any())
+            <div class="text-start alert alert-warning">
+                @foreach ($errors->CrearIdiomaBag->all() as $error)
                 <div class="row">
                     <span>- {{ $error }}</span>
                 </div>
+                @endforeach
             </div>
-            @endforeach
+            @endif
             <form method="POST" action="{{ route('idioma.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">

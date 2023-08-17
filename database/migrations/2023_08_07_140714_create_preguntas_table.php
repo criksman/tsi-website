@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('preguntas', function (Blueprint $table) {
             $table->integer('pregunta_id')->autoIncrement();
             $table->integer('tematica_id');
-            $table->string('tipo', 20);
+            $table->string('tipo', 20)->nullable();
             $table->text('enunciado');
-            $table->string('audio', 100);
+            $table->string('audio', 100)->nullable();
             $table->string('respuesta_corr');
             $table->string('respuesta_inc1');
             $table->string('respuesta_inc2');
             $table->string('respuesta_inc3');
 
-            $table->foreign('tematica_id')->references('tematica_id')->on('tematicas');
+            $table->foreign('tematica_id')->references('tematica_id')->on('tematicas')->onDelete('cascade');
             //$table->timestamps();
         });
     }

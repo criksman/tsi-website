@@ -23,7 +23,7 @@
             @endforeach
         </div>
         @endif
-        <form method="POST" action="{{ route('tematica.updateDetalles', [$idioma->idioma_id, $tematica->tematica_id]) }}">
+        <form method="POST" action="{{ route('tematica.updateDetalles', $tematica->tematica_id) }}">
             @method('put')
             @csrf
             <div class="row">
@@ -76,7 +76,7 @@
             @endforeach
         </div>
         @endif
-        <form method="POST" action="{{ route('tematica.updateFoto', [$idioma->idioma_id, $tematica->tematica_id]) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('tematica.updateFoto', $tematica->tematica_id) }}" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="row">
@@ -220,25 +220,26 @@
 
 
     <div class="col-12 bg-white mb-3 rounded p-3 text-center">
-        <button type="button" class="btn btn-primary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#preguntaModal"></button> <span> Añadir otra pregunta</span>
+        <button type="button" class="btn btn-primary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearPreguntaModal"></button> <span> Añadir otra pregunta</span>
 
-        <div class="modal fade" id="preguntaModal" tabindex="-1" aria-labelledby="preguntaModalLabel" aria-hidden="true">
+        <div class="modal fade" id="crearPreguntaModal" tabindex="-1" aria-labelledby="crearPreguntaModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="preguntaModalLabel">Creación de pregunta</h1>
+                        <h1 class="modal-title fs-5" id="crearPreguntaModalLabel">Creación de pregunta</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form>
+                    <form method="POST" action="{{ route('pregunta.store', $tematica->tematica_id) }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12 mb-3">
-                                    <label for="enunciado-text-crear" class="col-form-label">Enunciado</label>
-                                    <textarea class="form-control" id="enunciado-text-crear"></textarea>
+                                    <label for="enunciado" class="col-form-label">Enunciado</label>
+                                    <textarea class="form-control" id="enunciado" name="enunciado"></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <label for="archivo-audio" class="form-label">Archivo de audio (opcional)</label>
-                                    <input class="form-control form-control-sm" id="archivo-audio" type="file">
+                                    <label for="audio" class="form-label">Archivo de audio (opcional)</label>
+                                    <input class="form-control form-control-sm" id="audio" name="audio" type="file" accept=".mp3">
                                 </div>
                                 <div class="row">
                                     <div class="col mb-1">
@@ -250,7 +251,7 @@
                                         <b>1. </b>
                                     </div>
                                     <div class="col-10">
-                                        <input type="text" class="form-control col-7" id="respuesta1" placeholder="RESPUESTA CORRECTA">
+                                        <input type="text" class="form-control col-7" id="respuesta_corr" name="respuesta_corr" placeholder="RESPUESTA CORRECTA">
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -258,7 +259,7 @@
                                         <b>2. </b>
                                     </div>
                                     <div class="col-10">
-                                        <input type="text" class="form-control col-7" id="respuesta1" placeholder="RESPUESTA INCORRECTA">
+                                        <input type="text" class="form-control col-7" id="respuesta_inc1" name="respuesta_inc1" placeholder="RESPUESTA INCORRECTA">
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -266,7 +267,7 @@
                                         <b>3. </b>
                                     </div>
                                     <div class="col-10">
-                                        <input type="text" class="form-control col-7" id="respuesta1" placeholder="RESPUESTA INCORRECTA">
+                                        <input type="text" class="form-control col-7" id="respuesta_inc2" name="respuesta_inc2" placeholder="RESPUESTA INCORRECTA">
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -274,7 +275,7 @@
                                         <b>4. </b>
                                     </div>
                                     <div class="col-10">
-                                        <input type="text " class="form-control col-7" id="respuesta1" placeholder="RESPUESTA INCORRECTA">
+                                        <input type="text " class="form-control col-7" id="respuesta_inc3" name="respuesta_inc3" placeholder="RESPUESTA INCORRECTA">
                                     </div>
                                 </div>
                             </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IdiomasController;
 use App\Http\Controllers\TematicasController;
+use App\Http\Controllers\PreguntasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,14 +36,17 @@ Route::put('/updateFoto', [UsuariosController::class, 'updateFoto'])->name('user
 //admin
 Route::get('/admin/idiomas', [AdminController::class, 'showIdiomas'])->name('admin.show_idiomas');
 Route::get('/admin/{idioma}/tematicas', [AdminController::class, 'showTematicas'])->name('admin.show_tematicas');
-Route::get('/admin/{idioma}/tematica/{tematica}/edit', [AdminController::class, 'editTematica'])->name('admin.edit_tematica');
+Route::get('/admin/{tematica}/edit', [AdminController::class, 'editTematica'])->name('admin.edit_tematica');
 
 //tematica
 Route::post('{idioma}/tematica/store', [TematicasController::class, 'store'])->name('tematica.store');
-Route::delete('{idioma}/tematica/destroy/{tematica}', [TematicasController::class, 'destroy'])->name('tematica.destroy');
-Route::put('{idioma}/tematica/update/{tematica}/detalles', [TematicasController::class, 'updateDetalles'])->name('tematica.updateDetalles');
-Route::put('{idioma}/tematica/update/{tematica}/foto', [TematicasController::class, 'updateFoto'])->name('tematica.updateFoto');
+Route::delete('{tematica}/destroy', [TematicasController::class, 'destroy'])->name('tematica.destroy');
+Route::put('{tematica}/detalles/update', [TematicasController::class, 'updateDetalles'])->name('tematica.updateDetalles');
+Route::put('{tematica}/foto/update', [TematicasController::class, 'updateFoto'])->name('tematica.updateFoto');
 
 //idioma
-Route::post('/idiomas/store', [IdiomasController::class, 'store'])->name('idioma.store');
-Route::delete('/idiomas/destroy/{idioma}', [IdiomasController::class, 'destroy'])->name('idioma.destroy');
+Route::post('/idioma/store', [IdiomasController::class, 'store'])->name('idioma.store');
+Route::delete('/{idioma}/destroy', [IdiomasController::class, 'destroy'])->name('idioma.destroy');
+
+//pregunta
+Route::post('{tematica}/pregunta/store', [PreguntasController::class, 'store'])->name('pregunta.store');

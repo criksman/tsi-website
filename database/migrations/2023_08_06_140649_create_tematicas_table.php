@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('foto')->default('none');
             $table->boolean('estado')->default(false);
 
-            $table->foreign('idioma_id')->references('idioma_id')->on('idiomas');
+            $table->foreign('idioma_id')->references('idioma_id')->on('idiomas')->onDelete('cascade');
             $table->foreign('dificultad_id')->references('dificultad_id')->on('dificultades');
             $table->foreign('seccion_id')->references('seccion_id')->on('secciones');
             

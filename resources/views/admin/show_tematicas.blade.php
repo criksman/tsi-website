@@ -103,7 +103,7 @@
                     <td class="text-center"><span class="mx-2">{{ $tematica->foto }}</span><a href="{{ asset('storage/documentos/img/tematicas/' . $tematica->tematica_id . '/' . $tematica->foto) }}" class="btn btn-success fa-solid fa-magnifying-glass"></a></td>
                     <td class="text-center">{{$tematica->seccion->nombre}}</td>
                     <td class="text-center">
-                        <a href="{{ route('admin.edit_tematica', [$idioma->idioma_id, $tematica->tematica_id]) }}" class="btn btn-warning fa-solid fa-pencil"></a>
+                        <a href="{{ route('admin.edit_tematica', $tematica->tematica_id) }}" class="btn btn-warning fa-solid fa-pencil"></a>
                         <button type="button" class="btn btn-danger text-white fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#borrarModal{{ $tematica->tematica_id }}"></button>
 
                         <div class="modal fade" id="borrarModal{{ $tematica->tematica_id }}" tabindex="-1" aria-labelledby="borrarModalLabel{{ $tematica->tematica_id }}" aria-hidden="true">
@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <form method="POST" action="{{ route('tematica.destroy', [$idioma->idioma_id,$tematica->tematica_id]) }}">
+                                        <form method="POST" action="{{ route('tematica.destroy', $tematica->tematica_id) }}">
                                             @method('delete')
                                             @csrf
                                             <button type="submit" class="btn btn-primary">Eliminar</button>
