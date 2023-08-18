@@ -16,7 +16,7 @@ class Tematica extends Model
 
     public function preguntas(): HasMany
     {
-        return $this->hasMany(Pregunta::class, 'pregunta_id');
+        return $this->hasMany(Pregunta::class, 'tematica_id');
     }
 
     public function idioma(): BelongsTo

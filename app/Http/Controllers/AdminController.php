@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Idioma;
 use App\Models\Tematica;
+use App\Models\Pregunta;
 use App\Models\Dificultad;
 
 class AdminController extends Controller
@@ -29,6 +30,26 @@ class AdminController extends Controller
 
     public function editTematica(Tematica $tematica){
         $idioma = $tematica->idioma;
+        
+        if (!$tematica->preguntas->isEmpty()){
+            $escrito = ($tematica->seccion->seccion_id == 1);
+            $tematica->estado = true;
+            foreach ($tematica->preguntas as $pregunta) {
+                if ($escrito && $pregunta->audio != null) {
+                    $tematica->estado = false;
+                    break;
+                } elseif (!$escrito && $pregunta->audio == null) {
+                    $tematica->estado = false;
+                    break;
+                }
+            }
+            $tematica->save();
+        }else{
+            $tematica->estado = false;
+            $tematica->save();
+        }
+        
+
         return view('admin.edit_tematica', compact('idioma', 'tematica'));
     }
 

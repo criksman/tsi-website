@@ -92,51 +92,29 @@
 </div>
 
 <div class="row">
+    @foreach($tematica->preguntas as $pregunta)
     <div class="col-12 bg-white mb-3 rounded py-3 px-3">
         <div class="row">
             <div class="col-11">
-                <b>OEOEOEOEJFDHFJSHDJHGOIGHOISDHGOIAGSAHGAHSGAGHJGSDSJHFSHFS</b>
-                <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#enunciadoModal"></button>
-
-                <div class="modal fade" id="enunciadoModal" tabindex="-1" aria-labelledby="enunciadoModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="enunciadoModalLabel">Editar enunciado</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form>
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="enunciado-text" class="col-form-label">Ingresar contenido:</label>
-                                        <textarea class="form-control" id="enunciado-text"></textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary">Aplicar Cambios</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
+                <b>{{$pregunta->enunciado}}</b>
             </div>
 
             <div class="col-1 text-end">
-                <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="#borrarModal"></button>
+                <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="#borrarModal{{$pregunta->pregunta_id}}"></button>
 
-                <div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
+                <div class="modal fade" id="borrarModal{{$pregunta->pregunta_id}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$pregunta->pregunta_id}}" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="borrarModalLabel">Borrar pregunta</h1>
+                                <h1 class="modal-title fs-5" id="borrarModalLabel{{$pregunta->pregunta_id}}">Borrar pregunta</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body text-start">
                                 <p>¿Está seguro que desea borrar la pregunta? Se eliminarán todas las respuestas asociadas.</p>
                             </div>
-                            <form>
+                            <form method="POST" action="{{ route('pregunta.destroy', $pregunta->pregunta_id) }}">
+                                @method('delete')
+                                @csrf
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-primary">Eliminar</button>
@@ -149,75 +127,49 @@
             </div>
 
             <div class="col">
-                <audio controls src="#">
+                <audio controls>
+                    <source src="{{ asset('storage/documentos/audio/preguntas/' . $pregunta->pregunta_id . '/' . $pregunta->audio) }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
                 </audio>
-                <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#audioModal"></button>
-
-                <div class="modal fade" id="audioModal" tabindex="-1" aria-labelledby="audioModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="audioModalLabel">Cambiar archivo de audio</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form>
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <div class="row">
-                                            <div class="col my-3">
-                                                <input class="form-control form-control-sm" id="audio-thing" type="file">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Subir audio</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
         <div class="row">
             <div class="col mt-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Respuesta 1
+                    <input class="form-check-input" type="radio" name="pregunta_{{$pregunta->pregunta_id}}" id="pregunta_{{$pregunta->pregunta_id}}_opcion1">
+                    <label class="form-check-label" for="pregunta_{{$pregunta->pregunta_id}}_opcion1">
+                        {{$pregunta->respuesta_corr}}
                     </label>
                     <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#respuestasModal" data-bs-id="" data-bs-respuesta="Respuesta 2-1"></button>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Respuesta 2
+                    <input class="form-check-input" type="radio" name="pregunta_{{$pregunta->pregunta_id}}" id="pregunta_{{$pregunta->pregunta_id}}_opcion2">
+                    <label class="form-check-label" for="pregunta_{{$pregunta->pregunta_id}}_opcion2">
+                        {{$pregunta->respuesta_inc1}}
                     </label>
                     <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#respuestasModal" data-bs-id="" data-bs-respuesta="Respuesta 2-2"></button>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault3">
-                    <label class="form-check-label" for="flexRadioDefault3">
-                        Respuesta 3
+                    <input class="form-check-input" type="radio" name="pregunta_{{$pregunta->pregunta_id}}" id="pregunta_{{$pregunta->pregunta_id}}_opcion3">
+                    <label class="form-check-label" for="pregunta_{{$pregunta->pregunta_id}}_opcion3">
+                        {{$pregunta->respuesta_inc2}}
                     </label>
                     <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#respuestasModal" data-bs-id="" data-bs-respuesta="Respuesta 2-3"></button>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault4">
-                    <label class="form-check-label" for="flexRadioDefault4">
-                        Respuesta 4
+                    <input class="form-check-input" type="radio" name="pregunta_{{$pregunta->pregunta_id}}" id="pregunta_{{$pregunta->pregunta_id}}_opcion4">
+                    <label class="form-check-label" for="pregunta_{{$pregunta->pregunta_id}}_opcion4">
+                        {{$pregunta->respuesta_inc3}}
                     </label>
                     <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#respuestasModal" data-bs-id="" data-bs-respuesta="Respuesta 2-4"></button>
                 </div>
             </div>
         </div>
     </div>
-
+    @endforeach
 
     <div class="col-12 bg-white mb-3 rounded p-3 text-center">
         <button type="button" class="btn btn-primary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearPreguntaModal"></button> <span> Añadir otra pregunta</span>
@@ -229,6 +181,17 @@
                         <h1 class="modal-title fs-5" id="crearPreguntaModalLabel">Creación de pregunta</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
+                    @if ($errors->CrearPreguntaBag->any())
+                    <div class="text-start alert alert-warning">
+                        @foreach ($errors->CrearPreguntaBag->all() as $error)
+                        <div class="row">
+                            <span>- {{ $error }}</span>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
+
                     <form method="POST" action="{{ route('pregunta.store', $tematica->tematica_id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
@@ -301,47 +264,6 @@
 
     </div>
 </div>
-</div>
 
-
-<div class="modal fade" id="respuestasModal" tabindex="-1" aria-labelledby="respuestasModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="respuestasModalLabel">Editar respuesta</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Ingresar contenido:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Aplicar Cambios</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-</div>
-
-<script>
-    const respuestasModal = document.getElementById('respuestasModal');
-    if (respuestasModal) {
-        respuestasModal.addEventListener('show.bs.modal', event => {
-            const button = event.relatedTarget;
-            const respuestaText = button.getAttribute('data-bs-respuesta'); // Get the respuesta text from the data-bs-whatever attribute
-            //const respuestaId = button.getAttribute('data-bs-respuestaid'); Necesitamos mejorar la base datos para esto
-
-            // Update the modal's content.
-            const modalBodyInput = respuestasModal.querySelector('#message-text'); // Use the ID attribute of the textarea
-            modalBodyInput.value = respuestaText; // Set the textarea value to the respuesta text
-        });
-    }
-
-</script>
 @endsection
+

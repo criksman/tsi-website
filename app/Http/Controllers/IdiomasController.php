@@ -19,7 +19,7 @@ class IdiomasController extends Controller
         $idioma = new Idioma();
 
         $idioma->nombre = $request->nombre;
-        
+
         $archivo = $request->file('foto');
         $nombre = $archivo->getClientOriginalName();
 

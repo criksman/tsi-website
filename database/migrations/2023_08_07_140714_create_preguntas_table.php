@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('tipo', 20)->nullable();
             $table->text('enunciado');
             $table->string('audio', 100)->nullable();
-            $table->string('respuesta_corr');
-            $table->string('respuesta_inc1');
-            $table->string('respuesta_inc2');
-            $table->string('respuesta_inc3');
+            $table->string('respuesta_corr', 30);
+            $table->string('respuesta_inc1', 30);
+            $table->string('respuesta_inc2', 30);
+            $table->string('respuesta_inc3', 30);
 
             $table->foreign('tematica_id')->references('tematica_id')->on('tematicas')->onDelete('cascade');
             //$table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pregunta;
 use App\Models\Tematica;
+use App\Http\Requests\CrearPreguntaRequest;
 
 class PreguntasController extends Controller
 {
@@ -12,7 +13,7 @@ class PreguntasController extends Controller
         $this->middleware('auth');
     }
     
-    public function store(Request $request, Tematica $tematica){
+    public function store(CrearPreguntaRequest $request, Tematica $tematica){
         $pregunta = new Pregunta();
 
         $pregunta->tematica_id = $tematica->tematica_id;
@@ -22,15 +23,26 @@ class PreguntasController extends Controller
         $pregunta->respuesta_inc2 = $request->respuesta_inc2;
         $pregunta->respuesta_inc3 = $request->respuesta_inc3;
 
-        $archivo = $request->file('audio');
-        $nombre = $archivo->getClientOriginalName();
+        if ($request->audio != null){
+            $archivo = $request->file('audio');
+            $nombre = $archivo->getClientOriginalName();
 
-        $pregunta->audio = $nombre;
-        $pregunta->save();
+            $pregunta->audio = $nombre;
+            $pregunta->save();
 
-        $dir = 'public/documentos/audio/preguntas/' . $pregunta->pregunta_id;
+            $dir = 'public/documentos/audio/preguntas/' . $pregunta->pregunta_id;
 
-        $path = $archivo->storeAs($dir, $nombre);
+            $path = $archivo->storeAs($dir, $nombre);
+        
+        }else{
+            $pregunta->save();
+        }
+
+        return redirect()->back();
+    }
+
+    public function destroy(Pregunta $pregunta){
+        $pregunta->delete();
 
         return redirect()->back();
     }
