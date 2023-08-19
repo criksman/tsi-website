@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('tematica_id');
             $table->string('tipo', 20)->nullable();
             $table->text('enunciado');
-            $table->string('audio', 100)->nullable();
+            $table->text('audio')->nullable();
             $table->string('respuesta_corr', 30);
             $table->string('respuesta_inc1', 30);
             $table->string('respuesta_inc2', 30);

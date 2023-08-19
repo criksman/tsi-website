@@ -37,6 +37,7 @@ Route::put('/updateFoto', [UsuariosController::class, 'updateFoto'])->name('user
 Route::get('/admin/idiomas', [AdminController::class, 'showIdiomas'])->name('admin.show_idiomas');
 Route::get('/admin/{idioma}/tematicas', [AdminController::class, 'showTematicas'])->name('admin.show_tematicas');
 Route::get('/admin/{tematica}/edit', [AdminController::class, 'editTematica'])->name('admin.edit_tematica');
+Route::get('/admin/{tematica}/{pregunta}/edit', [AdminController::class, 'editPregunta'])->name('admin.edit_pregunta');
 
 //tematica
 Route::post('/{idioma}/tematica/store', [TematicasController::class, 'store'])->name('tematica.store');
@@ -51,3 +52,6 @@ Route::delete('/{idioma}/destroy', [IdiomasController::class, 'destroy'])->name(
 //pregunta
 Route::post('/{tematica}/pregunta/store', [PreguntasController::class, 'store'])->name('pregunta.store');
 Route::delete('/{pregunta}/delete', [PreguntasController::class, 'destroy'])->name('pregunta.destroy');
+Route::put('/{pregunta}/updateDetalles', [PreguntasController::class, 'updateDetalles'])->name('pregunta.updateDetalles');
+Route::put('/{pregunta}/updateAudio', [PreguntasController::class, 'updateAudio'])->name('pregunta.updateAudio');
+Route::put('/{pregunta}/deleteAudio', [PreguntasController::class, 'deleteAudio'])->name('pregunta.deleteAudio');

@@ -100,7 +100,9 @@
             </div>
 
             <div class="col-1 text-end">
-                <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="#borrarModal{{$pregunta->pregunta_id}}"></button>
+                <a href="{{ route('admin.edit_pregunta', [$tematica->tematica_id, $pregunta->pregunta_id]) }}" class="btn btn-primary fa-solid fa-gear fa-sm p-2"></a> 
+
+                <button type="button" class="btn btn-danger fa-solid fa-trash fa-sm p-2 text-white" data-bs-toggle="modal" data-bs-target="#borrarModal{{$pregunta->pregunta_id}}"></button>
 
                 <div class="modal fade" id="borrarModal{{$pregunta->pregunta_id}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$pregunta->pregunta_id}}" aria-hidden="true">
                     <div class="modal-dialog">
@@ -126,7 +128,7 @@
 
             </div>
 
-            <div class="col">
+            <div class="col mt-3">
                 <audio controls>
                     <source src="{{ asset('storage/documentos/audio/preguntas/' . $pregunta->pregunta_id . '/' . $pregunta->audio) }}" type="audio/mpeg">
                     Your browser does not support the audio element.
@@ -140,7 +142,6 @@
                     <label class="form-check-label" for="pregunta_{{$pregunta->pregunta_id}}_opcion1">
                         {{$pregunta->respuesta_corr}}
                     </label>
-                    <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#respuestasModal" data-bs-id="" data-bs-respuesta="Respuesta 2-1"></button>
                 </div>
 
                 <div class="form-check">
@@ -148,7 +149,6 @@
                     <label class="form-check-label" for="pregunta_{{$pregunta->pregunta_id}}_opcion2">
                         {{$pregunta->respuesta_inc1}}
                     </label>
-                    <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#respuestasModal" data-bs-id="" data-bs-respuesta="Respuesta 2-2"></button>
                 </div>
 
                 <div class="form-check">
@@ -156,7 +156,6 @@
                     <label class="form-check-label" for="pregunta_{{$pregunta->pregunta_id}}_opcion3">
                         {{$pregunta->respuesta_inc2}}
                     </label>
-                    <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#respuestasModal" data-bs-id="" data-bs-respuesta="Respuesta 2-3"></button>
                 </div>
 
                 <div class="form-check">
@@ -164,7 +163,6 @@
                     <label class="form-check-label" for="pregunta_{{$pregunta->pregunta_id}}_opcion4">
                         {{$pregunta->respuesta_inc3}}
                     </label>
-                    <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#respuestasModal" data-bs-id="" data-bs-respuesta="Respuesta 2-4"></button>
                 </div>
             </div>
         </div>

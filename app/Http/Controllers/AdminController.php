@@ -53,4 +53,8 @@ class AdminController extends Controller
         return view('admin.edit_tematica', compact('idioma', 'tematica'));
     }
 
+    public function editPregunta(Tematica $tematica, Pregunta $pregunta){
+        return view('admin.edit_pregunta', compact('tematica', 'pregunta'));
+    }
+
 }
