@@ -100,7 +100,7 @@
             </div>
 
             <div class="col-1 text-end">
-                <a href="{{ route('admin.edit_pregunta', [$tematica->tematica_id, $pregunta->pregunta_id]) }}" class="btn btn-primary fa-solid fa-gear fa-sm p-2"></a> 
+                <a href="{{ route('admin.edit_pregunta', [$tematica->tematica_id, $pregunta->pregunta_id]) }}" class="btn btn-primary fa-solid fa-gear fa-sm p-2"></a>
 
                 <button type="button" class="btn btn-danger fa-solid fa-trash fa-sm p-2 text-white" data-bs-toggle="modal" data-bs-target="#borrarModal{{$pregunta->pregunta_id}}"></button>
 
@@ -128,12 +128,13 @@
 
             </div>
 
+            @if ($pregunta->audio != null)
             <div class="col mt-3">
                 <audio controls>
                     <source src="{{ asset('storage/documentos/audio/preguntas/' . $pregunta->pregunta_id . '/' . $pregunta->audio) }}" type="audio/mpeg">
-                    Your browser does not support the audio element.
                 </audio>
             </div>
+            @endif
         </div>
         <div class="row">
             <div class="col mt-2">
@@ -264,4 +265,3 @@
 </div>
 
 @endsection
-

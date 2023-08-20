@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Idioma;
+use App\Models\Dificultad;
+use App\Models\Tematica;
+use App\Models\Seccion;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UsuarioEditarCredencialesRequest;
+use App\Http\Requests\FiltrarTematicasRequest;
 use Illuminate\Support\Facades\Storage;
 
 class UsuariosController extends Controller
@@ -66,5 +71,22 @@ class UsuariosController extends Controller
         $user->save();
 
         return redirect()->back();
+    }
+
+    public function filtrarTematicas(){
+        $idiomas = Idioma::all();
+        $dificultades = Dificultad::all();
+
+        return view('user.filtrar_tematicas', compact('idiomas', 'dificultades'));
+    }
+
+    public function showTematicas(FiltrarTematicasRequest $request){
+        $idioma_id = $request->idioma_id;
+        $dificultad_id = $request->dificultad_id;
+
+        $tematicas = Tematica::where('idioma_id', $idioma_id)->where('dificultad_id', $dificultad_id)->get();
+        $secciones = Seccion::all();
+
+        return view('user.show_tematicas', compact('tematicas', 'secciones'));
     }
 }

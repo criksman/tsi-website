@@ -32,6 +32,8 @@ Route::post('/login', [UsuariosController::class, 'login'])->name('user.login');
 Route::get('/logout', [UsuariosController::class, 'logout'])->name('user.logout');
 Route::put('/updateCredenciales', [UsuariosController::class, 'updateCredenciales'])->name('user.updateCredenciales');
 Route::put('/updateFoto', [UsuariosController::class, 'updateFoto'])->name('user.updateFoto');
+Route::get('/user/filtrar', [UsuariosController::class, 'filtrarTematicas'])->name('user.filtrar_tematicas');
+Route::get('/user/tematicas', [UsuariosController::class, 'showTematicas'])->name('user.show_tematicas');
 
 //admin
 Route::get('/admin/idiomas', [AdminController::class, 'showIdiomas'])->name('admin.show_idiomas');
