@@ -89,4 +89,10 @@ class UsuariosController extends Controller
 
         return view('user.show_tematicas', compact('tematicas', 'secciones'));
     }
+
+    public function showPreguntas(Tematica $tematica){
+        $preguntas = $tematica->preguntas;
+
+        return view('user.show_preguntas', compact('tematica', 'preguntas'));
+    }
 }

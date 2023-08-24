@@ -34,6 +34,7 @@ Route::put('/updateCredenciales', [UsuariosController::class, 'updateCredenciale
 Route::put('/updateFoto', [UsuariosController::class, 'updateFoto'])->name('user.updateFoto');
 Route::get('/user/filtrar', [UsuariosController::class, 'filtrarTematicas'])->name('user.filtrar_tematicas');
 Route::get('/user/tematicas', [UsuariosController::class, 'showTematicas'])->name('user.show_tematicas');
+Route::get('/user/{tematica}/preguntas', [UsuariosController::class, 'showPreguntas'])->name('user.show_preguntas');
 
 //admin
 Route::get('/admin/idiomas', [AdminController::class, 'showIdiomas'])->name('admin.show_idiomas');

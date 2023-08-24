@@ -23,7 +23,7 @@
                 </div>
                 <div class="row">
                     <div class="col d-grid mt-3">
-                        <a href="#" class="btn btn-secondary text-white">Empezar</a>
+                        <a href="{{ route('user.show_preguntas', $tematica->tematica_id) }}" class="btn btn-secondary text-white">Empezar</a>
                     </div>
                 </div>
             </div>
