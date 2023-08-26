@@ -90,9 +90,39 @@ class UsuariosController extends Controller
         return view('user.show_tematicas', compact('tematicas', 'secciones'));
     }
 
+
+    // de aqui en adelante yo creo que pertenecen a un controller para la prueba en si
     public function showPreguntas(Tematica $tematica){
         $preguntas = $tematica->preguntas;
 
         return view('user.show_preguntas', compact('tematica', 'preguntas'));
+    }
+
+    public function calcularResultado(Request $request, Tematica $tematica){
+        $totalPreguntas = count($tematica->preguntas);
+
+        $preguntasCorrectas = 0;
+
+        foreach ($tematica->preguntas as $pregunta) {
+            $pregunta_id = $pregunta->pregunta_id;
+            $inputId = "pregunta_{$pregunta_id}";
+    
+            if ($request->has($inputId)) {
+                $preguntaSeleccionada = $request->input($inputId);
+    
+                if ($preguntaSeleccionada === $pregunta->respuesta_corr) {
+                    $preguntasCorrectas++;
+                }
+            }
+        }
+
+        $porcentaje = ($preguntasCorrectas / $totalPreguntas) * 100;
+
+        return redirect()->route('user.show_resultado', compact('tematica'))->with('porcentaje', $porcentaje);;
+    }
+
+    public function showResultado(Request $request, Tematica $tematica){
+        $porcentaje = $request->session()->get('porcentaje');
+        return view('user.show_resultado', compact('tematica', 'porcentaje'));
     }
 }
