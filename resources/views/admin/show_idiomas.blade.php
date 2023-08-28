@@ -18,53 +18,17 @@
             <img src="{{ asset('storage/documentos/img/idiomas/' . $idioma->idioma_id . '/' . $idioma->foto) }}" class="card-img-top img-fluid" alt="foto">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-7">
-                        <h5 class="card-title text-end">{{$idioma->nombre}}</h5>
-                    </div>
-                    <div class="col-5 text-start p-0">
-                        <button type="button" class="btn btn-warning fa-pencil fa-solid" data-bs-toggle="modal" data-bs-target="#nombreModal" data-bs-id="{{$idioma->id}}"></button>
+                    <div class="col">
+                        <h5 class="card-title text-center">{{$idioma->nombre}}</h5>
                     </div>
                 </div>
-                <form method="POST" action="#" enctype="multipart/form-data">
-                    @method('put')
-                    @csrf
-                    <div class="row">
-                        <div class="col-9 my-3">
-                            <input class="form-control form-control-sm" id="foto" type="file" accept=".png, .jpeg, .jpg">
-                        </div>
-                        <div class="col-3 my-3 text-center">
-                            <button type="submit" class="btn btn-success text-white fa-solid fa-upload"></button>
-                        </div>
-                    </div>
-                </form>
+
                 <div class="row">
-                    <div class="col-6 text-start mt-3">
+                    <div class="col-12 text-center d-grid mt-3">
                         <a href="{{ route('admin.show_tematicas', $idioma->idioma_id) }}" class="btn btn-secondary text-white">Temáticas</a>
                     </div>
-                    <div class="col-6 text-end mt-3">
-                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#borrarModal{{$idioma->idioma_id}}">Borrar</button></form>
-                    </div>
-
-                    <div class="modal fade" id="borrarModal{{$idioma->idioma_id}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$idioma->idioma_id}}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="borrarModalLabel{{$idioma->idioma_id}}">Confirmación</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>¿Esta seguro que desea eliminar el idioma (todos sus temáticas serán eliminadas)</p>
-                                </div>
-                                <form method="POST" action="{{ route('idioma.destroy', $idioma->idioma_id) }}">
-                                    @method('delete')
-                                    @csrf
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">Borrar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="col-12 text-center d-grid mt-3">
+                        <a href="{{ route('admin.edit_idioma', $idioma->idioma_id) }}" class="btn btn-warning">Editar</a>
                     </div>
                 </div>
             </div>

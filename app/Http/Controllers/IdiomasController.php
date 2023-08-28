@@ -32,10 +32,5 @@ class IdiomasController extends Controller
         
         return redirect()->back();
     }
-
-    public function destroy(Idioma $idioma){
-        $idioma->delete();
-
-        return redirect()->back();
-    }
+    
 }
