@@ -61,4 +61,10 @@ class AdminController extends Controller
         return view('admin.edit_idioma', compact('idioma'));
     }
 
+    public function showUsuarios(){
+        $usuarios = Usuario::all();
+
+        return view('admin.show_usuarios', compact('usuarios'));
+    }
+
 }

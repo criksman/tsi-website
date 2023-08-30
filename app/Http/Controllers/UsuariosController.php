@@ -125,4 +125,10 @@ class UsuariosController extends Controller
         $porcentaje = $request->session()->get('porcentaje');
         return view('user.show_resultado', compact('tematica', 'porcentaje'));
     }
+
+    public function destroy(Usuario $usuario){
+        $usuario->delete();
+
+        return redirect()->back();
+    }
 }

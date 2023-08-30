@@ -34,7 +34,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('admin.show_idiomas') }}">Idiomas</a></li>
-                                <li><a class="dropdown-item" href="#">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.show_usuarios') }}">Usuarios</a></li>
                             </ul>
                         </li>
                     </ul>
