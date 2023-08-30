@@ -53,6 +53,9 @@ Route::put('/idiomas/tematicas/{tematica}/foto/update', [TematicasController::cl
 
 //idioma
 Route::post('/idiomas/store', [IdiomasController::class, 'store'])->name('idioma.store');
+Route::put('/idiomas/{idioma}/updateNombre', [IdiomasController::class, 'updateNombre'])->name('idioma.updateNombre');
+Route::put('/idiomas/{idioma}/updateFoto', [IdiomasController::class, 'updateFoto'])->name('idioma.updateFoto');
+Route::delete('/idiomas/{idioma}/destroy', [IdiomasController::class, 'destroy'])->name('idioma.destroy');
 
 
 //pregunta
