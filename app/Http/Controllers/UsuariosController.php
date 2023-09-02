@@ -131,4 +131,20 @@ class UsuariosController extends Controller
 
         return redirect()->back();
     }
+
+    public function ban(Usuario $usuario){
+        $usuario->estado = 0;
+
+        $usuario->save();
+        
+        return redirect()->back();
+    }
+
+    public function unban(Usuario $usuario){
+        $usuario->estado = 1;
+
+        $usuario->save();
+
+        return redirect()->back();
+    }
 }

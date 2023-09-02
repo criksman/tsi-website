@@ -38,6 +38,8 @@ Route::get('/usuario/tematicas/{tematica}/preguntas', [UsuariosController::class
 Route::put('/usuario/tematicas/{tematica}/calcularResultado', [UsuariosController::class, 'calcularResultado'])->name('user.calcularResultado');
 Route::get('/usuario/tematicas/{tematica}/resultado', [UsuariosController::class, 'showResultado'])->name('user.show_resultado');
 Route::delete('/usuario/{usuario}/destroy', [UsuariosController::class, 'destroy'])->name('user.destroy');
+Route::put('/usuario/{usuario}/ban', [UsuariosController::class, 'ban'])->name('user.ban');
+Route::put('/usuario/{usuario}/unban', [UsuariosController::class, 'unban'])->name('user.unban');
 
 
 //admin

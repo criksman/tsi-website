@@ -33,7 +33,7 @@
                     <td class="text-center">{{ $usuario->email }}</td>
                     <td class="text-center">@if($usuario->estado == 1) Activo @else Baneado @endif</td>
                     <td class="text-center">
-                        <button type="button" class="btn btn-warning fa-solid fa-rotate-left @if(Auth::user()->user_id == $usuario->user_id) disabled @endif" data-bs-toggle="modal" data-bs-target="#desbanearModal{{$usuario->user_id}}"> </button>
+                        <button type="button" class="btn btn-warning fa-solid fa-rotate-left @if(Auth::user()->user_id == $usuario->user_id || $usuario->estado == 1) disabled @endif" data-bs-toggle="modal" data-bs-target="#desbanearModal{{$usuario->user_id}}"> </button>
 
                         <div class="modal fade" id="desbanearModal{{$usuario->user_id}}" tabindex="-1" aria-labelledby="desbanearModalLabel{{$usuario->user_id}}" aria-hidden="true">
                             <div class="modal-dialog">
@@ -45,15 +45,19 @@
                                     <div class="modal-body">
                                         ¿Esta seguro que desea desbanear al usuario?
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-warning">Desbanear</button>
-                                    </div>
+                                    <form method="POST" action="{{ route('user.unban', $usuario->user_id) }}">
+                                        @method('put')
+                                        @csrf
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-warning">Desbanear</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
 
-                        <button type="button" class="btn btn-warning fa-solid fa-ban @if(Auth::user()->user_id == $usuario->user_id) disabled @endif" data-bs-toggle="modal" data-bs-target="#banModal{{$usuario->user_id}}"> </button>
+                        <button type="button" class="btn btn-warning fa-solid fa-ban @if(Auth::user()->user_id == $usuario->user_id || $usuario->estado == 0) disabled @endif" data-bs-toggle="modal" data-bs-target="#banModal{{$usuario->user_id}}"> </button>
 
                         <div class="modal fade" id="banModal{{$usuario->user_id}}" tabindex="-1" aria-labelledby="banModalLabel{{$usuario->user_id}}" aria-hidden="true">
                             <div class="modal-dialog">
@@ -65,7 +69,9 @@
                                     <div class="modal-body">
                                         ¿Está seguro que desea banear el usuario?
                                     </div>
-                                    <form>
+                                    <form method="POST" action="{{ route('user.ban', $usuario->user_id) }}">
+                                        @method('put')
+                                        @csrf
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                             <button type="submit" class="btn btn-warning">Banear</button>
