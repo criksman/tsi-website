@@ -118,7 +118,18 @@ class UsuariosController extends Controller
 
         $porcentaje = ($preguntasCorrectas / $totalPreguntas) * 100;
 
-        return redirect()->route('user.show_resultado', compact('tematica'))->with('porcentaje', $porcentaje);;
+        //Guardar valor
+        $usuario = Auth::user();
+
+        $pivot = $usuario->tematicasConPivot()->where('tematica_usuario.tematica_id', $tematica->tematica_id)->first();
+        
+        if($pivot){
+            $usuario->tematicasConPivot()->updateExistingPivot($tematica->tematica_id,['progreso'=>$porcentaje]);
+        }else{
+            $usuario->tematicas()->attach($tematica->tematica_id);
+        }
+
+        return redirect()->route('user.show_resultado', compact('tematica'))->with('porcentaje', $porcentaje);
     }
 
     public function showResultado(Request $request, Tematica $tematica){

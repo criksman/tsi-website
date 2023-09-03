@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tematica extends Model
 {
@@ -32,5 +33,13 @@ class Tematica extends Model
     public function dificultad(): BelongsTo
     {
         return $this->belongsTo(Dificultad::class, 'dificultad_id');
+    }
+
+    public function users():BelongsToMany{
+        return $this->belongsToMany(Usuario::class, 'tematica_usuario', 'user_id', 'tematica_id');
+    }
+
+    public function usersConPivot():BelongsToMany{
+        return $this->belongsToMany(Usuario::class, 'tematica_usuario', 'user_id', 'tematica_id')->withPivot(['progreso']);
     }
 }

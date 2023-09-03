@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('idioma_user', function (Blueprint $table) {
+        Schema::create('tematica_usuario', function (Blueprint $table) {
             $table->integer('user_id');
-            $table->integer('idioma_id');
-            $table->primary(['user_id','idioma_id']);
+            $table->integer('tematica_id');
+            $table->primary(['user_id','tematica_id']);
 
             $table->integer('progreso')->default(0);
 
             $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('idioma_id')->references('idioma_id')->on('idiomas');
+            $table->foreign('tematica_id')->references('tematica_id')->on('tematicas');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('idioma_user');
+        Schema::dropIfExists('tematica_usuario');
     }
 };

@@ -18,8 +18,13 @@
             <div class="card-body">
                 <h5 class="card-title">{{$tematica->nombre}}</h5>
                 <p class="card-text">{{$tematica->descripcion}}</p>
+                
+                @php
+                   $pivot = $tematica->usersConPivot()->where('tematica_usuario.user_id', Auth::user()->user_id)->first(); 
+                @endphp
+                
                 <div class="progress mb-3">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75% Correcto</div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$pivot->pivot->progreso}}%;" aria-valuenow="{{$pivot->pivot->progreso}}" aria-valuemin="0" aria-valuemax="100">{{$pivot->pivot->progreso}}% Correcto</div>
                 </div>
                 <div class="row">
                     <div class="col d-grid mt-3">
