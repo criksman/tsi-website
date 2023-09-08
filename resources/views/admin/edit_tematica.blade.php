@@ -260,7 +260,85 @@
     </div>
 
     <div class="col-12 bg-white mb-3 rounded py-3 px-3">
+        @foreach($tematica->enlaces as $enlace)
+            <div class="row">
+                <div class="col">
+                    <span class="me-3">- <a href="{{ $enlace->enlace_id }}"> {{ $enlace->descripcion }} </a> </span>
 
+                    <button type="button" class="btn btn-danger fa-solid fa-trash fa-sm p-2 text-white" data-bs-toggle="modal" data-bs-target="#borrarEnlaceModal{{$enlace->enlace_id}}"></button>
+
+                    <div class="modal fade" id="borrarEnlaceModal{{$enlace->enlace_id}}" tabindex="-1" aria-labelledby="borrarEnlaceModalLabel{{$enlace->enlace_id}}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="borrarEnlaceModalLabel{{$enlace->enlace_id}}">Borrar enlace</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-start">
+                                    <p>¿Está seguro que desea borrar el enlace?</p>
+                                </div>
+                                <form method="POST" action="{{ route('enlace.destroy', $enlace->enlace_id) }}">
+                                    @method('delete')
+                                    @csrf
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+
+        <div class="row">
+            <div class="col text-center">
+                <button type="button" class="btn btn-primary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearMaterialModal"></button> <span> Añadir enlace (Material de estudio)</span>
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="crearMaterialModal" tabindex="-1" aria-labelledby="crearMaterialModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="crearMaterialModalLabel">Ingresar Material de estudio</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                @if ($errors->CrearEnlacesBag->any())
+                <div class="text-start alert alert-warning">
+                    @foreach ($errors->CrearEnlacesBag->all() as $error)
+                    <div class="row">
+                        <span>- {{ $error }}</span>
+                    </div>
+                    @endforeach
+                </div>
+                @endif
+                <form method="POST" action="{{ route('enlace.store', $tematica->tematica_id) }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="link" class="form-label">Link</label>
+                                <input type="text" class="form-control" id="link" name="link" placeholder="Ingrese el link">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
     </div>
 </div>
 

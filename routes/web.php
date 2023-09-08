@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IdiomasController;
 use App\Http\Controllers\TematicasController;
 use App\Http\Controllers\PreguntasController;
+use App\Http\Controllers\EnlacesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +70,7 @@ Route::delete('/idiomas/tematicas/preguntas/{pregunta}/delete', [PreguntasContro
 Route::put('/idiomas/tematicas/preguntas/{pregunta}/updateDetalles', [PreguntasController::class, 'updateDetalles'])->name('pregunta.updateDetalles');
 Route::put('/idiomas/tematicas/preguntas/{pregunta}/updateAudio', [PreguntasController::class, 'updateAudio'])->name('pregunta.updateAudio');
 Route::put('/idiomas/tematicas/preguntas/{pregunta}/deleteAudio', [PreguntasController::class, 'deleteAudio'])->name('pregunta.deleteAudio');
+
+//enlace
+Route::post('/idiomas/tematicas/{tematica}/enlaces/store',[EnlacesController::class, 'store'])->name('enlace.store');
+Route::delete('/idiomas/tematicas/enlaces/{enlace}/delete', [EnlacesController::class, 'destroy'])->name('enlace.destroy');

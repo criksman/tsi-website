@@ -42,4 +42,9 @@ class Tematica extends Model
     public function usersConPivot():BelongsToMany{
         return $this->belongsToMany(Usuario::class, 'tematica_usuario', 'user_id', 'tematica_id')->withPivot(['progreso']);
     }
+
+    public function enlaces(): HasMany
+    {
+        return $this->hasMany(Enlace::class, 'tematica_id');
+    }
 }
