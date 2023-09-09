@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('link');
             $table->string('descripcion', 300);
 
-            $table->foreign('tematica_id')->references('tematica_id')->on('tematicas');
+            $table->foreign('tematica_id')->references('tematica_id')->on('tematicas')->onDelete('cascade');
             
             //$table->timestamps();
         });

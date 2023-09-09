@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col">
-        <h1>Formulario: TEMA</h1>
+        <h1>Formulario: {{$tematica->nombre}}</h1>
         <hr>
     </div>
 </div>
@@ -64,9 +64,14 @@
         </div>
 
         <div class="col-12 bg-white mb-3 rounded py-3 px-3">
-
+            @foreach($tematica->enlaces as $enlace)
+            <div class="row">
+                <div class="col">
+                    <span class="me-3">- <a href="{{ $enlace->enlace_id }}"> {{ $enlace->descripcion }} </a> </span>
+                </div>
+            </div>
+            @endforeach
         </div>
-
     </div>
 </form>
 

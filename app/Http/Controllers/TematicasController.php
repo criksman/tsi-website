@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Idioma;
 use App\Models\Tematica;
 use App\Models\Dificultad;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CrearTematicaRequest;
 use App\Http\Requests\EditarTematicaDetallesRequest;
 use App\Http\Requests\EditarTematicaFotoRequest;
+use Illuminate\Support\Facades\DB;
 
 class TematicasController extends Controller
 {
@@ -40,6 +42,10 @@ class TematicasController extends Controller
     }
 
     public function destroy(Tematica $tematica){
+        DB::table('tematica_usuario')
+            ->where('tematica_id', $tematica->tematica_id)
+            ->delete();
+
         $tematica->delete();
     
         return redirect()->back();
