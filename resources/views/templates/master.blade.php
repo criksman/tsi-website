@@ -25,9 +25,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('user.filtrar_tematicas') }}">Comenzar</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Material de estudio</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Administración

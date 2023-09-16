@@ -121,14 +121,16 @@ class UsuariosController extends Controller
         //Guardar valor
         $usuario = Auth::user();
 
+        //esta variable hay que renombrarla para que se entienda mejor
         $pivot = $usuario->tematicasConPivot()->where('tematica_usuario.tematica_id', $tematica->tematica_id)->first();
         
         if($pivot){
             $usuario->tematicasConPivot()->updateExistingPivot($tematica->tematica_id,['progreso'=>$porcentaje]);
         }else{
-            $usuario->tematicas()->attach($tematica->tematica_id);
+            $usuario->tematicas()->attach($tematica->tematica_id, ['progreso'=>$porcentaje]);
         }
 
+        
         return redirect()->route('user.show_resultado', compact('tematica'))->with('porcentaje', $porcentaje);
     }
 

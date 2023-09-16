@@ -17,4 +17,5 @@ class Dificultad extends Model
     {
         return $this->hasMany(Tematica::class, 'tematica_id');
     }
+
 }

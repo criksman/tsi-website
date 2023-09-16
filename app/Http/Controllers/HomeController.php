@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Idioma;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,8 @@ class HomeController extends Controller
     }
 
     public function index(){
-        return view("home.index");
+        $idiomas = Idioma::all();
+        
+        return view("home.index", compact('idiomas'));
     }
 }
