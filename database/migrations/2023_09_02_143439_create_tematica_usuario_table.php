@@ -18,8 +18,8 @@ return new class extends Migration
 
             $table->integer('progreso')->default(0);
 
-            $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('tematica_id')->references('tematica_id')->on('tematicas');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
+            $table->foreign('tematica_id')->references('tematica_id')->on('tematicas')->onDelete('cascade');
         });
     }
 

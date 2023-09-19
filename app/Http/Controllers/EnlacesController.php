@@ -9,6 +9,10 @@ use App\Http\Requests\CrearEnlacesRequest;
 
 class EnlacesController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['login']);
+    }
+
     public function store(CrearEnlacesRequest $request, Tematica $tematica){
         $enlace = new Enlace();
 

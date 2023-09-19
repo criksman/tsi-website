@@ -263,7 +263,7 @@
         @foreach($tematica->enlaces as $enlace)
             <div class="row">
                 <div class="col">
-                    <span class="me-3">- <a href="{{ $enlace->enlace_id }}"> {{ $enlace->descripcion }} </a> </span>
+                    <span class="me-3">- <a href="{{ $enlace->link }}"> {{ $enlace->descripcion }} </a> </span>
 
                     <button type="button" class="btn btn-danger fa-solid fa-trash fa-sm p-2 text-white" data-bs-toggle="modal" data-bs-target="#borrarEnlaceModal{{$enlace->enlace_id}}"></button>
 

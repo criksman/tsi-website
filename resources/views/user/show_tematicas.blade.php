@@ -5,7 +5,7 @@
 @foreach($secciones as $seccion)
 <div class="row">
     <div class="col">
-        <h1>Seccion: {{ $seccion->nombre }}</h1>
+        <h1>Enunciados {{ $seccion->nombre }}</h1>
         <hr>
     </div>
 </div>
@@ -26,7 +26,7 @@
                 
                 <div class="progress mb-3">
                     @if($pivot)
-                        <div class="progress-bar bg-success" role="progressbar" style="width: {{$pivot->pivot->progreso}}%;" aria-valuenow="{{$pivot->pivot->progreso}}" aria-valuemin="0" aria-valuemax="100">{{$pivot->pivot->progreso}}% Correcto</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{$pivot->pivot->progreso}}%;" aria-valuenow="{{$pivot->pivot->progreso}}" aria-valuemin="0" aria-valuemax="100">{{$pivot->pivot->progreso}}%</div>
                     @else
                         <div class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                     @endif
