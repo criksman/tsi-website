@@ -43,7 +43,7 @@
                 </div>
                 <div class="row">
                     <div class="col d-grid text-center mt-3">
-                        <button type="submit" class="btn btn-primary">Mostrar</button>
+                        <button type="submit" class="btn btn-secondary">Mostrar</button>
                     </div>
                 </div>
             </form>

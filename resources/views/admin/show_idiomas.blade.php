@@ -20,10 +20,10 @@
 <hr class="mt-2">
 <div class="row">
     @foreach($idiomas as $idioma)
-    <div class="col-lg-4 col-md-6 col-sm-12 mt-md-3 mt-sm-3 mt-lg-0">
-        <div class="card h-100" style="width: 18rem;">
-            <img src="{{ asset('storage/documentos/img/idiomas/' . $idioma->idioma_id . '/' . $idioma->foto) }}" class="card-img-top img-fluid card-image" alt="foto">
-            <div class="card-body d-flex flex-column">
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+            <img src="{{ asset('storage/documentos/img/idiomas/' . $idioma->idioma_id . '/' . $idioma->foto) }}" class="card-img-top img-fluid" style="height: 200px;" alt="">
+            <div class="card-body">
                 <h5 class="card-title text-center">{{$idioma->nombre}}</h5>
                 <div class="text-center mt-3 d-grid">
                     <a href="{{ route('admin.show_tematicas', $idioma->idioma_id) }}" class="btn btn-secondary text-white">Temáticas</a>

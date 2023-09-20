@@ -15,9 +15,9 @@
                 <h4>Detalles</h4>
             </div>
         </div>
-        @if ($errors->any())
+        @if ($errors->EditarUsuarioCredencialesBag->any())
         <div class="alert alert-warning">
-            @foreach ($errors->all() as $error)
+            @foreach ($errors->EditarUsuarioCredencialesBag as $error)
             <div class="row">
                 <span>- {{ $error }}</span>
             </div>
@@ -62,6 +62,16 @@
                 <h4>Sube tu foto</h4>
             </div>
         </div>
+        @if ($errors->EditarUsuarioFotoBag->any())
+        <div class="alert alert-warning">
+            @foreach ($errors->EditarUsuarioFotoBag as $error)
+            <div class="row">
+                <span>- {{ $error }}</span>
+            </div>
+            @endforeach
+        </div>
+        @endif
+
         <div class="row">
             <div class="col text-center">
                 <img src="{{ asset('storage/documentos/img/users/' . Auth::user()->user_id . '/' . Auth::user()->foto) }}" class="img-fluid" style="height: 200px;">
@@ -141,8 +151,8 @@
             @endphp
 
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
-                    <img src="{{ asset('storage/documentos/img/idiomas/' . $idioma->idioma_id . '/' . $idioma->foto) }}" class="card-img-top img-fluid" alt="foto">
+                <div class="card h-100">
+                    <img src="{{ asset('storage/documentos/img/idiomas/' . $idioma->idioma_id . '/' . $idioma->foto) }}" class="card-img-top img-fluid" style="height: 200px;" alt="">
                     <div class="card-body">
                         <h5 class="card-title">{{$idioma->nombre}}</h5>
                         <ul class="list-group list-group-flush">

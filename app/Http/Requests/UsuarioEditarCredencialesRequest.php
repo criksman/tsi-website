@@ -20,6 +20,9 @@ class UsuarioEditarCredencialesRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
+
+    protected $errorBag = 'EditarUsuarioCredencialesBag';
+
     public function rules(): array
     {
         return [

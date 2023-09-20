@@ -9,7 +9,7 @@ use App\Models\Idioma;
 class HomeController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth')->except(['login']);
+        $this->middleware('auth')->except(['login', 'register']);
     }
 
     public function login(){
@@ -20,5 +20,9 @@ class HomeController extends Controller
         $idiomas = Idioma::all();
         
         return view("home.index", compact('idiomas'));
+    }
+
+    public function register(){
+        return view("home.register");
     }
 }

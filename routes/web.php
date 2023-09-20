@@ -27,6 +27,7 @@ use App\Http\Controllers\EnlacesController;
 //home
 Route::get('/', [HomeController::class, 'login'])->name('home.login');
 Route::get('/index', [HomeController::class, 'index'])->name('home.index');
+Route::get('/register', [HomeController::class, 'register'])->name('home.register');
 
 //user
 Route::post('/usuario/login', [UsuariosController::class, 'login'])->name('user.login');

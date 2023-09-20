@@ -100,7 +100,7 @@
             </div>
 
             <div class="col-1 text-end">
-                <a href="{{ route('admin.edit_pregunta', [$tematica->tematica_id, $pregunta->pregunta_id]) }}" class="btn btn-primary fa-solid fa-gear fa-sm p-2"></a>
+                <a href="{{ route('admin.edit_pregunta', [$tematica->tematica_id, $pregunta->pregunta_id]) }}" class="btn btn-info fa-solid fa-gear fa-sm p-2"></a>
 
                 <button type="button" class="btn btn-danger fa-solid fa-trash fa-sm p-2 text-white" data-bs-toggle="modal" data-bs-target="#borrarModal{{$pregunta->pregunta_id}}"></button>
 
@@ -171,7 +171,7 @@
     @endforeach
 
     <div class="col-12 bg-white mb-3 rounded p-3 text-center">
-        <button type="button" class="btn btn-primary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearPreguntaModal"></button> <span> Añadir otra pregunta</span>
+        <button type="button" class="btn btn-secondary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearPreguntaModal"></button> <span> Añadir otra pregunta</span>
 
         <div class="modal fade" id="crearPreguntaModal" tabindex="-1" aria-labelledby="crearPreguntaModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -294,7 +294,7 @@
 
         <div class="row">
             <div class="col text-center">
-                <button type="button" class="btn btn-primary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearMaterialModal"></button> <span> Añadir enlace (Material de estudio)</span>
+                <button type="button" class="btn btn-secondary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearMaterialModal"></button> <span> Añadir enlace (Material de estudio)</span>
             </div>
         </div>
         

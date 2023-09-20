@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UsuarioEditarCredencialesRequest;
 use App\Http\Requests\FiltrarTematicasRequest;
+use App\Http\Requests\EditarUsuarioFotoRequest;
 use Illuminate\Support\Facades\Storage;
 
 class UsuariosController extends Controller
@@ -58,7 +59,7 @@ class UsuariosController extends Controller
         return redirect()->back();
     }
 
-    public function updateFoto(Request $request){
+    public function updateFoto(EditarUsuarioFotoRequest $request){
         $user = Auth::user();
 
         $archivo = $request->file('foto');
