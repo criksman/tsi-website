@@ -9,16 +9,18 @@ use App\Models\Dificultad;
 use App\Models\Tematica;
 use App\Models\Seccion;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UsuarioEditarCredencialesRequest;
 use App\Http\Requests\FiltrarTematicasRequest;
 use App\Http\Requests\EditarUsuarioFotoRequest;
+use App\Http\Requests\RegistrarUsuarioRequest;
 use Illuminate\Support\Facades\Storage;
 
 class UsuariosController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth')->except(['login', 'logout']);
+        $this->middleware('auth')->except(['login', 'logout', 'store']);
     }
     
     public function login(LoginRequest $request){
@@ -36,6 +38,20 @@ class UsuariosController extends Controller
 
     public function logout(){
         Auth::logout();
+        return redirect()->back();
+    }
+
+    public function store(RegistrarUsuarioRequest $request){
+        $usuario = new Usuario();
+
+        $usuario->username = $request->username;
+        $usuario->email = $request->email;
+        $usuario->password = Hash::make($request->password);
+
+        $usuario->save();
+
+        $request->session()->flash('successRegistro', 'Usuario Registrado correctamente');
+        
         return redirect()->back();
     }
 

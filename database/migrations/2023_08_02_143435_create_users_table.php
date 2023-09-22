@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('username', 30);
             $table->string('email');
             $table->string('password');
-            $table->smallInteger('rol_id');
-            $table->string('foto', 100);
+            $table->smallInteger('rol_id')->default(2);
+            $table->string('foto', 100)->default('none');
             $table->boolean('estado')->default(true);
             
             //FKs

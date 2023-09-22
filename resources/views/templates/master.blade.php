@@ -25,6 +25,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('user.filtrar_tematicas') }}">Comenzar</a>
                         </li>
+                        @if (Auth::user()->rol_id == 1)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Administración
@@ -34,6 +35,7 @@
                                 <li><a class="dropdown-item" href="{{ route('admin.show_usuarios') }}">Usuarios</a></li>
                             </ul>
                         </li>
+                        @endif
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
