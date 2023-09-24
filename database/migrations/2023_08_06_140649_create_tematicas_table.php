@@ -17,7 +17,7 @@ return new class extends Migration
             $table->smallInteger('dificultad_id');
             $table->smallInteger('seccion_id');
             $table->string('nombre', 30);
-            $table->string('descripcion',200);
+            $table->string('descripcion',300);
             $table->string('foto')->default('none');
             $table->boolean('estado')->default(false);
 

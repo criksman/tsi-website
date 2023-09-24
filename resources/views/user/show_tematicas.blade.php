@@ -18,17 +18,17 @@
             <div class="card-body">
                 <h5 class="card-title">{{$tematica->nombre}}</h5>
                 <p class="card-text">{{$tematica->descripcion}}</p>
-                
+
                 @php
-                   $user = Auth::user();
-                   $pivot = $user->tematicasConPivot()->where('tematica_usuario.tematica_id', $tematica->tematica_id)->first();
+                $user = Auth::user();
+                $pivot = $user->tematicasConPivot()->where('tematica_usuario.tematica_id', $tematica->tematica_id)->first();
                 @endphp
-                
+
                 <div class="progress mb-3">
                     @if($pivot)
-                        <div class="progress-bar bg-success" role="progressbar" style="width: {{$pivot->pivot->progreso}}%;" aria-valuenow="{{$pivot->pivot->progreso}}" aria-valuemin="0" aria-valuemax="100">{{$pivot->pivot->progreso}}%</div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$pivot->pivot->progreso}}%;" aria-valuenow="{{$pivot->pivot->progreso}}" aria-valuemin="0" aria-valuemax="100">{{$pivot->pivot->progreso}}%</div>
                     @else
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                     @endif
                 </div>
                 <div class="row">
