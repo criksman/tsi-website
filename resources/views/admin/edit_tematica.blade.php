@@ -43,7 +43,7 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder={{$tematica->descripcion}}></textarea>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="{{$tematica->descripcion}}"></textarea>
                     </div>
                 </div>
             </div>
@@ -200,7 +200,7 @@
                                     <textarea class="form-control" id="enunciado" name="enunciado"></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <label for="audio" class="form-label">Archivo de audio (opcional)</label>
+                                    <label for="audio" class="form-label">Archivo de audio</label>
                                     <input class="form-control form-control-sm" id="audio" name="audio" type="file" accept=".mp3">
                                 </div>
                                 <div class="row">
@@ -243,8 +243,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Crear</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-secondary">Crear</button>
                         </div>
                     </form>
                 </div>
@@ -281,8 +281,8 @@
                                     @method('delete')
                                     @csrf
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-secondary">Eliminar</button>
                                     </div>
                                 </form>
                             </div>
@@ -293,7 +293,7 @@
         @endforeach
 
         <div class="row">
-            <div class="col text-center">
+            <div class="col text-center mt-3">
                 <button type="button" class="btn btn-secondary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearMaterialModal"></button> <span> Añadir enlace (Material de estudio)</span>
             </div>
         </div>
@@ -332,8 +332,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-secondary">Agregar</button>
                     </div>
                 </form>
             </div>
