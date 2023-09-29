@@ -1,0 +1,59 @@
+    Escucha la conversación y responde: ¿Dónde planean ir el próximo fin de semana?
+        Opciones:
+        a) Al cine
+        b) A la playa
+        c) Al parque
+        d) A un restaurante
+
+    Transcripción del Audio:
+    Person 1: "What would you like to do next weekend?"
+    Person 2: "I'd love to go to the beach. Does that sound good to you?"
+    Person 1: "Sounds great! Let's go to the beach then."
+
+    Escucha la conversación y responde: ¿Cuál es el motivo de la llamada?
+        Opciones:
+        a) To make a reservation at a restaurant
+        b) To ask for directions
+        c) To congratulate on a birthday
+        d) To seek help with a technical issue
+
+    Transcripción del Audio:
+    Person 1: "Hello, can I speak to the reservations department?"
+    Person 2: "Yes, of course. How can I assist you?"
+    Person 1: "I'd like to make a reservation for two for tonight."
+
+    Escucha la conversación y responde: ¿Cuál es el plan para la tarde?
+        Opciones:
+        a) Go shopping
+        b) Watch a movie at home
+        c) Exercise at the gym
+        d) Go out for dinner
+
+    Transcripción del Audio:
+    Person 1: "What would you like to do this afternoon?"
+    Person 2: "I don't have plans. Do you want to watch a movie at home?"
+    Person 1: "Great idea! We can order something to eat too."
+
+    Escucha la conversación y responde: ¿Cuál es la preferencia de la persona sobre el tipo de comida?
+        Opciones:
+        a) Italian
+        b) Mexican
+        c) Chinese
+        d) Fast food
+
+    Transcripción del Audio:
+    Person 1: "What do you feel like eating today?"
+    Person 2: "I'm in the mood for Chinese food. Does that sound good to you?"
+    Person 1: "Yes, I love Chinese food. Let's go to that restaurant we like."
+
+    Escucha la conversación y responde: ¿Qué actividad planean hacer el sábado?
+        Opciones:
+        a) Go to the movies
+        b) Take a walk
+        c) Visit a museum
+        d) Go shopping
+
+    Transcripción del Audio:
+    Person 1: "Do you have plans for Saturday?"
+    Person 2: "No, nothing in particular. Do you have any ideas?"
+    Person 1: "We could take a walk in the park. Do you like that idea?"

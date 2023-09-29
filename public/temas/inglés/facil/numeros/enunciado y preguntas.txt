@@ -1,0 +1,85 @@
+Tema: Números en Inglés
+
+Descripción: Este tema te ayudará a aprender a contar en inglés. Cada pregunta incluirá un audio con la pronunciación de un número en inglés, y deberás seleccionar la opción correcta que corresponda al número que escuchas.
+
+Preguntas con Audio:
+
+    Escucha el número en inglés y selecciona la opción correcta:
+        Audio: "Four"
+        Opciones:
+        a) Three
+        b) Five
+        c) Four
+        d) Six
+
+    Escucha el número en inglés y selecciona la opción correcta:
+        Audio: "Seven"
+        Opciones:
+        a) Eight
+        b) Six
+        c) Seven
+        d) Nine
+
+    Escucha el número en inglés y selecciona la opción correcta:
+        Audio: "Two"
+        Opciones:
+        a) Five
+        b) Two
+        c) Six
+        d) Ten
+
+    Escucha el número en inglés y selecciona la opción correcta:
+        Audio: "Nine"
+        Opciones:
+        a) Three
+        b) Four
+        c) Nine
+        d) Seven
+
+    Escucha el número en inglés y selecciona la opción correcta:
+        Audio: "One"
+        Opciones:
+        a) One
+        b) Eight
+        c) Four
+        d) Six
+
+    Escucha el número en inglés y selecciona la opción correcta:
+        Audio: "Three"
+        Opciones:
+        a) Five
+        b) Three
+        c) Nine
+        d) Two
+
+    Escucha el número en inglés y selecciona la opción correcta:
+        Audio: "Six"
+        Opciones:
+        a) Ten
+        b) Six
+        c) Eight
+        d) Two
+
+    Escucha el número en inglés y selecciona la opción correcta:
+        Audio: "Eight"
+        Opciones:
+        a) Four
+        b) Eight
+        c) One
+        d) Seven
+
+    Escucha el número en inglés y selecciona la opción correcta:
+        Audio: "Five"
+        Opciones:
+        a) Five
+        b) Three
+        c) Six
+        d) Nine
+
+    Escucha el número en inglés y selecciona la opción correcta:
+        Audio: "Ten"
+        Opciones:
+        a) Ten
+        b) Two
+        c) Seven
+        d) Four
