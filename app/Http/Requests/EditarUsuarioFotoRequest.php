@@ -25,7 +25,7 @@ class EditarUsuarioFotoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'foto' => 'required|max:100'
+            'foto' => 'required'
         ];
     }
 }
