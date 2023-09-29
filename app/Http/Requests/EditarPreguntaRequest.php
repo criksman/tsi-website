@@ -27,10 +27,10 @@ class EditarPreguntaRequest extends FormRequest
         return [
             'enunciado' => 'nullable|sometimes',
             'audio' => 'nullable|sometimes|max:100',
-            'respuesta_corr' => 'nullable|sometimes|max:30',
-            'respuesta_inc1' => 'nullable|sometimes|max:30',
-            'respuesta_inc2' => 'nullable|sometimes|max:30',
-            'respuesta_inc3' => 'nullable|sometimes|max:30',
+            'respuesta_corr' => 'nullable|sometimes|max:100',
+            'respuesta_inc1' => 'nullable|sometimes|max:100',
+            'respuesta_inc2' => 'nullable|sometimes|max:100',
+            'respuesta_inc3' => 'nullable|sometimes|max:100',
         ];
     }
 }

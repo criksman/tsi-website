@@ -17,7 +17,11 @@
             <img src="{{ asset('storage/documentos/img/tematicas/' . $tematica->tematica_id . '/' . $tematica->foto) }}" class="card-img-top img-fluid" style="height: 200px;" alt="">
             <div class="card-body">
                 <h5 class="card-title">{{$tematica->nombre}}</h5>
-                <p class="card-text">{{$tematica->descripcion}}</p>
+                <div class="col mb-3">
+                    <div class="row" style="height: 140px;">
+                        <p class="card-text">{{$tematica->descripcion}}</p>
+                    </div>
+                </div>
 
                 @php
                 $user = Auth::user();

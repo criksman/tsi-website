@@ -27,10 +27,10 @@ class CrearPreguntaRequest extends FormRequest
         return [
             'enunciado' => 'required',
             'audio' => 'nullable|sometimes|max:100',
-            'respuesta_corr' => 'required|max:30',
-            'respuesta_inc1' => 'required|max:30',
-            'respuesta_inc2' => 'required|max:30',
-            'respuesta_inc3' => 'required|max:30',
+            'respuesta_corr' => 'required|max:100',
+            'respuesta_inc1' => 'required|max:100',
+            'respuesta_inc2' => 'required|max:100',
+            'respuesta_inc3' => 'required|max:100',
         ];
     }
 }
