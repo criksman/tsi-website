@@ -40,9 +40,9 @@
                         <input type="email" class="form-control" id="email" name="email" placeholder="{{ Auth::user()->email }}">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col">
                     <div class="mb-3">
-                        <label for="password" class="form-label">Contraseña</label>
+                        <label for="password" class="form-label">Contraseña (Necesario para confirmar cambios)</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese Contraseña">
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
             <div class="row">
                 <div class="col d-grid">
-                    <button type="submit" class="btn btn-success text-white mt-3 mb-3">Aplicar Cambios</button>
+                    <button type="submit" class="btn btn-success text-white mt-3">Aplicar Cambios</button>
                 </div>
             </div>
         </form>
@@ -81,10 +81,10 @@
             @method('put')
             @csrf
             <div class="row">
-                <div class="col-9 my-3">
+                <div class="col-9 mt-3">
                     <input class="form-control form-control-sm" id="foto" name="foto" type="file" accept=".png, .jpeg, .jpg">
                 </div>
-                <div class="col-3 my-3 text-center">
+                <div class="col-3 mt-3 text-center">
                     <button type="submit" class="btn btn-success text-white fa-solid fa-upload"></button>
                 </div>
             </div>

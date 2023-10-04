@@ -36,7 +36,7 @@
                 <div class="col-6">
                     <label for="seccion_id" class="form-label">Seccion</label>
                     <select class="form-select" aria-label="Default select example" id="seccion_id" name="seccion_id">
-                        <option value="1" @if($tematica->seccion_id == 1) selected @endif>Escrito</option>
+                        <option value="1" @if($tematica->seccion_id == 1) selected @endif>Textual</option>
                         <option value="2" @if($tematica->seccion_id == 2) selected @endif>Listening</option>
                     </select>
                 </div>

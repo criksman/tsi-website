@@ -38,7 +38,7 @@
                         <span> ¿No tienes cuenta? <a href="{{ route('home.register') }}"> Regístrate </a></span>
                     </div>
                     <div class="mb-3">
-                        <span> ¿Olvidaste tu contraseña? <a href="home-restablecer.html"> Restablecela </a></span>
+                        <span> ¿Olvidaste tu contraseña? <a href="#"> Restablecela </a></span>
                     </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ class CrearPreguntaRequest extends FormRequest
     {
         return [
             'enunciado' => 'required',
-            'audio' => 'nullable|sometimes|max:100',
+            'audio' => 'nullable|sometimes',
             'respuesta_corr' => 'required|max:100',
             'respuesta_inc1' => 'required|max:100',
             'respuesta_inc2' => 'required|max:100',

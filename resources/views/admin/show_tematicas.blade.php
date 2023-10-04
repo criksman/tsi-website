@@ -44,7 +44,7 @@
                             <div class="col mb-2">
                                 <label for="seccion_id" class="form-label">Sección: </label>
                                 <select class="form-select" aria-label="Default select example" id="seccion_id" name="seccion_id">
-                                    <option value="1">Escrito</option>
+                                    <option value="1">Textual</option>
                                     <option value="2">Listening</option>
                                 </select>
                             </div>
@@ -90,7 +90,7 @@
                 <tr class="text-center">
                     <th scope="col">Temática</th>
                     <th scope="col">Foto</th>
-                    <th scope="col">Tipo</th>
+                    <th scope="col">Sección</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>

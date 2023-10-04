@@ -5,7 +5,7 @@
 @foreach($secciones as $seccion)
 <div class="row">
     <div class="col">
-        <h1>Enunciados {{ $seccion->nombre }}</h1>
+        <h1>Enunciado {{ $seccion->nombre }}</h1>
         <hr>
     </div>
 </div>
