@@ -15,17 +15,17 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    public function showIdiomas(){
+    public function listIdiomas(){
         $idiomas = Idioma::all();
 
-        return view('admin.show_idiomas', compact('idiomas'));
+        return view('admin.list_idiomas', compact('idiomas'));
     }
 
-    public function showTematicas(Idioma $idioma){
+    public function listTematicas(Idioma $idioma){
         $tematicas = $idioma->tematicas;
         $dificultades = Dificultad::orderBy('dificultad_id')->get();
 
-        return view('admin.show_tematicas', compact('idioma','tematicas', 'dificultades'));
+        return view('admin.list_tematicas', compact('idioma','tematicas', 'dificultades'));
     }
 
     public function editTematica(Tematica $tematica){
@@ -61,10 +61,10 @@ class AdminController extends Controller
         return view('admin.edit_idioma', compact('idioma'));
     }
 
-    public function showUsuarios(){
+    public function listUsuarios(){
         $usuarios = Usuario::all();
 
-        return view('admin.show_usuarios', compact('usuarios'));
+        return view('admin.list_usuarios', compact('usuarios'));
     }
 
 }

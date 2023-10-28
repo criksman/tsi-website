@@ -8,7 +8,7 @@ use App\Http\Controllers\IdiomasController;
 use App\Http\Controllers\TematicasController;
 use App\Http\Controllers\PreguntasController;
 use App\Http\Controllers\EnlacesController;
-
+use App\Http\Controllers\ComenzarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,24 +34,26 @@ Route::post('/usuario/login', [UsuariosController::class, 'login'])->name('user.
 Route::get('/usuario/logout', [UsuariosController::class, 'logout'])->name('user.logout');
 Route::put('/usuario/updateCredenciales', [UsuariosController::class, 'updateCredenciales'])->name('user.updateCredenciales');
 Route::put('/usuario/updateFoto', [UsuariosController::class, 'updateFoto'])->name('user.updateFoto');
-Route::get('/usuario/filtrar', [UsuariosController::class, 'filtrarTematicas'])->name('user.filtrar_tematicas');
-Route::get('/usuario/tematicas', [UsuariosController::class, 'showTematicas'])->name('user.show_tematicas');
-Route::get('/usuario/tematicas/{tematica}/preguntas', [UsuariosController::class, 'showPreguntas'])->name('user.show_preguntas');
-Route::put('/usuario/tematicas/{tematica}/calcularResultado', [UsuariosController::class, 'calcularResultado'])->name('user.calcularResultado');
-Route::get('/usuario/tematicas/{tematica}/resultado', [UsuariosController::class, 'showResultado'])->name('user.show_resultado');
 Route::delete('/usuario/{usuario}/destroy', [UsuariosController::class, 'destroy'])->name('user.destroy');
 Route::put('/usuario/{usuario}/ban', [UsuariosController::class, 'ban'])->name('user.ban');
 Route::put('/usuario/{usuario}/unban', [UsuariosController::class, 'unban'])->name('user.unban');
 Route::post('/usuario/store', [UsuariosController::class, 'store'])->name('user.store');
 
+//comenzar
+Route::get('/usuario/comenzar/filtrar', [ComenzarController::class, 'filtrarTematicas'])->name('user.comenzar.filtrar_tematicas');
+Route::get('/usuario/comenzar/tematicas', [ComenzarController::class, 'listTematicas'])->name('user.comenzar.list_tematicas');
+Route::get('/usuario/comenzar/tematicas/{tematica}/preguntas', [ComenzarController::class, 'formulario'])->name('user.comenzar.formulario');
+Route::put('/usuario/comenzar/tematicas/{tematica}/calcularResultado', [ComenzarController::class, 'calcularResultado'])->name('user.comenzar.calcularResultado');
+Route::get('/usuario/comenzar/tematicas/{tematica}/resultado/show', [ComenzarController::class, 'showResultado'])->name('user.comenzar.show_resultado');
+
 
 //admin
-Route::get('/admin/idiomas', [AdminController::class, 'showIdiomas'])->name('admin.show_idiomas');
-Route::get('/admin/idiomas/{idioma}/tematicas', [AdminController::class, 'showTematicas'])->name('admin.show_tematicas');
+Route::get('/admin/idiomas', [AdminController::class, 'listIdiomas'])->name('admin.list_idiomas');
+Route::get('/admin/usuarios', [AdminController::class, 'listUsuarios'])->name('admin.list_usuarios');
+Route::get('/admin/idiomas/{idioma}/tematicas', [AdminController::class, 'listTematicas'])->name('admin.list_tematicas');
 Route::get('/admin/tematicas/{tematica}/edit', [AdminController::class, 'editTematica'])->name('admin.edit_tematica');
 Route::get('/admin/tematicas/{tematica}/{pregunta}/edit', [AdminController::class, 'editPregunta'])->name('admin.edit_pregunta');
 Route::get('/admin/idiomas/{idioma}/edit', [AdminController::class, 'editIdioma'])->name('admin.edit_idioma');
-Route::get('/admin/usuarios', [AdminController::class, 'showUsuarios'])->name('admin.show_usuarios');
 
 //tematica
 Route::post('/idiomas/{idioma}/tematica/store', [TematicasController::class, 'store'])->name('tematica.store');

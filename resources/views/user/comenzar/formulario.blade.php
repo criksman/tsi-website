@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<form method="POST" action="{{route('user.calcularResultado', $tematica->tematica_id)}}">
+<form method="POST" action="{{route('user.comenzar.calcularResultado', $tematica->tematica_id)}}">
     @method('put')
     @csrf
     <div class="row">

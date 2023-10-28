@@ -26,7 +26,7 @@
             <div class="card-body">
                 <h5 class="card-title text-center">{{$idioma->nombre}}</h5>
                 <div class="text-center mt-3 d-grid">
-                    <a href="{{ route('admin.show_tematicas', $idioma->idioma_id) }}" class="btn btn-secondary text-white">Temáticas</a>
+                    <a href="{{ route('admin.list_tematicas', $idioma->idioma_id) }}" class="btn btn-secondary text-white">Temáticas</a>
                 </div>
                 <div class="text-center mt-3 d-grid">
                     <a href="{{ route('admin.edit_idioma', $idioma->idioma_id) }}" class="btn btn-warning">Editar</a>

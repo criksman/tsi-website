@@ -22,7 +22,7 @@
                 @endforeach
             </div>
             @endif
-            <form method="GET" action="{{ route('user.show_tematicas') }}">
+            <form method="GET" action="{{ route('user.comenzar.list_tematicas') }}">
                 <div class="mb-3">
                     <label for="idioma_id" class="form-label">Languaje</label>
                     <select class="form-select" id="idioma_id" name="idioma_id">

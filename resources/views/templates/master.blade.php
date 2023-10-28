@@ -23,7 +23,7 @@
                             <a class="nav-link active" aria-current="page" href="{{ route('home.index') }}">Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('user.filtrar_tematicas') }}">Comenzar</a>
+                            <a class="nav-link active" href="{{ route('user.comenzar.filtrar_tematicas') }}">Comenzar</a>
                         </li>
                         @if (Auth::user()->rol_id == 1)
                         <li class="nav-item dropdown">
@@ -31,8 +31,8 @@
                                 Administración
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('admin.show_idiomas') }}">Idiomas</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.show_usuarios') }}">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.list_idiomas') }}">Idiomas</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.list_usuarios') }}">Usuarios</a></li>
                             </ul>
                         </li>
                         @endif
