@@ -36,11 +36,11 @@ class Tematica extends Model
     }
 
     public function users():BelongsToMany{
-        return $this->belongsToMany(Usuario::class, 'tematica_usuario', 'tematica_id' ,'user_id');
+        return $this->belongsToMany(Usuario::class, 'tematica_user', 'tematica_id' ,'user_id');
     }
 
     public function usersConPivot():BelongsToMany{
-        return $this->belongsToMany(Usuario::class, 'tematica_usuario','tematica_id' ,'user_id')->withPivot(['progreso']);
+        return $this->belongsToMany(Usuario::class, 'tematica_user','tematica_id' ,'user_id')->withPivot(['progreso']);
     }
 
     public function enlaces(): HasMany

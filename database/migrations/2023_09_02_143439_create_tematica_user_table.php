@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tematica_usuario', function (Blueprint $table) {
+        Schema::create('tematica_user', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('tematica_id');
             $table->primary(['user_id','tematica_id']);
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tematica_usuario');
+        Schema::dropIfExists('tematica_user');
     }
 };

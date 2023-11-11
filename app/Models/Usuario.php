@@ -22,10 +22,18 @@ class Usuario extends Authenticable
     }
 
     public function tematicas():BelongsToMany{
-        return $this->belongsToMany(Tematica::class, 'tematica_usuario', 'user_id', 'tematica_id');
+        return $this->belongsToMany(Tematica::class, 'tematica_user', 'user_id', 'tematica_id');
     }
 
     public function tematicasConPivot():BelongsToMany{
-        return $this->belongsToMany(Tematica::class, 'tematica_usuario', 'user_id', 'tematica_id')->withPivot(['progreso']);
+        return $this->belongsToMany(Tematica::class, 'tematica_user', 'user_id', 'tematica_id')->withPivot(['progreso']);
+    }
+
+    public function progresoDificultadIdioma():BelongsToMany{
+        return $this->belongsToMany(Dificultad::class, 'dificultad_idioma_user', 'user_id', 'dificultad_id', 'idioma_id');
+    }
+    
+    public function progresoDificultadIdiomaConPivot():BelongsToMany{
+        return $this->belongsToMany(Dificultad::class, 'dificultad_idioma_user', 'user_id', 'dificultad_id', 'idioma_id')->withPivot(['progreso']);
     }
 }

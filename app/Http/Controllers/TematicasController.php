@@ -42,7 +42,7 @@ class TematicasController extends Controller
     }
 
     public function destroy(Tematica $tematica){
-        DB::table('tematica_usuario')
+        DB::table('tematica_user')
             ->where('tematica_id', $tematica->tematica_id)
             ->delete();
 

@@ -25,7 +25,7 @@
 
                 @php
                 $user = Auth::user();
-                $pivot = $user->tematicasConPivot()->where('tematica_usuario.tematica_id', $tematica->tematica_id)->first();
+                $pivot = $user->tematicasConPivot()->where('tematica_user.tematica_id', $tematica->tematica_id)->first();
                 @endphp
 
                 <div class="progress mb-3">

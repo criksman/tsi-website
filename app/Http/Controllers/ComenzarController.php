@@ -9,6 +9,7 @@ use App\Models\Tematica;
 use App\Models\Dificultad;
 use App\Http\Requests\FiltrarTematicasRequest;
 use App\Models\Seccion;
+use Illuminate\Support\Facades\DB;
 
 class ComenzarController extends Controller
 {
@@ -40,6 +41,8 @@ class ComenzarController extends Controller
     }
 
     public function calcularResultado(Request $request, Tematica $tematica){
+        //LAS VARIABLES ACÁ TIENE QUE SER RENOMBRADAS, SON MUY REDUNDANTES Y CONFUNDEN :/
+        
         $totalPreguntas = count($tematica->preguntas);
 
         $preguntasCorrectas = 0;
@@ -59,18 +62,42 @@ class ComenzarController extends Controller
 
         $porcentaje = ($preguntasCorrectas / $totalPreguntas) * 100;
 
-        //Guardar valor
         $usuario = Auth::user();
-
-        //esta variable hay que renombrarla para que se entienda mejor
-        $pivot = $usuario->tematicasConPivot()->where('tematica_usuario.tematica_id', $tematica->tematica_id)->first();
         
-        if($pivot){
+        $progresoExistente = $usuario->tematicasConPivot()->where('tematica_user.tematica_id', $tematica->tematica_id)->first();
+        
+        if($progresoExistente){
             $usuario->tematicasConPivot()->updateExistingPivot($tematica->tematica_id,['progreso'=>$porcentaje]);
         }else{
             $usuario->tematicas()->attach($tematica->tematica_id, ['progreso'=>$porcentaje]);
         }
+
+        $idioma = Idioma::find($tematica->idioma_id);
+
+        $totalTematicas = $idioma->tematicas()->where('dificultad_id', $tematica->dificultad_id)->where('idioma_id', $tematica->idioma_id)->count();
+
+        $tematicasAprobadas = $usuario->tematicasConPivot()->where('tematicas.dificultad_id', $tematica->dificultad_id)->where('tematicas.idioma_id', $tematica->idioma_id)->wherePivot('progreso', '>=', 55)->count();
         
+        $promedioProgreso = ($tematicasAprobadas / $totalTematicas) * 100;
+
+        //ocupo denuevo la misma variable y se la asigno a esta otra tabla... la verdad no se como poder hacer dos distintas con nombres apropiados
+        //otro consejo es considerar que valor voy a guardar en el progreso... el porcentaje de tematicas aprobadas o el porcentaje promedio de todo.
+        $progresoExistente = DB::table('dificultad_idioma_user')
+            ->where('dificultad_id', $tematica->dificultad_id)
+            ->where('idioma_id', $idioma->idioma_id)
+            ->where('user_id', $usuario->user_id)
+            ->first();
+        
+        if ($progresoExistente){
+            DB::table('dificultad_idioma_user')
+            ->where('dificultad_id', $tematica->dificultad_id)
+            ->where('idioma_id', $idioma->idioma_id)
+            ->where('user_id', $usuario->user_id)
+            ->update(['progreso' => $promedioProgreso]);
+        }else{
+            $usuario->progresoDificultadIdioma()->attach($tematica->dificultad_id ,['progreso' => $promedioProgreso, 'idioma_id' => $idioma->idioma_id, 'user_id' => $usuario->user_id]);
+        }
+
         return redirect()->route('user.comenzar.show_resultado', compact('tematica'))->with('porcentaje', $porcentaje);
     }
 
