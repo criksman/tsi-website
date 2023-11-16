@@ -17,7 +17,7 @@
         </div>
         @if ($errors->EditarUsuarioCredencialesBag->any())
         <div class="alert alert-warning">
-            @foreach ($errors->EditarUsuarioCredencialesBag as $error)
+            @foreach ($errors->EditarUsuarioCredencialesBag->all() as $error)
             <div class="row">
                 <span>- {{ $error }}</span>
             </div>
@@ -41,12 +41,16 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="mb-3">
+                    <div class="mb-5">
                         <label for="password" class="form-label">Contraseña (Necesario para confirmar cambios)</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese Contraseña">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese Contraseña">
+                            <a href="{{ route('user.contrasena.edit') }}" class="btn btn-warning fa-solid fa-arrow-rotate-right d-flex justify-content-center align-items-center"></a>
+                        </div>
                     </div>
                 </div>
             </div>
+
 
             <div class="row">
                 <div class="col d-grid">
@@ -102,52 +106,35 @@
         <div class="row">
             @foreach($idiomas as $idioma)
             @php
-            //total tematicas en cada dificultad
-            $temasFacilTotal = $idioma->tematicas()->where('dificultad_id', 1)->count();
-            $temasMedioTotal = $idioma->tematicas()->where('dificultad_id', 2)->count();
-            $temasDificilTotal = $idioma->tematicas()->where('dificultad_id', 3)->count();
+                //$facil = Auth::user()->progresoDificultadIdiomaConPivot()->where('dificultad_idioma_user.idioma_id', $idioma->idioma_id)->where('dificultad_idioma_user.dificultad_id', 1)->first();
+                //$medio = Auth::user()->progresoDificultadIdiomaConPivot()->where('dificultad_idioma_user.idioma_id', $idioma->idioma_id)->where('dificultad_idioma_user.dificultad_id', 2)->first();
+                //$dificil = Auth::user()->progresoDificultadIdiomaConPivot()->where('dificultad_idioma_user.idioma_id', $idioma->idioma_id)->where('dificultad_idioma_user.dificultad_id', 3)->first();
 
-            $temasFacilAprobados = Auth::user()
-            ->tematicasConPivot()
-            ->whereIn('tematicas.tematica_id', $idioma->tematicas()->where('dificultad_id', 1)->pluck('tematicas.tematica_id'))
-            ->wherePivot('progreso', '>=', 55)
-            ->count();
+                //$progresoFacil = $facil ? $facil->pivot->progreso : 'N/A';
+                //$progresoMedio = $medio ? $medio->pivot->progreso : 'N/A';
+                //$progresoDificil = $dificil ? $dificil->pivot->progreso : 'N/A';
 
-            $temasMedioAprobados = Auth::user()
-            ->tematicasConPivot()
-            ->whereIn('tematicas.tematica_id', $idioma->tematicas()->where('dificultad_id', 2)->pluck('tematicas.tematica_id'))
-            ->wherePivot('progreso', '>=', 55)
-            ->count();
+                $facil = DB::table('dificultad_idioma_user')
+                    ->where('user_id', Auth::user()->user_id)
+                    ->where('idioma_id', $idioma->idioma_id)
+                    ->where('dificultad_id', 1)
+                    ->value('progreso');
 
-            $temasDificilAprobados = Auth::user()
-            ->tematicasConPivot()
-            ->whereIn('tematicas.tematica_id', $idioma->tematicas()->where('dificultad_id', 3)->pluck('tematicas.tematica_id'))
-            ->wherePivot('progreso', '>=', 55)
-            ->count();
+                $medio = DB::table('dificultad_idioma_user')
+                    ->where('user_id', Auth::user()->user_id)
+                    ->where('idioma_id', $idioma->idioma_id)
+                    ->where('dificultad_id', 2)
+                    ->value('progreso');
 
-            //resultados y porcentajes
-            $resultadoFacil = $temasFacilAprobados . '/' . $temasFacilTotal;
-            if ($temasFacilTotal > 0){
-            $porcentajeFacil = ($temasFacilAprobados / $temasFacilTotal) * 100;
-            }else{
-            $porcentajeFacil = 0;
-            }
-
-            $resultadoMedio = $temasMedioAprobados . '/' . $temasMedioTotal;
-            if ($temasMedioTotal > 0 ){
-            $porcentajeMedio = ($temasMedioAprobados / $temasMedioTotal) * 100;
-            }else{
-            $porcentajeMedio = 0;
-            }
-
-            $resultadoDificil = $temasDificilAprobados . '/' . $temasDificilTotal;
-
-            if ($temasDificilTotal > 0){
-            $porcentajeDificil = ($temasDificilAprobados / $temasDificilTotal) * 100;
-            }else{
-            $porcentajeDificil = 0;
-            }
-
+                $dificil = DB::table('dificultad_idioma_user')
+                    ->where('user_id', Auth::user()->user_id)
+                    ->where('idioma_id', $idioma->idioma_id)
+                    ->where('dificultad_id', 3)
+                    ->value('progreso');
+                
+                $progresoFacil = $facil ?? 0;
+                $progresoMedio = $medio ?? 0;
+                $progresoDificil = $dificil ?? 0;
             @endphp
 
             <div class="col-lg-4 col-md-6 mb-4">
@@ -157,18 +144,18 @@
                         <h5 class="card-title">{{$idioma->nombre}}</h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Fácil
-                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$porcentajeFacil}}" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-success" style="width:{{$porcentajeFacil}}%">{{$resultadoFacil}}</div>
+                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoFacil}}" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-success" style="width:{{$progresoFacil}}%">{{$progresoFacil}}</div>
                                 </div>
                             </li>
                             <li class="list-group-item">Medio
-                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$porcentajeMedio}}" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-success" style="width:{{$porcentajeMedio}}%">{{$resultadoMedio}}</div>
+                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoMedio}}" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-success" style="width:{{$progresoMedio}}%">{{$progresoMedio}}</div>
                                 </div>
                             </li>
                             <li class="list-group-item">Difícil
-                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$porcentajeDificil}}" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-success" style="width:{{$porcentajeDificil}}%">{{$resultadoDificil}}</div>
+                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoDificil}}" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-success" style="width:{{$progresoDificil}}%">{{$progresoDificil}}</div>
                                 </div>
                             </li>
                         </ul>

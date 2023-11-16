@@ -19,9 +19,9 @@ return new class extends Migration
 
             $table->integer('progreso')->default(0);
 
-            $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('idioma_id')->references('idioma_id')->on('idiomas');
-            $table->foreign('dificultad_id')->references('dificultad_id')->on('dificultades');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
+            $table->foreign('idioma_id')->references('idioma_id')->on('idiomas')->onDelete('cascade');
+            $table->foreign('dificultad_id')->references('dificultad_id')->on('dificultades')->onDelete('cascade');
         });
     }
 

@@ -14,6 +14,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UsuarioEditarCredencialesRequest;
 use App\Http\Requests\FiltrarTematicasRequest;
 use App\Http\Requests\EditarUsuarioFotoRequest;
+use App\Http\Requests\EditarContrasenaRequest;
 use App\Http\Requests\RegistrarUsuarioRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -87,6 +88,19 @@ class UsuariosController extends Controller
         $user->foto = $nombre;
         $user->save();
 
+        return redirect()->back();
+    }
+
+    public function editContrasena(){
+        return view('user.contrasena.edit');
+    }
+
+    public function updateContrasena(EditarContrasenaRequest $request){
+        $user = Auth::user();
+        
+        $user->password = Hash::make($request->password);
+        $user->save();
+        
         return redirect()->back();
     }
 

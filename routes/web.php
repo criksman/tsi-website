@@ -38,6 +38,8 @@ Route::delete('/usuario/{usuario}/destroy', [UsuariosController::class, 'destroy
 Route::put('/usuario/{usuario}/ban', [UsuariosController::class, 'ban'])->name('user.ban');
 Route::put('/usuario/{usuario}/unban', [UsuariosController::class, 'unban'])->name('user.unban');
 Route::post('/usuario/store', [UsuariosController::class, 'store'])->name('user.store');
+Route::get('/usuario/contrasena/edit', [UsuariosController::class, 'editContrasena'])->name('user.contrasena.edit');
+Route::put('/usuario/contrasena/update', [UsuariosController::class, 'updateContrasena'])->name('user.contrasena.update');
 
 //comenzar
 Route::get('/usuario/comenzar/filtrar', [ComenzarController::class, 'filtrarTematicas'])->name('user.comenzar.filtrar_tematicas');
