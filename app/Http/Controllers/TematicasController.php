@@ -6,14 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\Idioma;
 use App\Models\Tematica;
 use App\Models\Dificultad;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CrearTematicaRequest;
 use App\Http\Requests\EditarTematicaDetallesRequest;
 use App\Http\Requests\EditarTematicaFotoRequest;
 use Illuminate\Support\Facades\DB;
+use App\Traits\ActualizarProgresoTrait;
 
 class TematicasController extends Controller
 {
+    use ActualizarProgresoTrait;
+    
     public function __construct(){
         $this->middleware('auth');
     }
@@ -37,17 +41,31 @@ class TematicasController extends Controller
         $dir = 'public/documentos/img/tematicas/' . $tematica->tematica_id;
 
         $path = $archivo->storeAs($dir, $nombre);
+        
+        //actualizar progresos
+        $usuario = Usuario::find(Auth::user()->user_id);
+        $idioma = Idioma::find($idioma->idioma_id);
+        $dificultad = Dificultad::find($tematica->dificultad_id);
+
+        $this->actualizarProgreso($usuario, $idioma, $dificultad);
 
         return redirect()->back();
     }
 
     public function destroy(Tematica $tematica){
+        //re leer esto porque no lo entendí (esto lo hice cuando estaba ya con 4 horas dentro del proyecto posiblemente estaba quemado mi cerebro ya)
+        
         DB::table('tematica_user')
             ->where('tematica_id', $tematica->tematica_id)
             ->delete();
+        $usuario = Usuario::find(Auth::user()->user_id);
+        $idioma = Idioma::find($tematica->idioma_id);
+        $dificultad = Dificultad::find($tematica->dificultad_id);
 
         $tematica->delete();
-    
+
+        $this->actualizarProgreso($usuario, $idioma, $dificultad);
+
         return redirect()->back();
     }
 
