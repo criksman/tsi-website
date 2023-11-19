@@ -8,6 +8,7 @@ use App\Models\Tematica;
 use App\Http\Requests\CrearPreguntaRequest;
 use App\Http\Requests\EditarPreguntaRequest;
 use App\Http\Requests\EditarPreguntaAudioRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PreguntasController extends Controller
 {
@@ -43,8 +44,12 @@ class PreguntasController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Pregunta $pregunta){
+    public function destroy(Pregunta $pregunta){ 
         $pregunta->delete();
+
+        if ($pregunta->tematica->seccion_id == 2){
+            Storage::deleteDirectory('public/documentos/audio/preguntas/' . $pregunta->pregunta_id);
+        }
 
         return redirect()->back();
     }
@@ -98,6 +103,8 @@ class PreguntasController extends Controller
         $pregunta->audio = null;
 
         $pregunta->save();
+
+        Storage::deleteDirectory('public/documentos/audio/preguntas/' . $pregunta->pregunta_id);
         
         return redirect()->back();
     }

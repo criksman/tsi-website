@@ -13,6 +13,7 @@ use App\Http\Requests\EditarTematicaDetallesRequest;
 use App\Http\Requests\EditarTematicaFotoRequest;
 use Illuminate\Support\Facades\DB;
 use App\Traits\ActualizarProgresoTrait;
+use Illuminate\Support\Facades\Storage;
 
 class TematicasController extends Controller
 {
@@ -53,15 +54,20 @@ class TematicasController extends Controller
     }
 
     public function destroy(Tematica $tematica){
-        //re leer esto porque no lo entendí (esto lo hice cuando estaba ya con 4 horas dentro del proyecto posiblemente estaba quemado mi cerebro ya)
         
+        //eliminar progreso de la tematica del usuario
         DB::table('tematica_user')
             ->where('tematica_id', $tematica->tematica_id)
             ->delete();
+        
+        //obtener usuario, idioma, y dificultad para poder actualizar el progreso, ya que el total de tematicas el cual se usa para calcular el progreso va a dismunuir (esto sucede en la tabla dificultad_idioma_usuario)
         $usuario = Usuario::find(Auth::user()->user_id);
         $idioma = Idioma::find($tematica->idioma_id);
         $dificultad = Dificultad::find($tematica->dificultad_id);
 
+        //busco carpeta de la tematica que contiene las imagenes y las elimino
+        Storage::deleteDirectory('public/documentos/img/tematicas/' . $tematica->tematica_id);
+        
         $tematica->delete();
 
         $this->actualizarProgreso($usuario, $idioma, $dificultad);
