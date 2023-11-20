@@ -107,6 +107,8 @@ class UsuariosController extends Controller
     public function destroy(Usuario $usuario){
         $usuario->delete();
 
+        Storage::deleteDirectory('public/documentos/img/users/' . $usuario->user_id);
+
         return redirect()->back();
     }
 

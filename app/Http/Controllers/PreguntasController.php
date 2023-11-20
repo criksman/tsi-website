@@ -3,17 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Pregunta;
 use App\Models\Tematica;
+use App\Models\Dificultad;
+use App\Models\Usuario;
+use App\Models\Idioma;
+
 use App\Http\Requests\CrearPreguntaRequest;
 use App\Http\Requests\EditarPreguntaRequest;
 use App\Http\Requests\EditarPreguntaAudioRequest;
+
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
+use App\Traits\ActualizarProgresoTrait;
 
 class PreguntasController extends Controller
 {
+    use ActualizarProgresoTrait;
+    
     public function __construct(){
         $this->middleware('auth');
+    }
+
+    private function eliminarProgreso(Tematica $tematica){
+        DB::table('tematica_user')
+            ->where('tematica_id', $tematica->tematica_id)
+            ->delete();
     }
     
     public function store(CrearPreguntaRequest $request, Tematica $tematica){
@@ -45,7 +63,17 @@ class PreguntasController extends Controller
     }
 
     public function destroy(Pregunta $pregunta){ 
+        $tematica = Tematica::find($pregunta->tematica_id);
+
+        $this->eliminarProgreso($tematica);
+
+        $dificultad = Dificultad::find($pregunta->tematica->dificultad_id);
+        $idioma = Idioma::find($pregunta->tematica->idioma_id);
+        $usuario = Usuario::find(Auth::user()->user_id);
+        
         $pregunta->delete();
+
+        $this->actualizarProgreso($usuario, $idioma, $dificultad);
 
         if ($pregunta->tematica->seccion_id == 2){
             Storage::deleteDirectory('public/documentos/audio/preguntas/' . $pregunta->pregunta_id);
@@ -75,7 +103,16 @@ class PreguntasController extends Controller
             $pregunta->respuesta_inc3 = $request->respuesta_inc3;
         }
 
+        $tematica = Tematica::find($pregunta->tematica_id);
+        $this->eliminarProgreso($tematica);
+
+        $dificultad = Dificultad::find($pregunta->tematica->dificultad_id);
+        $idioma = Idioma::find($pregunta->tematica->idioma_id);
+        $usuario = Usuario::find(Auth::user()->user_id);
+
         $pregunta->save();
+
+        $this->actualizarProgreso($usuario, $idioma, $dificultad);
 
         $request->session()->flash('success', 'Cambios aplicados correctamente');
 
@@ -92,7 +129,16 @@ class PreguntasController extends Controller
     
         $path = $archivo->storeAs($dir, $nombre);
 
+        $tematica = Tematica::find($pregunta->tematica_id);
+        $this->eliminarProgreso($tematica);
+
+        $dificultad = Dificultad::find($pregunta->tematica->dificultad_id);
+        $idioma = Idioma::find($pregunta->tematica->idioma_id);
+        $usuario = Usuario::find(Auth::user()->user_id);
+
         $pregunta->save();
+
+        $this->actualizarProgreso($usuario, $idioma, $dificultad);
 
         $request->session()->flash('successFoto', 'Cambios aplicados correctamente');
         
@@ -102,7 +148,16 @@ class PreguntasController extends Controller
     public function deleteAudio(Pregunta $pregunta){
         $pregunta->audio = null;
 
+        $tematica = Tematica::find($pregunta->tematica_id);
+        $this->eliminarProgreso($tematica);
+
+        $dificultad = Dificultad::find($pregunta->tematica->dificultad_id);
+        $idioma = Idioma::find($pregunta->tematica->idioma_id);
+        $usuario = Usuario::find(Auth::user()->user_id);
+
         $pregunta->save();
+
+        $this->actualizarProgreso($usuario, $idioma, $dificultad);
 
         Storage::deleteDirectory('public/documentos/audio/preguntas/' . $pregunta->pregunta_id);
         

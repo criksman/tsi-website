@@ -342,4 +342,20 @@
     </div>
 </div>
 
+@if ($errors->CrearPreguntaBag->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const crearPreguntaModal = new bootstrap.Modal(document.getElementById('crearPreguntaModal'));
+            crearPreguntaModal.show();
+        });
+    </script>
+@elseif ($errors->CrearEnlacesBag->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const crearMaterialModal = new bootstrap.Modal(document.getElementById('crearMaterialModal'));
+            crearMaterialModal.show();
+        });
+    </script>
+@endif
+
 @endsection

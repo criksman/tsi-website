@@ -139,4 +139,15 @@
 
 <hr>
 @endforeach
+
+{{-- llamar modal en caso de redireccion y verificacion fallida --}}
+@if ($errors->CrearTematicaBag->any())
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const crearModal = new bootstrap.Modal(document.getElementById('crearModal'));
+        crearModal.show();
+    });
+</script>
+@endif
+
 @endsection
