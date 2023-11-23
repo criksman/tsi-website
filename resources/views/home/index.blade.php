@@ -15,7 +15,7 @@
                 <h4>Detalles</h4>
             </div>
         </div>
-        @if ($errors->EditarUsuarioCredencialesBag->any())
+        {{-- @if ($errors->EditarUsuarioCredencialesBag->any())
         <div class="alert alert-warning">
             @foreach ($errors->EditarUsuarioCredencialesBag->all() as $error)
             <div class="row">
@@ -23,7 +23,7 @@
             </div>
             @endforeach
         </div>
-        @endif
+        @endif --}}
         <form method="POST" action="{{ route('user.updateCredenciales') }}">
             @method('put')
             @csrf
@@ -31,22 +31,38 @@
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="username" class="form-label">Nombre de usuario</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="{{ Auth::user()->username }}">
+                        <input type="text" class="form-control @error('username', 'EditarUsuarioCredencialesBag') is-invalid @enderror" id="username" name="username" placeholder="{{ Auth::user()->username }}">
+                        @error('username', 'EditarUsuarioCredencialesBag')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="{{ Auth::user()->email }}">
+                        <input type="email" class="form-control @error('email', 'EditarUsuarioCredencialesBag') is-invalid @enderror" id="email" name="email" placeholder="{{ Auth::user()->email }}">
+                        @error('email', 'EditarUsuarioCredencialesBag')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col">
                     <div class="mb-5">
                         <label for="password" class="form-label">Contraseña (Necesario para confirmar cambios)</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese Contraseña">
+                            <input type="password" class="form-control @error('password', 'EditarUsuarioCredencialesBag') is-invalid @enderror" id="password" name="password" placeholder="Ingrese Contraseña">
                             <a href="{{ route('user.contrasena.edit') }}" class="btn btn-warning fa-solid fa-arrow-rotate-right d-flex justify-content-center align-items-center"></a>
                         </div>
+
+                        @error('password', 'EditarUsuarioCredencialesBag')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -66,7 +82,7 @@
                 <h4>Sube tu foto</h4>
             </div>
         </div>
-        @if ($errors->EditarUsuarioFotoBag->any())
+        {{-- @if ($errors->EditarUsuarioFotoBag->any())
         <div class="alert alert-warning">
             @foreach ($errors->EditarUsuarioFotoBag as $error)
             <div class="row">
@@ -74,7 +90,7 @@
             </div>
             @endforeach
         </div>
-        @endif
+        @endif --}}
 
         <div class="row">
             <div class="col text-center">
@@ -86,7 +102,12 @@
             @csrf
             <div class="row">
                 <div class="col-9 mt-3">
-                    <input class="form-control form-control-sm" id="foto" name="foto" type="file" accept=".png, .jpeg, .jpg">
+                    <input class="form-control @error('foto', 'EditarUsuarioFotoBag') is-invalid @enderror form-control-sm" id="foto" name="foto" type="file" accept=".png, .jpeg, .jpg">
+                    @error('foto', 'EditarUsuarioFotoBag')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="col-3 mt-3 text-center">
                     <button type="submit" class="btn btn-success text-white fa-solid fa-upload"></button>

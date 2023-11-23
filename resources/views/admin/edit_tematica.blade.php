@@ -14,7 +14,7 @@
                 <h4>Detalles</h4>
             </div>
         </div>
-        @if ($errors->EditarTematicaDetallesBag->any())
+        {{-- @if ($errors->EditarTematicaDetallesBag->any())
         <div class="text-start alert alert-warning">
             @foreach ($errors->EditarTematicaDetallesBag->all() as $error)
             <div class="row">
@@ -22,7 +22,7 @@
             </div>
             @endforeach
         </div>
-        @endif
+        @endif --}}
         <form method="POST" action="{{ route('tematica.updateDetalles', $tematica->tematica_id) }}">
             @method('put')
             @csrf
@@ -30,20 +30,35 @@
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="{{$tematica->nombre}}">
+                        <input type="text" class="form-control @error('nombre', 'EditarTematicaDetallesBag') is-invalid @enderror" id="nombre" name="nombre" placeholder="{{$tematica->nombre}}">
+                        @error('nombre', 'EditarTematicaDetallesBag')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-6">
                     <label for="seccion_id" class="form-label">Seccion</label>
-                    <select class="form-select" aria-label="Default select example" id="seccion_id" name="seccion_id">
+                    <select class="form-select @error('seccion_id', 'EditarTematicaDetallesBag') is-invalid @enderror" aria-label="Default select example" id="seccion_id" name="seccion_id">
                         <option value="1" @if($tematica->seccion_id == 1) selected @endif>Textual</option>
                         <option value="2" @if($tematica->seccion_id == 2) selected @endif>Listening</option>
                     </select>
+                    @error('seccion_id', 'EditarTematicaDetallesBag')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="col-12">
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="{{$tematica->descripcion}}"></textarea>
+                        <textarea class="form-control @error('descripcion', 'EditarTematicaDetallesBag') is-invalid @enderror" id="descripcion" name="descripcion" rows="3" placeholder="{{$tematica->descripcion}}"></textarea>
+                        @error('descripcion', 'EditarTematicaDetallesBag')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -67,7 +82,7 @@
                 <img src="{{ asset('storage/documentos/img/tematicas/' . $tematica->tematica_id . '/' . $tematica->foto) }}" alt="Sin Imágen" class="img-fluid" style="height: 200px;">
             </div>
         </div>
-        @if ($errors->EditarTematicaFotoBag->any())
+        {{-- @if ($errors->EditarTematicaFotoBag->any())
         <div class="text-start alert alert-warning">
             @foreach ($errors->EditarTematicaFotoBag->all() as $error)
             <div class="row">
@@ -75,13 +90,18 @@
             </div>
             @endforeach
         </div>
-        @endif
+        @endif --}}
         <form method="POST" action="{{ route('tematica.updateFoto', $tematica->tematica_id) }}" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="row">
                 <div class="col-9 my-3">
-                    <input class="form-control form-control-sm" id="formFileSm" name="foto" type="file" accept=".png, .jpeg, .jpg">
+                    <input class="form-control form-control-sm @error('foto', 'EditarTematicaFotoBag') is-invalid @enderror" id="formFileSm" name="foto" type="file" accept=".png, .jpeg, .jpg">
+                    @error('foto', 'EditarTematicaFotoBag')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="col-3 my-3 text-center">
                     <button type="submit" class="btn btn-success text-white fa-solid fa-upload"></button>
@@ -105,7 +125,7 @@
                 <button type="button" class="btn btn-danger fa-solid fa-trash fa-sm p-2 text-white" data-bs-toggle="modal" data-bs-target="#borrarModal{{$pregunta->pregunta_id}}"></button>
 
                 <div class="modal fade" id="borrarModal{{$pregunta->pregunta_id}}" tabindex="-1" aria-labelledby="borrarModalLabel{{$pregunta->pregunta_id}}" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="borrarModalLabel{{$pregunta->pregunta_id}}">Borrar pregunta</h1>
@@ -174,14 +194,14 @@
         <button type="button" class="btn btn-secondary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearPreguntaModal"></button> <span> Añadir otra pregunta</span>
 
         <div class="modal fade" id="crearPreguntaModal" tabindex="-1" aria-labelledby="crearPreguntaModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="crearPreguntaModalLabel">Creación de pregunta</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    @if ($errors->CrearPreguntaBag->any())
+                    {{-- @if ($errors->CrearPreguntaBag->any())
                     <div class="text-start alert alert-warning">
                         @foreach ($errors->CrearPreguntaBag->all() as $error)
                         <div class="row">
@@ -189,7 +209,7 @@
                         </div>
                         @endforeach
                     </div>
-                    @endif
+                    @endif --}}
 
                     <form method="POST" action="{{ route('pregunta.store', $tematica->tematica_id) }}" enctype="multipart/form-data">
                         @csrf
@@ -197,11 +217,21 @@
                             <div class="row">
                                 <div class="col-12 mb-3">
                                     <label for="enunciado" class="col-form-label">Enunciado</label>
-                                    <textarea class="form-control" id="enunciado" name="enunciado"></textarea>
+                                    <textarea class="form-control @error('enunciado', 'CrearPreguntaBag') is-invalid @enderror" id="enunciado" name="enunciado"></textarea>
+                                    @error('enunciado', 'CrearPreguntaBag')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="audio" class="form-label">Archivo de audio</label>
-                                    <input class="form-control form-control-sm" id="audio" name="audio" type="file" accept=".mp3">
+                                    <input class="form-control form-control-sm @error('audio', 'CrearPreguntaBag') is-invalid @enderror" id="audio" name="audio" type="file" accept=".mp3">
+                                    @error('audio', 'CrearPreguntaBag')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="row">
                                     <div class="col mb-1">
@@ -213,7 +243,12 @@
                                         <b>1. </b>
                                     </div>
                                     <div class="col-10">
-                                        <input type="text" class="form-control col-7" id="respuesta_corr" name="respuesta_corr" placeholder="RESPUESTA CORRECTA">
+                                        <input type="text" class="form-control col-7 @error('respuesta_corr', 'CrearPreguntaBag') is-invalid @enderror" id="respuesta_corr" name="respuesta_corr" placeholder="RESPUESTA CORRECTA">
+                                        @error('respuesta_corr', 'CrearPreguntaBag')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -221,7 +256,12 @@
                                         <b>2. </b>
                                     </div>
                                     <div class="col-10">
-                                        <input type="text" class="form-control col-7" id="respuesta_inc1" name="respuesta_inc1" placeholder="RESPUESTA INCORRECTA">
+                                        <input type="text" class="form-control col-7 @error('respuesta_inc1', 'CrearPreguntaBag') is-invalid @enderror" id="respuesta_inc1" name="respuesta_inc1" placeholder="RESPUESTA INCORRECTA">
+                                        @error('respuesta_inc1', 'CrearPreguntaBag')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -229,7 +269,12 @@
                                         <b>3. </b>
                                     </div>
                                     <div class="col-10">
-                                        <input type="text" class="form-control col-7" id="respuesta_inc2" name="respuesta_inc2" placeholder="RESPUESTA INCORRECTA">
+                                        <input type="text" class="form-control col-7 @error('respuesta_inc2', 'CrearPreguntaBag') is-invalid @enderror" id="respuesta_inc2" name="respuesta_inc2" placeholder="RESPUESTA INCORRECTA">
+                                        @error('respuesta_inc2', 'CrearPreguntaBag')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row mb-1">
@@ -237,7 +282,12 @@
                                         <b>4. </b>
                                     </div>
                                     <div class="col-10">
-                                        <input type="text " class="form-control col-7" id="respuesta_inc3" name="respuesta_inc3" placeholder="RESPUESTA INCORRECTA">
+                                        <input type="text " class="form-control col-7 @error('respuesta_inc3', 'CrearPreguntaBag') is-invalid @enderror" id="respuesta_inc3" name="respuesta_inc3" placeholder="RESPUESTA INCORRECTA">
+                                        @error('respuesta_inc3', 'CrearPreguntaBag')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -300,13 +350,13 @@
         
         <!-- Modal -->
         <div class="modal fade" id="crearMaterialModal" tabindex="-1" aria-labelledby="crearMaterialModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                 <h1 class="modal-title fs-5" id="crearMaterialModalLabel">Ingresar Material de estudio</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                @if ($errors->CrearEnlacesBag->any())
+                {{-- @if ($errors->CrearEnlacesBag->any())
                 <div class="text-start alert alert-warning">
                     @foreach ($errors->CrearEnlacesBag->all() as $error)
                     <div class="row">
@@ -314,20 +364,30 @@
                     </div>
                     @endforeach
                 </div>
-                @endif
+                @endif --}}
                 <form method="POST" action="{{ route('enlace.store', $tematica->tematica_id) }}">
                     @csrf
                     <div class="modal-body">
                         <div class="col">
                             <div class="mb-3">
                                 <label for="link" class="form-label">Link</label>
-                                <input type="text" class="form-control" id="link" name="link" placeholder="Ingrese el link">
+                                <input type="text" class="form-control @error('link', 'CrearEnlacesBag') is-invalid @enderror" id="link" name="link" placeholder="Ingrese el link">
+                                @error('link', 'CrearEnlacesBag')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="descripcion" class="form-label">Descripción</label>
-                                <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                                <textarea class="form-control @error('descripcion', 'CrearEnlacesBag') is-invalid @enderror" id="descripcion" name="descripcion" rows="3"></textarea>
+                                @error('descripcion', 'CrearEnlacesBag')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                     </div>

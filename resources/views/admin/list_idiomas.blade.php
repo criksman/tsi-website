@@ -38,13 +38,13 @@
 </div>
 
 <div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="agregarModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="agregarModalLabel">Agregar Idioma</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="botonAgregarIdioma"></button>
             </div>
-            @if ($errors->CrearIdiomaBag->any())
+            {{-- @if ($errors->CrearIdiomaBag->any())
             <div class="text-start alert alert-warning">
                 @foreach ($errors->CrearIdiomaBag->all() as $error)
                 <div class="row">
@@ -52,17 +52,27 @@
                 </div>
                 @endforeach
             </div>
-            @endif
+            @endif --}}
             <form method="POST" action="{{ route('idioma.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="col mb-2">
                         <label for="nombre" class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre">
+                        <input type="text" class="form-control @error('nombre', 'CrearIdiomaBag') is-invalid @enderror" id="nombre" name="nombre">
+                        @error('nombre', 'CrearIdiomaBag')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="col">
                         <label for="foto" class="col-form-label">Imágen:</label>
-                        <input class="form-control form-control-sm" id="foto" name="foto" type="file" accept=".png, .jpeg, .jpg">
+                        <input class="form-control form-control-sm @error('foto', 'CrearIdiomaBag') is-invalid @enderror" id="foto" name="foto" type="file" accept=".png, .jpeg, .jpg">
+                        @error('foto', 'CrearIdiomaBag')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="modal-footer">

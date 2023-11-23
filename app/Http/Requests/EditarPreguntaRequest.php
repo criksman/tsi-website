@@ -25,12 +25,12 @@ class EditarPreguntaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'enunciado' => 'nullable|sometimes',
-            'audio' => 'nullable|sometimes|max:100',
-            'respuesta_corr' => 'nullable|sometimes|max:100',
-            'respuesta_inc1' => 'nullable|sometimes|max:100',
-            'respuesta_inc2' => 'nullable|sometimes|max:100',
-            'respuesta_inc3' => 'nullable|sometimes|max:100',
+            'enunciado' => 'bail|nullable|sometimes|max:255',
+            'audio' => 'bail|nullable|sometimes|max:100',
+            'respuesta_corr' => 'bail|nullable|sometimes|max:100',
+            'respuesta_inc1' => 'bail|nullable|sometimes|max:100',
+            'respuesta_inc2' => 'bail|nullable|sometimes|max:100',
+            'respuesta_inc3' => 'bail|nullable|sometimes|max:100',
         ];
     }
 }

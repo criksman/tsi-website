@@ -17,7 +17,7 @@
                         <h1 class="modal-title fs-5" id="crearModalLabel">Crear temática</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    @if ($errors->CrearTematicaBag->any())
+                    {{-- @if ($errors->CrearTematicaBag->any())
                     <div class="text-start alert alert-warning">
                         @foreach ($errors->CrearTematicaBag->all() as $error)
                         <div class="row">
@@ -25,36 +25,63 @@
                         </div>
                         @endforeach
                     </div>
-                    @endif
+                    @endif --}}
                     <form method="POST" action="{{ route('tematica.store', $idioma->idioma_id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body text-start">
                             <div class="col mb-2">
                                 <label for="nombre" class="form-label">Nombre: </label>
-                                <input type="text" class="form-control" id="nombre" name="nombre">
+                                <input type="text" class="form-control @error('nombre', 'CrearTematicaBag') is-invalid @enderror" id="nombre" name="nombre">
+                                @error('nombre', 'CrearTematicaBag')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                             <div class="col mb-2">
                                 <label for="dificultad_id" class="form-label">Dificultad: </label>
-                                <select class="form-select" aria-label="Default select example" id="dificultad_id" name="dificultad_id">
+                                <select class="form-select @error('dificultad_id', 'CrearTematicaBag') is-invalid @enderror" aria-label="Default select example" id="dificultad_id" name="dificultad_id">
                                     <option value="1">Fácil</option>
                                     <option value="2">Medio</option>
                                     <option value="3">Difícil</option>
                                 </select>
+
+                                @error('dificultad_id', 'CrearTematicaBag')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                             <div class="col mb-2">
                                 <label for="seccion_id" class="form-label">Sección: </label>
-                                <select class="form-select" aria-label="Default select example" id="seccion_id" name="seccion_id">
+                                <select class="form-select @error('seccion_id', 'CrearTematicaBag') is-invalid @enderror" aria-label="Default select example" id="seccion_id" name="seccion_id">
                                     <option value="1">Textual</option>
                                     <option value="2">Listening</option>
                                 </select>
+
+                                @error('seccion_id', 'CrearTematicaBag')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                             <div class="col mb-2">
                                 <label for="descripcion" class="form-label">Descripcion: </label>
-                                <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                                <textarea class="form-control @error('descripcion', 'CrearTematicaBag') is-invalid @enderror" id="descripcion" name="descripcion"></textarea>
+                                @error('descripcion', 'CrearTematicaBag')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                             <div class="col mb-2">
                                 <label for="foto" class="form-label">Imágen:</label>
-                                <input class="form-control form-control-sm" id="foto" name="foto" type="file" accept=".png, .jpeg, .jpg">
+                                <input class="form-control form-control-sm @error('foto', 'CrearTematicaBag') is-invalid @enderror" id="foto" name="foto" type="file" accept=".png, .jpeg, .jpg">
+                                @error('foto', 'CrearTematicaBag')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -107,7 +134,7 @@
                         <button type="button" class="btn btn-danger text-white fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#borrarModal{{ $tematica->tematica_id }}"></button>
 
                         <div class="modal fade" id="borrarModal{{ $tematica->tematica_id }}" tabindex="-1" aria-labelledby="borrarModalLabel{{ $tematica->tematica_id }}" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="borrarModalLabel{{ $tematica->tematica_id }}">Borrar temática</h1>

@@ -13,50 +13,55 @@
                 {{ session('success') }}
             </div>
             @endif
-            @if ($errors->EditarIdiomaNombreBag->any())
+            {{-- @if ($errors->EditarIdiomaNombreBag->any())
             <div class="text-start alert alert-warning">
                 @foreach ($errors->EditarIdiomaNombreBag->all() as $error)
                 <div class="row">
                     <span>- {{ $error }}</span>
-                </div>
-                @endforeach
-            </div>
-            @endif
-            <div class="card-body">
-                <form method="POST" action="{{ route('idioma.updateNombre', $idioma->idioma_id) }}">
-                    <div class="row align-items-center pt-4 pb-3">
-                        @method('put')
-                        @csrf
-                        <div class="col-md-3 ps-5">
-
-                            <h6 class="mb-0">Escribir nombre: </h6>
-
-                        </div>
-                        <div class="col-md-9 pe-5">
-
-                            <input type="text" class="form-control form-control-lg" name="nombre" placeholder="{{ $idioma->nombre }}" />
-
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-12 px-5 py-4">
-                            <div class="row">
-                                <div class="col-6 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-secondary btn-lg">Aplicar cambios</button>
-                                </div>
-
-                                <div class="col-6 d-flex justify-content-center">
-                                    <a href="" class="btn btn-primary btn-lg text-white">Volver</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
-
+        @endforeach
     </div>
+    @endif --}}
+    <div class="card-body">
+        <form method="POST" action="{{ route('idioma.updateNombre', $idioma->idioma_id) }}">
+            <div class="row align-items-center pt-4 pb-3">
+                @method('put')
+                @csrf
+                <div class="col-md-3 ps-5">
+
+                    <h6 class="mb-0">Escribir nombre: </h6>
+
+                </div>
+                <div class="col-md-9 pe-5">
+
+                    <input type="text" class="form-control @error('nombre', 'EditarIdiomaNombreBag') is-invalid @endif form-control-lg" name="nombre" placeholder="{{ $idioma->nombre }}" />
+                    @error('nombre', 'EditarIdiomaNombreBag')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-12 px-5 py-4">
+                    <div class="row">
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-secondary btn-lg">Aplicar cambios</button>
+                        </div>
+
+                        <div class="col-6 d-flex justify-content-center">
+                            <a href="" class="btn btn-primary btn-lg text-white">Volver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</div>
 </div>
 
 <div class="row d-flex justify-content-center align-items-center h-100 mt-4">
@@ -70,7 +75,7 @@
                 {{ session('successFoto') }}
             </div>
             @endif
-            @if ($errors->EditarIdiomaFotoBag->any())
+            {{-- @if ($errors->EditarIdiomaFotoBag->any())
             <div class="text-start alert alert-warning">
                 @foreach ($errors->EditarIdiomaFotoBag->all() as $error)
                 <div class="row">
@@ -78,7 +83,7 @@
                 </div>
                 @endforeach
             </div>
-            @endif
+            @endif --}}
             <div class="card-body">
                 <form method="POST" action="{{ route('idioma.updateFoto', $idioma->idioma_id) }}" enctype="multipart/form-data">
                     @method('put')
@@ -90,7 +95,12 @@
 
                         </div>
                         <div class="col-md-9 pe-5">
-                            <input class="form-control form-control-lg" id="foto" name="foto" type="file" accept=".png, .jpeg, .jpg" />
+                            <input class="form-control @error('foto', 'EditarIdiomaFotoBag') is-invalid @enderror form-control-lg" id="foto" name="foto" type="file" accept=".png, .jpeg, .jpg" />
+                            @error('foto', 'EditarIdiomaFotoBag')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                             <div class="small text-muted mt-2"></div>
 
                         </div>

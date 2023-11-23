@@ -13,7 +13,7 @@
                     </div>
                     @endif
                     
-                    @if ($errors->any())
+                    {{-- @if ($errors->any())
                     <div class="text-start alert alert-warning">
                         @foreach ($errors->all() as $error)
                         <div class="row">
@@ -21,19 +21,34 @@
                         </div>
                         @endforeach
                     </div>
-                    @endif
+                    @endif --}}
                     <form method="POST" action="{{ route('user.store') }}">
                         <div class="form-group my-3">
-                            <label for="usuario">Nombre de usuario</label>
-                            <input type="text" class="form-control mt-2" id="username" name="username">
+                            <label for="username">Nombre de usuario</label>
+                            <input type="text" class="form-control mt-2 @error('username') is-invalid @enderror" id="username" name="username">
+                            @error('username')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group my-3">
                             <label for="email">E-mail</label>
-                            <input type="email" class="form-control mt-2" id="email" name="email">
+                            <input type="email" class="form-control mt-2 @error('email') is-invalid @enderror" id="email" name="email">
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
                             <label for="password">Contraseña</label>
-                            <input type="password" class="form-control mt-2" id="password" name="password">
+                            <input type="password" class="form-control mt-2 @error('password') is-invalid @enderror" id="password" name="password">
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         @csrf
                         <div class="row">

@@ -14,7 +14,7 @@
                     {{ session('success') }}
                 </div>
                 @endif
-                @if ($errors->EditarPreguntaBag->any())
+                {{-- @if ($errors->EditarPreguntaBag->any())
                 <div class="text-start alert alert-warning">
                     @foreach ($errors->EditarPreguntaBag->all() as $error)
                     <div class="row">
@@ -23,7 +23,7 @@
                     @endforeach
                 </div>
                 <hr class="mx-n3">
-                @endif
+                @endif --}}
 
                 <form method="POST" action="{{ route('pregunta.updateDetalles', $pregunta->pregunta_id) }}">
                     @method('put')
@@ -36,8 +36,12 @@
                         </div>
                         <div class="col-md-9 pe-5">
 
-                            <textarea class="form-control" rows="3" placeholder="{{$pregunta->enunciado}}" name="enunciado"></textarea>
-
+                            <textarea class="form-control @error('enunciado', 'EditarPreguntaBag') is-invalid @enderror" rows="3" placeholder="{{$pregunta->enunciado}}" name="enunciado"></textarea>
+                            @error('enunciado', 'EditarPreguntaBag')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -52,8 +56,12 @@
                         </div>
                         <div class="col-md-9 pe-5">
 
-                            <input type="text" class="form-control form-control-lg" name="respuesta_corr" placeholder="{{$pregunta->respuesta_corr}}" />
-
+                            <input type="text" class="form-control form-control-lg @error('respuesta_corr', 'EditarPreguntaBag') is-invalid @enderror" name="respuesta_corr" placeholder="{{$pregunta->respuesta_corr}}" />
+                            @error('respuesta_corr', 'EditarPreguntaBag')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
 
                         <div class="col-md-3 ps-5 mt-2">
@@ -63,8 +71,12 @@
                         </div>
                         <div class="col-md-9 pe-5 mt-2">
 
-                            <input type="text" class="form-control form-control-lg" name="respuesta_inc1" placeholder="{{$pregunta->respuesta_inc1}}" />
-
+                            <input type="text" class="form-control form-control-lg @error('respuesta_corr', 'EditarPreguntaBag') is-invalid @enderror" name="respuesta_inc1" placeholder="{{$pregunta->respuesta_inc1}}" />
+                            @error('respuesta_inc1', 'EditarPreguntaBag')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
 
                         <div class="col-md-3 ps-5">
@@ -74,8 +86,12 @@
                         </div>
                         <div class="col-md-9 pe-5 mt-2">
 
-                            <input type="text" class="form-control form-control-lg" name="respuesta_inc2" placeholder="{{$pregunta->respuesta_inc2}}" />
-
+                            <input type="text" class="form-control form-control-lg @error('respuesta_inc2', 'EditarPreguntaBag') is-invalid @enderror" name="respuesta_inc2" placeholder="{{$pregunta->respuesta_inc2}}" />
+                            @error('respuesta_inc2', 'EditarPreguntaBag')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
 
                         <div class="col-md-3 ps-5">
@@ -85,8 +101,12 @@
                         </div>
                         <div class="col-md-9 pe-5 mt-2">
 
-                            <input type="text" class="form-control form-control-lg" name="respuesta_inc3" placeholder="{{$pregunta->respuesta_inc3}}" />
-
+                            <input type="text" class="form-control form-control-lg @error('respuesta_inc3', 'EditarPreguntaBag') is-invalid @enderror" name="respuesta_inc3" placeholder="{{$pregunta->respuesta_inc3}}" />
+                            @error('respuesta_inc3', 'EditarPreguntaBag')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -122,7 +142,7 @@
                     {{ session('successFoto') }}
                 </div>
                 @endif
-                @if ($errors->EditarPreguntaAudioBag->any())
+                {{-- @if ($errors->EditarPreguntaAudioBag->any())
                 <div class="text-start alert alert-warning">
                     @foreach ($errors->EditarPreguntaAudioBag->all() as $error)
                     <div class="row">
@@ -131,7 +151,7 @@
                     @endforeach
                 </div>
                 <hr class="mx-n3">
-                @endif
+                @endif --}}
                 <div class="row align-items-center py-3">
                     <div class="col-md-3 ps-5">
 
@@ -142,7 +162,12 @@
                         <form method="POST" action="{{ route('pregunta.updateAudio', $pregunta->pregunta_id) }}" enctype="multipart/form-data">
                             @method('put')
                             @csrf
-                            <input class="form-control form-control-lg" id="audio" name="audio" type="file" />
+                            <input class="form-control form-control-lg @error('audio', 'EditarPreguntaAudioBag') is-invalid @enderror" id="audio" name="audio" type="file"/>
+                            @error('audio', 'EditarPreguntaAudioBag')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                             <div class="small text-muted mt-2">@if($pregunta->audio != null) Archivo actual: {{$pregunta->audio}} @else Actualmente la pregunta no tiene un archivo de audio asociado (se considera como una pregunta para la sección escrita)@endif</div>
 
                     </div>

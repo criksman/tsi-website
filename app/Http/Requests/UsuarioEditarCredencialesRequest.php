@@ -28,7 +28,7 @@ class UsuarioEditarCredencialesRequest extends FormRequest
         return [
             'username' => 'nullable|bail|sometimes|unique:users|min:2|max:30',
             'email' => 'nullable|bail|sometimes|email:rfc|unique:users',
-            'password' => 'required|current_password', 
+            'password' => 'bail|required|current_password', 
         ];
     }
 

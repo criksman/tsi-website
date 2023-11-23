@@ -73,7 +73,6 @@
     <div class="col-12 bg-white mb-3 rounded py-3 px-3">
         <div class="row">
             <div class="col-11">
-                <b>OEOEOEOEJFDHFJSHDJHGOIGHOISDHGOIAGSAHGAHSGAGHJGSDSJHFSHFS</b>
                 <button type="button" class="btn btn-warning fa-solid fa-pencil fa-sm p-2" data-bs-toggle="modal" data-bs-target="#enunciadoModal"></button>
 
                 <div class="modal fade" id="enunciadoModal" tabindex="-1" aria-labelledby="enunciadoModalLabel" aria-hidden="true">

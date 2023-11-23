@@ -23,12 +23,16 @@
                         @csrf
                         <div class="form-group my-3">
                             <label for="username">Nombre de usuario</label>
-                            <input type="text" class="form-control mt-2" id="username" name="username">
+                            <input type="text" class="form-control @if($errors->has('username')) is-invalid @endif mt-2" id="username" name="username">
                         </div>
+                        
+
                         <div class="form-group mb-3">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control mt-2" id="password" name="password">
+                            <input type="password" class="form-control @if($errors->has('password')) is-invalid @endif mt-2" id="password" name="password">
                         </div>
+
+
                         <div class="d-grid">
                             <button type="submit" class="btn btn-success text-white mt-3 mb-3">Iniciar Sesión</button>
                         </div>
