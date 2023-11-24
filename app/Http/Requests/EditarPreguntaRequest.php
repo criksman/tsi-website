@@ -24,6 +24,7 @@ class EditarPreguntaRequest extends FormRequest
 
     public function rules(): array
     {
+        //nullable creo que es innecesario
         return [
             'enunciado' => 'bail|nullable|sometimes|max:255',
             'audio' => 'bail|nullable|sometimes|max:100',
@@ -31,6 +32,18 @@ class EditarPreguntaRequest extends FormRequest
             'respuesta_inc1' => 'bail|nullable|sometimes|max:100',
             'respuesta_inc2' => 'bail|nullable|sometimes|max:100',
             'respuesta_inc3' => 'bail|nullable|sometimes|max:100',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'enunciado.max'=> 'El enunciado debe tener como máximo 255 caracteres',
+            'audio.max'=> 'El audio debe pesar menos de 100 KB',
+            'respuesta_corr.max'=> 'La respuesta debe tener como máximo 100 caracteres',
+            'respuesta_inc1.max'=> 'La respuesta debe tener como máximo 100 caracteres',
+            'respuesta_inc2.max'=> 'La respuesta debe tener como máximo 100 caracteres',
+            'respuesta_inc3.max'=> 'La respuesta debe tener como máximo 100 caracteres',
         ];
     }
 }

@@ -25,7 +25,15 @@ class EditarUsuarioFotoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'foto' => 'required|image'
+            'foto' => 'bail|required|image'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'foto.required'=> 'La imágen es requerida',
+            'foto.image'=> 'El archivo seleccionado debe ser una imágen',
         ];
     }
 }

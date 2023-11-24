@@ -22,9 +22,26 @@ class RegistrarUsuarioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required|min:2|max:30',
-            'email' => 'required|min:2|max:255|email:rfc|unique:users',
-            'password' => 'required|min:2|max:255',
+            'username' => 'bail|required|min:2|max:30',
+            'email' => 'bail|required|min:2|max:255|email:rfc|unique:users',
+            'password' => 'bail|required|min:2|max:255',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'username.required' => 'El nombre de usuario es requerido',
+            'username.min' => 'El nombre de usuario debe tener como mínimo 2 caracteres',
+            'username.max' => 'El nombre de usuario debe tener como máximo 30 caracteres',
+            'email.required' => 'La dirección e-mail es requerida',
+            'email.min' => 'La dirección e-mail debe tener como mínimo 2 caracteres',
+            'email.max' => 'La dirección e-mail debe tener como máxmimo 255 caracteres',
+            'email.email' => 'La dirección e-mail no tiene el formato correcto',
+            'email.unique' => 'La dirección e-mail ya se encuentra en uso',
+            'password.required'=> 'La contraseña es requerida',
+            'password.min' => 'La contraseña debe tener como mínimo 2 caracteres',
+            'password.max' => 'La contraseña debe tener como máximo 255 caracteres',
         ];
     }
 }

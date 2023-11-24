@@ -25,7 +25,17 @@ class EditarIdiomaNombreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|unique:idiomas,nombre|min:2|max:30'
+            'nombre' => 'bail|required|unique:idiomas,nombre|min:2|max:30'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'El nombre es requerido',
+            'nombre.unique' => 'El nombre debe ser único',
+            'nombre.min'=> 'El nombre debe tener como mínimo 2 caracteres',
+            'nombre.max'=> 'El nombre debe tener como máxmimo 30 caracteres',
         ];
     }
 }

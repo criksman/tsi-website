@@ -40,7 +40,8 @@ class UsuarioEditarCredencialesRequest extends FormRequest
             'username.max' => 'El nombre de usuario debe tener máximo 30 caracteres',
             'email.rfc' => 'El e-mail no esta en el formato correcto',
             'email.unique' => 'El e-mail ya esta en uso',
-            'password.current_password' => 'La contraseña no coincide'
+            'password.required'=> 'La contraseña es requerida',
+            'password.current_password' => 'La contraseña no coincide con su contraseña actual'
         ];
     }
 }

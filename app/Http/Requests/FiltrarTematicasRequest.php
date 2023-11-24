@@ -22,8 +22,18 @@ class FiltrarTematicasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'idioma_id' => 'required|exists:idiomas,idioma_id',
-            'dificultad_id' => 'required|exists:dificultades,dificultad_id',
+            'idioma_id' => 'bail|required|exists:idiomas,idioma_id',
+            'dificultad_id' => 'bail|required|exists:dificultades,dificultad_id',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'idioma_id.required' => 'Idioma no seleccionado',
+            'idioma_id.exists' => 'El idioma seleccionado no existe',
+            'dificultad_id.required' => 'Dificultad no seleccionada',
+            'dificultad_id.exists' => 'La dificultad seleccionada no existe',
         ];
     }
 }

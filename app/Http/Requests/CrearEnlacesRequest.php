@@ -23,8 +23,18 @@ class CrearEnlacesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'link' => 'required',
-            'descripcion' => 'required|min:2|max:300'
+            'link' => 'bail|required',
+            'descripcion' => 'bail|required|min:2|max:300'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'link.required' => 'El link es requerido',
+            'descripcion.required' => 'La descripción es requerida',
+            'descripcion.min' => 'La descripción debe tener como mínimo 2 caracteres',
+            'descripcion.max' => 'La descripción debe tener como máximo 300 caracteres',
         ];
     }
 }

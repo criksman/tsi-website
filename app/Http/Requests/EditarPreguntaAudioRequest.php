@@ -24,7 +24,14 @@ class EditarPreguntaAudioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'audio' => 'required'
+            'audio' => 'bail|required'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'audio.required' => 'El archivo de audio es requerido',
         ];
     }
 }

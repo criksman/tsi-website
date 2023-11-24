@@ -25,12 +25,27 @@ class CrearPreguntaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'enunciado' => 'required',
-            'audio' => 'nullable|sometimes',
-            'respuesta_corr' => 'required|max:100',
-            'respuesta_inc1' => 'required|max:100',
-            'respuesta_inc2' => 'required|max:100',
-            'respuesta_inc3' => 'required|max:100',
+            'enunciado' => 'bail|required',
+            'audio' => 'bail|nullable|sometimes',
+            'respuesta_corr' => 'bail|required|max:100',
+            'respuesta_inc1' => 'bail|required|max:100',
+            'respuesta_inc2' => 'bail|required|max:100',
+            'respuesta_inc3' => 'bail|required|max:100',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'enunciado.required' => 'El enunciado es requerido',
+            'respuesta_corr.required' => 'La respuesta es requerida',
+            'respuesta_corr.max' => 'La respuesta debe tener como máximo 100 caracteres',
+            'respuesta_inc1.required' => 'La respuesta es requerida',
+            'respuesta_inc1.max' => 'La respuesta debe tener como máximo 100 caracteres',
+            'respuesta_inc2.required' => 'La respuesta es requerida',
+            'respuesta_inc2.max' => 'La respuesta debe tener como máximo 100 caracteres',
+            'respuesta_inc3.required' => 'La respuesta es requerida',
+            'respuesta_inc3.max' => 'La respuesta debe tener como máximo 100 caracteres',
         ];
     }
 }

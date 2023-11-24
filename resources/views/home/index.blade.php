@@ -56,13 +56,12 @@
                         <div class="input-group">
                             <input type="password" class="form-control @error('password', 'EditarUsuarioCredencialesBag') is-invalid @enderror" id="password" name="password" placeholder="Ingrese Contraseña">
                             <a href="{{ route('user.contrasena.edit') }}" class="btn btn-warning fa-solid fa-arrow-rotate-right d-flex justify-content-center align-items-center"></a>
-                        </div>
-
-                        @error('password', 'EditarUsuarioCredencialesBag')
+                            @error('password', 'EditarUsuarioCredencialesBag')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
-                        @enderror
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </div>

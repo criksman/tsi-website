@@ -24,8 +24,20 @@ class CrearIdiomaRequest extends FormRequest
      public function rules(): array
     {
         return [
-            'nombre' => 'required|unique:idiomas|min:2|max:30',
-            'foto' => 'required',
+            'nombre' => 'bail|required|unique:idiomas|min:2|max:30',
+            'foto' => 'bail|required',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'El nombre es requerido',
+            'nombre.unique' => 'El nombre debe ser único',
+            'nombre.min' => 'El nombre debe tener como mínimo 2 caracteres',
+            'nombre.max' => 'El nombre debe tener como máximo 30 caracteres',
+            'foto.required' => 'La imágen es requerida'
+        ];
+    }
+    
 }

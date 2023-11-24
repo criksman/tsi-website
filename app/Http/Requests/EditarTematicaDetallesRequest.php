@@ -23,10 +23,22 @@ class EditarTematicaDetallesRequest extends FormRequest
 
     public function rules(): array
     {
+        //nullable es innecesario, evaluar maneras de hacerlo mejor.
         return [
-            'nombre' => 'nullable|bail|sometimes|min:2|max:30',
-            'seccion_id' => 'nullable|bail|sometimes|exists:secciones,seccion_id',
-            'descripcion' => 'nullable|bail|sometimes|min:2|max:200'
+            'nombre' => 'bail|nullable|sometimes|min:2|max:30',
+            'seccion_id' => 'bail|nullable|sometimes|exists:secciones,seccion_id',
+            'descripcion' => 'bail|nullable|sometimes|min:2|max:200'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'nombre.min'=> 'El nombre debe tener como mínimo 2 caracteres',
+            'nombre.max'=> 'El nombre debe tener como máximo 30 caracteres',
+            'seccion_id.exists'=> 'La sección seleccionada no existe',
+            'descripcion.min' => 'La sección debe tener como mínimo 2 caracteres',
+            'descripcion.max' => 'La sección debe tener como máximo 200 caracteres',
         ];
     }
 }
