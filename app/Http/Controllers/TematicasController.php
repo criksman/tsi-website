@@ -22,6 +22,22 @@ class TematicasController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
+
+    private function eliminarProgreso(Tematica $tematica){
+        DB::table('tematica_user')
+            ->where('tematica_id', $tematica->tematica_id)
+            ->delete();
+    }
+
+    private function actualizarProgresoOperation(Tematica $tematica) {
+        $this->eliminarProgreso($tematica);
+    
+        $dificultad = Dificultad::find($tematica->dificultad_id);
+        $idioma = Idioma::find($tematica->idioma_id);
+        $usuario = Usuario::find(Auth::user()->user_id);
+    
+        $this->actualizarProgreso($usuario, $idioma, $dificultad);
+    }
     
     public function store(CrearTematicaRequest $request, Idioma $idioma){
         $tematica = new Tematica();
@@ -43,7 +59,7 @@ class TematicasController extends Controller
 
         $path = $archivo->storeAs($dir, $nombre);
         
-        //actualizar progresos
+        //Actualizar progreso (cantidad total de tematicas ha aumentado)
         $usuario = Usuario::find(Auth::user()->user_id);
         $idioma = Idioma::find($idioma->idioma_id);
         $dificultad = Dificultad::find($tematica->dificultad_id);
@@ -54,23 +70,11 @@ class TematicasController extends Controller
     }
 
     public function destroy(Tematica $tematica){
-        
-        //eliminar progreso de la tematica del usuario
-        DB::table('tematica_user')
-            ->where('tematica_id', $tematica->tematica_id)
-            ->delete();
-        
-        //obtener usuario, idioma, y dificultad para poder actualizar el progreso, ya que el total de tematicas el cual se usa para calcular el progreso va a dismunuir (esto sucede en la tabla dificultad_idioma_usuario)
-        $usuario = Usuario::find(Auth::user()->user_id);
-        $idioma = Idioma::find($tematica->idioma_id);
-        $dificultad = Dificultad::find($tematica->dificultad_id);
-
-        //busco carpeta de la tematica que contiene las imagenes y las elimino
         Storage::deleteDirectory('public/documentos/img/tematicas/' . $tematica->tematica_id);
+
+        $this->actualizarProgresoOperation($tematica);
         
         $tematica->delete();
-
-        $this->actualizarProgreso($usuario, $idioma, $dificultad);
 
         return redirect()->back();
     }

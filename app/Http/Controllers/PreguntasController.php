@@ -33,6 +33,17 @@ class PreguntasController extends Controller
             ->where('tematica_id', $tematica->tematica_id)
             ->delete();
     }
+
+    private function actualizarProgresoOperation(Pregunta $pregunta) {
+        $tematica = Tematica::find($pregunta->tematica_id);
+        $this->eliminarProgreso($tematica);
+    
+        $dificultad = Dificultad::find($pregunta->tematica->dificultad_id);
+        $idioma = Idioma::find($pregunta->tematica->idioma_id);
+        $usuario = Usuario::find(Auth::user()->user_id);
+    
+        $this->actualizarProgreso($usuario, $idioma, $dificultad);
+    }
     
     public function store(CrearPreguntaRequest $request, Tematica $tematica){
         $pregunta = new Pregunta();
@@ -59,21 +70,15 @@ class PreguntasController extends Controller
             $pregunta->save();
         }
 
+        $this->actualizarProgresoOperation($pregunta);
+
         return redirect()->back();
     }
 
-    public function destroy(Pregunta $pregunta){ 
-        $tematica = Tematica::find($pregunta->tematica_id);
-
-        $this->eliminarProgreso($tematica);
-
-        $dificultad = Dificultad::find($pregunta->tematica->dificultad_id);
-        $idioma = Idioma::find($pregunta->tematica->idioma_id);
-        $usuario = Usuario::find(Auth::user()->user_id);
+    public function destroy(Pregunta $pregunta){   
+        $this->actualizarProgresoOperation($pregunta);
         
         $pregunta->delete();
-
-        $this->actualizarProgreso($usuario, $idioma, $dificultad);
 
         if ($pregunta->tematica->seccion_id == 2){
             Storage::deleteDirectory('public/documentos/audio/preguntas/' . $pregunta->pregunta_id);
@@ -103,16 +108,9 @@ class PreguntasController extends Controller
             $pregunta->respuesta_inc3 = $request->respuesta_inc3;
         }
 
-        $tematica = Tematica::find($pregunta->tematica_id);
-        $this->eliminarProgreso($tematica);
-
-        $dificultad = Dificultad::find($pregunta->tematica->dificultad_id);
-        $idioma = Idioma::find($pregunta->tematica->idioma_id);
-        $usuario = Usuario::find(Auth::user()->user_id);
-
         $pregunta->save();
 
-        $this->actualizarProgreso($usuario, $idioma, $dificultad);
+        $this->actualizarProgresoOperation($pregunta);
 
         $request->session()->flash('success', 'Cambios aplicados correctamente');
 
@@ -129,16 +127,9 @@ class PreguntasController extends Controller
     
         $path = $archivo->storeAs($dir, $nombre);
 
-        $tematica = Tematica::find($pregunta->tematica_id);
-        $this->eliminarProgreso($tematica);
-
-        $dificultad = Dificultad::find($pregunta->tematica->dificultad_id);
-        $idioma = Idioma::find($pregunta->tematica->idioma_id);
-        $usuario = Usuario::find(Auth::user()->user_id);
-
         $pregunta->save();
 
-        $this->actualizarProgreso($usuario, $idioma, $dificultad);
+        $this->actualizarProgresoOperation($pregunta);
 
         $request->session()->flash('successFoto', 'Cambios aplicados correctamente');
         
@@ -148,16 +139,9 @@ class PreguntasController extends Controller
     public function deleteAudio(Pregunta $pregunta){
         $pregunta->audio = null;
 
-        $tematica = Tematica::find($pregunta->tematica_id);
-        $this->eliminarProgreso($tematica);
-
-        $dificultad = Dificultad::find($pregunta->tematica->dificultad_id);
-        $idioma = Idioma::find($pregunta->tematica->idioma_id);
-        $usuario = Usuario::find(Auth::user()->user_id);
-
         $pregunta->save();
-
-        $this->actualizarProgreso($usuario, $idioma, $dificultad);
+        
+        $this->actualizarProgresoOperation($pregunta);
 
         Storage::deleteDirectory('public/documentos/audio/preguntas/' . $pregunta->pregunta_id);
         

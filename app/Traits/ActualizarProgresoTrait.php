@@ -13,7 +13,7 @@ trait ActualizarProgresoTrait {
         $user_id = $usuario->user_id;
         $dificultad_id = $dificultad->dificultad_id; 
 
-        $totalTematicas = $idioma->tematicas()->where('dificultad_id', $dificultad_id)->where('idioma_id', $idioma_id)->count();
+        $totalTematicas = $idioma->tematicas()->where('dificultad_id', $dificultad_id)->where('idioma_id', $idioma_id)->where('estado', true)->count();
 
         $tematicasAprobadas = $usuario->tematicasConPivot()->where('tematicas.dificultad_id', $dificultad_id)->where('tematicas.idioma_id', $idioma_id)->wherePivot('progreso', '>=', 55)->count();
         

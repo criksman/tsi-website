@@ -14,7 +14,7 @@ class SeccionesSeeder extends Seeder
     public function run(): void
     {
         DB::table('secciones')->insert([
-            ['nombre' => 'Escrito', 'descripcion' => '(En construcción)'],
+            ['nombre' => 'Textual', 'descripcion' => '(En construcción)'],
             ['nombre' => 'Listening', 'descripcion' => '(En construcción)'],              
         ]);
     }
