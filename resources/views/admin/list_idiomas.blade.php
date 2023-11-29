@@ -4,9 +4,12 @@
 
 <style>
     .card-image {
-        height: 200px; /* Set the desired height for the card images */
-        object-fit: cover; /* Ensure images maintain their aspect ratio and cover the entire space */
+        height: 200px;
+        /* Set the desired height for the card images */
+        object-fit: cover;
+        /* Ensure images maintain their aspect ratio and cover the entire space */
     }
+
 </style>
 
 <div class="row">
@@ -44,15 +47,6 @@
                 <h1 class="modal-title fs-5" id="agregarModalLabel">Agregar Idioma</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="botonAgregarIdioma"></button>
             </div>
-            {{-- @if ($errors->CrearIdiomaBag->any())
-            <div class="text-start alert alert-warning">
-                @foreach ($errors->CrearIdiomaBag->all() as $error)
-                <div class="row">
-                    <span>- {{ $error }}</span>
-                </div>
-                @endforeach
-            </div>
-            @endif --}}
             <form method="POST" action="{{ route('idioma.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
@@ -75,9 +69,14 @@
                         @enderror
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-secondary">Crear</button>
+                <hr>
+                <div class="row py-3 px-3">
+                    <div class="col-9 d-grid text-center">
+                        <button type="submit" class="btn btn-secondary">Agregar</button>
+                    </div>
+                    <div class="col-3 d-grid text-center">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -91,6 +90,7 @@
         const agregarModal = new bootstrap.Modal(document.getElementById('agregarModal'));
         agregarModal.show();
     });
+
 </script>
 @endif
 

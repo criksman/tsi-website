@@ -42,8 +42,11 @@
                     </select>
                 </div>
                 <div class="row">
-                    <div class="col d-grid text-center mt-3">
-                        <button type="submit" class="btn btn-secondary">Mostrar</button>
+                    <div class="col-9 d-grid text-center mt-3">
+                        <button type="submit" class="btn btn-secondary">Ver temáticas</button>
+                    </div>
+                    <div class="col-3 d-grid text-center mt-3">
+                        <a href="{{ route('home.index') }}" class="btn btn-primary">Volver</a>
                     </div>
                 </div>
             </form>

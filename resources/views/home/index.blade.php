@@ -29,7 +29,7 @@
             @csrf
             <div class="row">
                 <div class="col-6">
-                    <div class="mb-3">
+                    <div class="mt-3">
                         <label for="username" class="form-label">Nombre de usuario</label>
                         <input type="text" class="form-control @error('username', 'EditarUsuarioCredencialesBag') is-invalid @enderror" id="username" name="username" placeholder="{{ Auth::user()->username }}">
                         @error('username', 'EditarUsuarioCredencialesBag')
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="mb-3">
+                    <div class="mt-3">
                         <label for="email" class="form-label">E-mail</label>
                         <input type="email" class="form-control @error('email', 'EditarUsuarioCredencialesBag') is-invalid @enderror" id="email" name="email" placeholder="{{ Auth::user()->email }}">
                         @error('email', 'EditarUsuarioCredencialesBag')
@@ -51,13 +51,13 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="mb-5">
-                        <label for="password" class="form-label">Contraseña (Necesario para confirmar cambios)</label>
+                    <div class="mb-3 mt-4">
+                        <label for="password" class="form-label">Ingrese su contraseña para confirmar cambios</label>
                         <div class="input-group">
                             <input type="password" class="form-control @error('password', 'EditarUsuarioCredencialesBag') is-invalid @enderror" id="password" name="password" placeholder="Ingrese Contraseña">
                             <a href="{{ route('user.contrasena.edit') }}" class="btn btn-warning fa-solid fa-arrow-rotate-right d-flex justify-content-center align-items-center"></a>
                             @error('password', 'EditarUsuarioCredencialesBag')
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback" style="height: 0px;">
                                 {{ $message }}
                             </div>
                             @enderror
@@ -68,8 +68,8 @@
 
 
             <div class="row">
-                <div class="col d-grid">
-                    <button type="submit" class="btn btn-success text-white mt-3">Aplicar Cambios</button>
+                <div class="col d-grid mt-5">
+                    <button type="submit" class="btn btn-success text-white">Aplicar Cambios</button>
                 </div>
             </div>
         </form>
@@ -92,23 +92,27 @@
         @endif --}}
 
         <div class="row">
-            <div class="col text-center">
-                <img src="{{ asset('storage/documentos/img/users/' . Auth::user()->user_id . '/' . Auth::user()->foto) }}" class="img-fluid" style="height: 200px;">
+            <div class="col text-center d-flex align-items-center justify-content-center" style="height: 197px;">
+                @if (Auth::user()->foto != 'none')
+                    <img src="{{ asset('storage/documentos/img/users/' . Auth::user()->user_id . '/' . Auth::user()->foto) }}" class="img-fluid"  style="height: 197px;">
+                @else
+                    <i class="fas fa-user-circle fa-5x text-secondary"></i>
+                @endif
             </div>
         </div>
         <form method="POST" action="{{ route('user.updateFoto') }}" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="row">
-                <div class="col-9 mt-3">
+                <div class="col-10 mt-5">
                     <input class="form-control @error('foto', 'EditarUsuarioFotoBag') is-invalid @enderror form-control-sm" id="foto" name="foto" type="file" accept=".png, .jpeg, .jpg">
                     @error('foto', 'EditarUsuarioFotoBag')
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback" style="height: 0px;">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
-                <div class="col-3 mt-3 text-center">
+                <div class="col-2 mt-5 text-center">
                     <button type="submit" class="btn btn-success text-white fa-solid fa-upload"></button>
                 </div>
             </div>
