@@ -12,6 +12,7 @@ use App\Http\Requests\FiltrarTematicasRequest;
 use App\Models\Seccion;
 //use Illuminate\Support\Facades\DB;
 use App\Traits\ActualizarProgresoTrait;
+use Carbon\Carbon;
 
 class ComenzarController extends Controller
 {
@@ -67,9 +68,9 @@ class ComenzarController extends Controller
         $progresoExistente = Auth::user()->tematicasConPivot()->where('tematica_user.tematica_id', $tematica->tematica_id)->first();
         
         if($progresoExistente){
-            Auth::user()->tematicasConPivot()->updateExistingPivot($tematica->tematica_id,['progreso'=>$porcentaje]);
+            Auth::user()->tematicasConPivot()->updateExistingPivot($tematica->tematica_id,['progreso'=>$porcentaje, 'submitted_at'=>now()]);
         }else{
-            Auth::user()->tematicas()->attach($tematica->tematica_id, ['progreso'=>$porcentaje]);
+            Auth::user()->tematicas()->attach($tematica->tematica_id, ['progreso'=>$porcentaje, 'submitted_at'=>now()]);
         }
 
         $usuario = Usuario::find(Auth::user()->user_id);

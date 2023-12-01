@@ -16,7 +16,9 @@ return new class extends Migration
             $table->integer('tematica_id');
             $table->primary(['user_id','tematica_id']);
 
+
             $table->integer('progreso')->default(0);
+            $table->timestamp('submitted_at')->nullable();
 
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->foreign('tematica_id')->references('tematica_id')->on('tematicas')->onDelete('cascade');

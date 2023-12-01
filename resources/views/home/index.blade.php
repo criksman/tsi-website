@@ -124,7 +124,7 @@
     <div class="col p-4 bg-white rounded">
         <div class="row">
             <div class="col mb-3">
-                <h4>Progreso</h4>
+                <h4>Temáticas aprobadas</h4>
             </div>
         </div>
         <div class="row">
@@ -169,17 +169,17 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Fácil
                                 <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoFacil}}" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-success" style="width:{{$progresoFacil}}%">{{$progresoFacil}}</div>
+                                    <div class="progress-bar bg-success" style="width:{{$progresoFacil}}%">{{$progresoFacil}}%</div>
                                 </div>
                             </li>
                             <li class="list-group-item">Medio
                                 <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoMedio}}" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-success" style="width:{{$progresoMedio}}%">{{$progresoMedio}}</div>
+                                    <div class="progress-bar bg-success" style="width:{{$progresoMedio}}%">{{$progresoMedio}}%</div>
                                 </div>
                             </li>
                             <li class="list-group-item">Difícil
                                 <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoDificil}}" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-success" style="width:{{$progresoDificil}}%">{{$progresoDificil}}</div>
+                                    <div class="progress-bar bg-success" style="width:{{$progresoDificil}}%">{{$progresoDificil}}%</div>
                                 </div>
                             </li>
                         </ul>
