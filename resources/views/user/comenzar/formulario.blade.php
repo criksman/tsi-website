@@ -9,11 +9,16 @@
     </div>
 </div>
 
-<form method="POST" action="{{route('user.comenzar.calcularResultado', $tematica->tematica_id)}}">
+<form method="POST" action="{{route('user.comenzar.calcularResultado', $tematica->tematica_id)}}" autocomplete="off" id="formulario">
     @method('put')
     @csrf
     <div class="row">
-        @foreach($tematica->preguntas as $num => $pregunta)
+        @php
+            $preguntas = $tematica->preguntas->shuffle();
+        @endphp
+        
+        @foreach($preguntas as $num => $pregunta)
+        
         @php
         $respuestas = [$pregunta->respuesta_corr, $pregunta->respuesta_inc1, $pregunta->respuesta_inc2, $pregunta->respuesta_inc3];
         shuffle($respuestas);
@@ -74,5 +79,15 @@
         </div>
     </div>
 </form>
+
+<script>
+    window.addEventListener('pageshow', function(event) {
+    var form = document.getElementById('formulario');
+    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+        // This condition checks if the page is loaded from the BFCache (back/forward cache)
+        form.reset(); // Reset the form
+    }
+    });
+</script>
 
 @endsection

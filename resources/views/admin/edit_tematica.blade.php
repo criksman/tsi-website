@@ -138,9 +138,14 @@
                             <form method="POST" action="{{ route('pregunta.destroy', $pregunta->pregunta_id) }}">
                                 @method('delete')
                                 @csrf
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                                <hr>
+                                <div class="row py-3 px-3">
+                                    <div class="col-9 d-grid text-center">
+                                        <button type="submit" class="btn btn-secondary">Borrar</button>
+                                    </div>
+                                    <div class="col-3 d-grid text-center">
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
