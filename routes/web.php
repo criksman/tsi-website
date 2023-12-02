@@ -28,6 +28,9 @@ use App\Http\Controllers\ComenzarController;
 Route::get('/', [HomeController::class, 'login'])->name('home.login');
 Route::get('/index', [HomeController::class, 'index'])->name('home.index');
 Route::get('/register', [HomeController::class, 'register'])->name('home.register');
+Route::get('/email/validar', [HomeController::class, 'validarEmail'])->name('home.contrasena.validar_email');
+Route::get('/contrasena/edit', [HomeController::class, 'editContrasena'])->name('home.contrasena.edit_contrasena');
+Route::post('/contrasena/update/{user_id}', [HomeController::class, 'updateContrasena'])->name('home.contrasena.updateContrasena');
 
 //user
 Route::post('/usuario/login', [UsuariosController::class, 'login'])->name('user.login');

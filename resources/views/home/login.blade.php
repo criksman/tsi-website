@@ -25,16 +25,14 @@
                             <label for="username">Nombre de usuario</label>
                             <input type="text" class="form-control @if($errors->has('username')) is-invalid @endif mt-2" id="username" name="username">
                         </div>
-                        
 
                         <div class="form-group mb-3">
-                            <label for="password">Password</label>
+                            <label for="password">Contraseña</label>
                             <input type="password" class="form-control @if($errors->has('password')) is-invalid @endif mt-2" id="password" name="password">
                         </div>
 
-
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-success text-white mt-3 mb-3">Iniciar Sesión</button>
+                            <button type="submit" class="btn btn-secondary text-white mt-3 mb-3">Iniciar Sesión</button>
                         </div>
                     </form>
 
@@ -42,7 +40,7 @@
                         <span> ¿No tienes cuenta? <a href="{{ route('home.register') }}"> Regístrate </a></span>
                     </div>
                     <div class="mb-3">
-                        <span> ¿Olvidaste tu contraseña? <a href="#"> Restablecela </a></span>
+                        <span> ¿Olvidaste tu contraseña? <a href="{{ route('home.contrasena.validar_email') }}"> Restablecela </a></span>
                     </div>
             </div>
         </div>

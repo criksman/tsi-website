@@ -81,7 +81,7 @@ $progreso = DB::table('tematica_user')
 
             <div class="row">
                 <div class="col text-center">
-                    <button type="submit" class="btn btn-primary">Terminar</button>
+                    <button type="submit" class="btn btn-success text-white">Terminar</button>
                 </div>
             </div>
         </div>

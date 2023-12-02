@@ -1,4 +1,4 @@
-@extends('templates.master')
+@extends('templates.home')
 
 @section('main-content')
 <div class="row">
@@ -65,7 +65,7 @@
 
     <div class="row">
         <div class="col d-grid mt-3">
-            <button type="submit" class="btn btn-success text-white">Aplicar Cambios</button>
+            <button type="submit" class="btn btn-secondary text-white">Aplicar Cambios</button>
         </div>
     </div>
 </form>
@@ -105,7 +105,7 @@
             @enderror
         </div>
         <div class="col-2 mt-5 text-center">
-            <button type="submit" class="btn btn-success text-white fa-solid fa-upload"></button>
+            <button type="submit" class="btn btn-secondary text-white fa-solid fa-upload"></button>
         </div>
     </div>
 </form>
