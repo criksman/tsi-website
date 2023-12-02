@@ -73,7 +73,7 @@ class TematicasController extends Controller
         Storage::deleteDirectory('public/documentos/img/tematicas/' . $tematica->tematica_id);
 
         $this->actualizarProgresoOperation($tematica);
-        
+
         $tematica->delete();
 
         return redirect()->back();

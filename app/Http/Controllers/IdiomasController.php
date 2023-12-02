@@ -62,7 +62,7 @@ class IdiomasController extends Controller
     public function destroy(Idioma $idioma){
         $idioma->delete();
 
-        return redirect()->route('admin.show_idiomas');
+        return redirect()->route('admin.list_idiomas');
     }
     
 }
