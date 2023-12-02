@@ -47,10 +47,10 @@ Route::put('/usuario/contrasena/update', [UsuariosController::class, 'updateCont
 //comenzar
 Route::get('/usuario/comenzar/filtrar', [ComenzarController::class, 'filtrarTematicas'])->name('user.comenzar.filtrar_tematicas');
 Route::get('/usuario/comenzar/tematicas', [ComenzarController::class, 'listTematicas'])->name('user.comenzar.list_tematicas');
+Route::get('/usuario/comenzar/tematicas/from_formulario/{tematica}', [ComenzarController::class, 'listTematicasFromFormulario'])->name('user.comenzar.list_tematicas.from_formulario');
 Route::get('/usuario/comenzar/tematicas/{tematica}/preguntas', [ComenzarController::class, 'formulario'])->name('user.comenzar.formulario');
 Route::put('/usuario/comenzar/tematicas/{tematica}/calcularResultado', [ComenzarController::class, 'calcularResultado'])->name('user.comenzar.calcularResultado');
 Route::get('/usuario/comenzar/tematicas/{tematica}/resultado/show', [ComenzarController::class, 'showResultado'])->name('user.comenzar.show_resultado');
-
 
 //admin
 Route::get('/admin/idiomas', [AdminController::class, 'listIdiomas'])->name('admin.list_idiomas');

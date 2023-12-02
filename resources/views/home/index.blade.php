@@ -9,7 +9,7 @@
 </div>
 
 <div class="row my-3">
-    <div class="col-lg-7 col-sm-12 p-4 bg-white rounded">
+    <div class="col-lg-7 col-sm-12 p-4 bg-white rounded shadow">
         <div class="row">
             <div class="col mb-3">
                 <h4>Detalles</h4>
@@ -75,7 +75,7 @@
         </form>
     </div>
     <div class="col-lg-1 d-sm-none d-lg-block"></div>
-    <div class="col-lg-4 col-sm-12 mt-lg-0 mt-sm-3 p-4 bg-white rounded">
+    <div class="col-lg-4 col-sm-12 mt-lg-0 mt-sm-3 p-4 bg-white rounded shadow">
         <div class="row">
             <div class="col mb-3">
                 <h4>Sube tu foto</h4>
@@ -121,7 +121,7 @@
 </div>
 
 <div class="row">
-    <div class="col p-4 bg-white rounded">
+    <div class="col p-4 bg-white rounded shadow">
         <div class="row">
             <div class="col mb-3">
                 <h4>Temáticas aprobadas</h4>
@@ -162,23 +162,23 @@
             @endphp
 
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
+                <div class="card h-100 shadow">
                     <img src="{{ asset('storage/documentos/img/idiomas/' . $idioma->idioma_id . '/' . $idioma->foto) }}" class="card-img-top img-fluid" style="height: 200px;" alt="">
                     <div class="card-body">
                         <h5 class="card-title">{{$idioma->nombre}}</h5>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Fácil
-                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoFacil}}" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress shadow" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoFacil}}" aria-valuemin="0" aria-valuemax="100">
                                     <div class="progress-bar bg-success" style="width:{{$progresoFacil}}%">{{$progresoFacil}}%</div>
                                 </div>
                             </li>
                             <li class="list-group-item">Medio
-                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoMedio}}" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress shadow" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoMedio}}" aria-valuemin="0" aria-valuemax="100">
                                     <div class="progress-bar bg-success" style="width:{{$progresoMedio}}%">{{$progresoMedio}}%</div>
                                 </div>
                             </li>
                             <li class="list-group-item">Difícil
-                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoDificil}}" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress shadow" role="progressbar" aria-label="Success example" aria-valuenow="{{$progresoDificil}}" aria-valuemin="0" aria-valuemax="100">
                                     <div class="progress-bar bg-success" style="width:{{$progresoDificil}}%">{{$progresoDificil}}%</div>
                                 </div>
                             </li>

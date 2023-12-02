@@ -7,7 +7,7 @@
 
         <h1 class="mb-4">Editar nombre</h1>
 
-        <div class="card" style="border-radius: 15px;">
+        <div class="card shadow" style="border-radius: 15px;">
             @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -78,7 +78,7 @@
 
         <h1 class="mb-4">Editar imágen</h1>
 
-        <div class="card" style="border-radius: 15px;">
+        <div class="card shadow" style="border-radius: 15px;">
             @if(session('successFoto'))
             <div class="alert alert-success">
                 {{ session('successFoto') }}

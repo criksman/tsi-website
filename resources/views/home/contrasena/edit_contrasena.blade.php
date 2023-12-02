@@ -4,7 +4,7 @@
 
 <div class="row align-items-center justify-content-center h-100">
     <div class="col-md-6">
-        <div class="card bg-white">
+        <div class="card bg-white shadow">
             <div class="card-body">
                 <h2 class="card-title text-center font-weight-bold my-3"> Restablecer contraseña </h5>
                     <form method="POST" action="{{ route('home.contrasena.updateContrasena', $usuario->user_id) }}">

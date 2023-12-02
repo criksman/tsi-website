@@ -49,7 +49,7 @@ $progreso = DB::table('tematica_user')
             @endphp
 
 
-            <div class="col-12 bg-white mb-3 rounded py-3 px-3">
+            <div class="col-12 bg-white mb-3 rounded py-3 px-3 shadow">
                 <div class="row">
                     <div class="col-11">
                         <b>{{ $pregunta->enunciado }}</b>
@@ -80,8 +80,8 @@ $progreso = DB::table('tematica_user')
             @endforeach
 
             <div class="row">
-                <div class="col text-center">
-                    <button type="submit" class="btn btn-success text-white">Terminar</button>
+                <div class="col  text-center">
+                    <button type="submit" class="btn btn-secondary text-white shadow"> Terminar </button>
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@ $progreso = DB::table('tematica_user')
     </div>
     <div class="row">
         <div class="col text-center">
-            <a href="{{ route('user.comenzar.list_tematicas') }}" class="btn btn-primary">Volver</a>
+            <a href="{{ route('user.comenzar.list_tematicas.from_formulario' , $tematica->tematica_id) }}" class="btn btn-primary"> Volver </a>
         </div>
     </div>
 
@@ -110,7 +110,7 @@ $progreso = DB::table('tematica_user')
         </div>
     </div>
 
-    <div class="col-12 bg-white mb-3 rounded py-3 px-3">
+    <div class="col-12 bg-white mb-3 rounded py-3 px-3 shadow">
         @foreach($tematica->enlaces as $enlace)
         <div class="row">
             <div class="col">

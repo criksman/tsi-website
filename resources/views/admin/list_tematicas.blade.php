@@ -7,7 +7,7 @@
         <h1>Administración de temáticas ({{ $idioma->nombre }})</h1>
     </div>
     <div class="col-2 text-end d-flex flex-column align-items-end justify-content-center">
-        <button type="button" class="btn btn-secondary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearModal">
+        <button type="button" class="btn btn-secondary fa-solid fa-plus shadow" data-bs-toggle="modal" data-bs-target="#crearModal">
         </button>
 
         <div class="modal fade" id="crearModal" tabindex="-1" aria-labelledby="crearModalLabel" aria-hidden="true">
@@ -111,7 +111,7 @@
 
 <div class="row">
     <div class="col">
-        <table class="table table-striped table-bordered align-middle">
+        <table class="table table-striped table-bordered align-middle shadow">
             <thead>
                 <colgroup>
                     <col style="width: 30%;">

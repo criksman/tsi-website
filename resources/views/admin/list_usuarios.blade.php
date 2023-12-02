@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col">
-        <table class="table table-striped table-bordered align-middle">
+        <table class="table table-striped table-bordered align-middle shadow">
             <thead>
                 <colgroup>
                     <col style="width: 30%;">
@@ -33,7 +33,7 @@
                     <td class="text-center">{{ $usuario->email }}</td>
                     <td class="text-center">@if($usuario->estado == 1) Activo @else Baneado @endif</td>
                     <td class="text-center">
-                        <button type="button" class="btn btn-warning fa-solid fa-rotate-left @if(Auth::user()->user_id == $usuario->user_id || $usuario->estado == 1) disabled @endif" data-bs-toggle="modal" data-bs-target="#desbanearModal{{$usuario->user_id}}"> </button>
+                        <button type="button" class="btn btn-secondary fa-solid fa-rotate-left @if(Auth::user()->user_id == $usuario->user_id || $usuario->estado == 1) disabled @endif" data-bs-toggle="modal" data-bs-target="#desbanearModal{{$usuario->user_id}}"> </button>
 
                         <div class="modal fade" id="desbanearModal{{$usuario->user_id}}" tabindex="-1" aria-labelledby="desbanearModalLabel{{$usuario->user_id}}" aria-hidden="true">
                             <div class="modal-dialog">
@@ -48,9 +48,14 @@
                                     <form method="POST" action="{{ route('user.unban', $usuario->user_id) }}">
                                         @method('put')
                                         @csrf
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-warning">Desbanear</button>
+                                        <hr>
+                                        <div class="row py-3 px-3">
+                                            <div class="col-9 d-grid text-center">
+                                                <button type="submit" class="btn btn-secondary"> Desbanear </button>
+                                            </div>
+                                            <div class="col-3 d-grid text-center">
+                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -72,9 +77,14 @@
                                     <form method="POST" action="{{ route('user.ban', $usuario->user_id) }}">
                                         @method('put')
                                         @csrf
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-warning">Banear</button>
+                                        <hr>
+                                        <div class="row py-3 px-3">
+                                            <div class="col-9 d-grid text-center">
+                                                <button type="submit" class="btn btn-warning"> Banear </button>
+                                            </div>
+                                            <div class="col-3 d-grid text-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancelar </button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -96,9 +106,14 @@
                                     <form method="POST" action="{{ route('user.destroy', $usuario->user_id) }}">
                                         @method('delete')
                                         @csrf
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-danger text-white">Borrar</button>
+                                        <hr>
+                                        <div class="row py-3 px-3">
+                                            <div class="col-9 d-grid text-center">
+                                                <button type="submit" class="btn btn-danger text-white"> Borrar </button>
+                                            </div>
+                                            <div class="col-3 d-grid text-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancelar </button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>

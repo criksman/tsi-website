@@ -1,4 +1,4 @@
-@extends('templates.home')
+@extends('templates.master')
 
 @section('main-content')
 <div class="row">
@@ -8,7 +8,7 @@
 </div>
 <hr class="mt-2">
 <div class="row my-3">
-    <div class="col-lg-7 col-sm-12 p-4 bg-white rounded">
+    <div class="col-lg-7 col-sm-12 p-4 bg-white rounded shadow">
         <div class="row">
             <div class="col mb-3">
                 <h4>Detalles</h4>
@@ -71,7 +71,7 @@
 </form>
 </div>
 <div class="col-lg-1 d-sm-none d-lg-block"></div>
-<div class="col-lg-4 col-sm-12 mt-lg-0 mt-sm-3 p-4 bg-white rounded">
+<div class="col-lg-4 col-sm-12 mt-lg-0 mt-sm-3 p-4 bg-white rounded shadow">
     <div class="row">
         <div class="col mb-3">
             <h4>Sube tu foto</h4>
@@ -114,7 +114,7 @@
 
 <div class="row">
     @foreach($tematica->preguntas as $pregunta)
-    <div class="col-12 bg-white mb-3 rounded py-3 px-3">
+    <div class="col-12 bg-white mb-3 rounded py-3 px-3 shadow">
         <div class="row">
             <div class="col-11">
                 <b>{{$pregunta->enunciado}}</b>
@@ -196,7 +196,7 @@
     </div>
     @endforeach
 
-    <div class="col-12 bg-white mb-3 rounded p-3 text-center">
+    <div class="col-12 bg-white mb-3 rounded p-3 text-center shadow">
         <button type="button" class="btn btn-secondary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearPreguntaModal"></button> <span> Añadir otra pregunta</span>
 
         <div class="modal fade" id="crearPreguntaModal" tabindex="-1" aria-labelledby="crearPreguntaModalLabel" aria-hidden="true">
@@ -353,8 +353,8 @@
     </div>
     @endforeach
 
-    <div class="row">
-        <div class="col text-center mt-3">
+    <div class="row ">
+        <div class="col text-center mt-3 ">
             <button type="button" class="btn btn-secondary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearMaterialModal"></button> <span> Añadir enlace (Material de estudio)</span>
         </div>
     </div>

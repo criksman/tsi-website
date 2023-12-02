@@ -7,7 +7,7 @@
 
         <h1 class="mb-4">Editar Enunciado/Respuestas</h1>
 
-        <div class="card" style="border-radius: 15px;">
+        <div class="card shadow" style="border-radius: 15px;">
             <div class="card-body">
                 @if(session('success'))
                 <div class="alert alert-success">
@@ -130,7 +130,7 @@
 
         <h1 class="mb-4">Editar audio</h1>
 
-        <div class="card" style="border-radius: 15px;">
+        <div class="card shadow" style="border-radius: 15px;">
             <div class="card-body">
                 @if(session('successFoto'))
                 <div class="alert alert-success">

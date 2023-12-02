@@ -17,14 +17,14 @@
         <h1>Seleccionar idioma</h1>
     </div>
     <div class="col-2 text-end d-flex flex-column align-items-end justify-content-center">
-        <button type="button" class="btn btn-secondary fa-plus fa-solid" data-bs-toggle="modal" data-bs-target="#agregarModal"></button>
+        <button type="button shadow" class="btn btn-secondary fa-plus fa-solid" data-bs-toggle="modal" data-bs-target="#agregarModal"></button>
     </div>
 </div>
 <hr class="mt-2">
 <div class="row">
     @foreach($idiomas as $idioma)
     <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 shadow">
             <img src="{{ asset('storage/documentos/img/idiomas/' . $idioma->idioma_id . '/' . $idioma->foto) }}" class="card-img-top img-fluid" style="height: 200px;" alt="">
             <div class="card-body">
                 <h5 class="card-title text-center">{{$idioma->nombre}}</h5>

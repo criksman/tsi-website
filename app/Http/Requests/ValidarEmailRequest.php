@@ -25,4 +25,14 @@ class ValidarEmailRequest extends FormRequest
             'email' => 'bail|required|min:2|max:255|exists:users'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'El e-mail es requerido',
+            'email.min' => 'El e-mail debe tener como mínimo 2 caracteres',
+            'email.max' => 'El e-mail debe tener como máximo 255 caracteres',
+            'email.exists' => 'El email ingresado no existe',
+        ];
+    }
 }
