@@ -26,7 +26,7 @@ class CrearPreguntaRequest extends FormRequest
     {
         return [
             'enunciado' => 'bail|required',
-            'audio' => 'bail|nullable|sometimes',
+            'audio' => 'bail|nullable|sometimes|mimes:mp3',
             'respuesta_corr' => 'bail|required|max:100',
             'respuesta_inc1' => 'bail|required|max:100',
             'respuesta_inc2' => 'bail|required|max:100',
@@ -37,6 +37,7 @@ class CrearPreguntaRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'audio.mimes' => 'El archivo de audio debe ser de tipo: mp3',
             'enunciado.required' => 'El enunciado es requerido',
             'respuesta_corr.required' => 'La respuesta es requerida',
             'respuesta_corr.max' => 'La respuesta debe tener como máximo 100 caracteres',
