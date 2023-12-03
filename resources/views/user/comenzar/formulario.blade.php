@@ -114,7 +114,7 @@ $progreso = DB::table('tematica_user')
         @foreach($tematica->enlaces as $enlace)
         <div class="row">
             <div class="col">
-                <span class="me-3">- <a href="{{ $enlace->enlace_id }}"> {{ $enlace->descripcion }} </a> </span>
+                <span class="me-3">- <a href="{{ $enlace->link }}"> {{ $enlace->descripcion }} </a> </span>
             </div>
         </div>
         @endforeach
