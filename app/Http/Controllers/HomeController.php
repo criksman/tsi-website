@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Auth;
+//use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Idioma;
 use App\Http\Requests\ValidarEmailRequest;

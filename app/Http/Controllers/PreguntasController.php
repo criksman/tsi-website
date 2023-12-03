@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 use App\Models\Pregunta;
 use App\Models\Tematica;
 use App\Models\Dificultad;
-use App\Models\Usuario;
+//use App\Models\Usuario;
 use App\Models\Idioma;
 
 use App\Http\Requests\CrearPreguntaRequest;
@@ -16,13 +16,13 @@ use App\Http\Requests\EditarPreguntaAudioRequest;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
 
-use App\Traits\ActualizarProgresoTrait;
+use App\Traits\ActualizarProgresoUsuariosTrait;
 
 class PreguntasController extends Controller
 {
-    use ActualizarProgresoTrait;
+    use ActualizarProgresoUsuariosTrait;
     
     public function __construct(){
         $this->middleware('auth');
@@ -34,15 +34,14 @@ class PreguntasController extends Controller
             ->delete();
     }
 
-    private function actualizarProgresoOperation(Pregunta $pregunta) {
+    private function actualizarProgresoUsuariosOperation(Pregunta $pregunta) {
         $tematica = Tematica::find($pregunta->tematica_id);
         $this->eliminarProgreso($tematica);
     
         $dificultad = Dificultad::find($pregunta->tematica->dificultad_id);
         $idioma = Idioma::find($pregunta->tematica->idioma_id);
-        $usuario = Usuario::find(Auth::user()->user_id);
     
-        $this->actualizarProgreso($usuario, $idioma, $dificultad);
+        $this->actualizarProgresoUsuarios($idioma, $dificultad);
     }
     
     public function store(CrearPreguntaRequest $request, Tematica $tematica){
@@ -70,13 +69,13 @@ class PreguntasController extends Controller
             $pregunta->save();
         }
 
-        $this->actualizarProgresoOperation($pregunta);
+        $this->actualizarProgresoUsuariosOperation($pregunta);
 
         return redirect()->back();
     }
 
     public function destroy(Pregunta $pregunta){   
-        $this->actualizarProgresoOperation($pregunta);
+        $this->actualizarProgresoUsuariosOperation($pregunta);
         
         $pregunta->delete();
 
@@ -88,31 +87,41 @@ class PreguntasController extends Controller
     }
 
     public function updateDetalles(EditarPreguntaRequest $request, Pregunta $pregunta){
-        if ($request->enunciado != null){
-            $pregunta->enunciado = $request->enunciado;
+        $enunciado = $request->enunciado;
+        $respuesta_corr = $request->respuesta_corr;
+        $respuesta_inc1 = $request->respuesta_inc1;
+        $respuesta_inc2 = $request->respuesta_inc2;
+        $respuesta_inc3 = $request->respuesta_inc3;
+
+        if ($enunciado === null && $respuesta_corr === null && $respuesta_inc1 === null && $respuesta_inc2 === null && $respuesta_inc3 === null) {
+            $request->session()->flash('errorEnunciadoResp', 'No se ingresó ningún dato.');
+        } else {
+            if ($enunciado != null){
+                $pregunta->enunciado = $enunciado;
+            }
+    
+            if ($respuesta_corr != null){
+                $pregunta->respuesta_corr = $respuesta_corr;
+            }
+    
+            if ($respuesta_inc1 != null){
+                $pregunta->respuesta_inc1 = $respuesta_inc1;
+            }
+    
+            if ($respuesta_inc2 != null){
+                $pregunta->respuesta_inc2 = $respuesta_inc2;
+            }
+    
+            if ($respuesta_inc3 != null){
+                $pregunta->respuesta_inc3 = $respuesta_inc3;
+            }
+
+            $pregunta->save();
+
+            $this->actualizarProgresoUsuariosOperation($pregunta);
+
+            $request->session()->flash('successEnunciadoResp', 'Cambios aplicados correctamente');
         }
-
-        if ($request->respuesta_corr != null){
-            $pregunta->respuesta_corr = $request->respuesta_corr;
-        }
-
-        if ($request->respuesta_inc1 != null){
-            $pregunta->respuesta_inc1 = $request->respuesta_inc1;
-        }
-
-        if ($request->respuesta_inc2 != null){
-            $pregunta->respuesta_inc2 = $request->respuesta_inc2;
-        }
-
-        if ($request->respuesta_inc3 != null){
-            $pregunta->respuesta_inc3 = $request->respuesta_inc3;
-        }
-
-        $pregunta->save();
-
-        $this->actualizarProgresoOperation($pregunta);
-
-        $request->session()->flash('success', 'Cambios aplicados correctamente');
 
         return redirect()->back();
     }
@@ -129,7 +138,7 @@ class PreguntasController extends Controller
 
         $pregunta->save();
 
-        $this->actualizarProgresoOperation($pregunta);
+        $this->actualizarProgresoUsuariosOperation($pregunta);
 
         $request->session()->flash('successFoto', 'Cambios aplicados correctamente');
         
@@ -141,7 +150,7 @@ class PreguntasController extends Controller
 
         $pregunta->save();
         
-        $this->actualizarProgresoOperation($pregunta);
+        $this->actualizarProgresoUsuariosOperation($pregunta);
 
         Storage::deleteDirectory('public/documentos/audio/preguntas/' . $pregunta->pregunta_id);
         

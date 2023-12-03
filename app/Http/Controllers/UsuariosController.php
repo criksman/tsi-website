@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Models\Usuario;
-use App\Models\Idioma;
-use App\Models\Dificultad;
-use App\Models\Tematica;
-use App\Models\Seccion;
+//use App\Models\Idioma;
+//use App\Models\Dificultad;
+//use App\Models\Tematica;
+//use App\Models\Seccion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UsuarioEditarCredencialesRequest;
-use App\Http\Requests\FiltrarTematicasRequest;
+//use App\Http\Requests\FiltrarTematicasRequest;
 use App\Http\Requests\EditarUsuarioFotoRequest;
 use App\Http\Requests\EditarContrasenaRequest;
 use App\Http\Requests\RegistrarUsuarioRequest;

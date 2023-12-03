@@ -12,7 +12,7 @@ use App\Http\Requests\FiltrarTematicasRequest;
 use App\Models\Seccion;
 //use Illuminate\Support\Facades\DB;
 use App\Traits\ActualizarProgresoTrait;
-use Carbon\Carbon;
+//use Carbon\Carbon;
 
 class ComenzarController extends Controller
 {

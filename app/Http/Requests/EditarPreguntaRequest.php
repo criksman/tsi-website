@@ -26,12 +26,12 @@ class EditarPreguntaRequest extends FormRequest
     {
         //nullable creo que es innecesario
         return [
-            'enunciado' => 'bail|nullable|sometimes|max:255',
-            'audio' => 'bail|nullable|sometimes|max:100',
-            'respuesta_corr' => 'bail|nullable|sometimes|max:100',
-            'respuesta_inc1' => 'bail|nullable|sometimes|max:100',
-            'respuesta_inc2' => 'bail|nullable|sometimes|max:100',
-            'respuesta_inc3' => 'bail|nullable|sometimes|max:100',
+            'enunciado' => 'bail|sometimes|max:255',
+            'audio' => 'bail|sometimes|max:100',
+            'respuesta_corr' => 'bail|sometimes|max:100',
+            'respuesta_inc1' => 'bail|sometimes|max:100',
+            'respuesta_inc2' => 'bail|sometimes|max:100',
+            'respuesta_inc3' => 'bail|sometimes|max:100',
         ];
     }
 

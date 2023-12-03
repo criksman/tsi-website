@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Models\Idioma;
 use App\Http\Requests\CrearIdiomaRequest;
-use App\Http\Requests\EditarIdiomaRequest;
+//use App\Http\Requests\EditarIdiomaRequest;
 use App\Http\Requests\EditarIdiomaNombreRequest;
 use App\Http\Requests\EditarIdiomaFotoRequest;
 
