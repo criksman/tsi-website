@@ -355,7 +355,7 @@
 
     <div class="row ">
         <div class="col text-center mt-3 ">
-            <button type="button" class="btn btn-secondary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearMaterialModal"></button> <span> Añadir enlace (Material de estudio)</span>
+            <button type="button" class="btn btn-secondary fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#crearMaterialModal"></button> <span> Añadir enlace </span>
         </div>
     </div>
 

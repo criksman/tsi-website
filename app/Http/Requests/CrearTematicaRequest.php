@@ -24,7 +24,7 @@ class CrearTematicaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'bail|required|unique:tematicas|min:2|max:30',
+            'nombre' => 'bail|required|unique:tematicas|min:2|max:50',
             'dificultad_id' => 'bail|required|exists:dificultades,dificultad_id',
             'seccion_id' => 'bail|required|exists:secciones,seccion_id',
             'descripcion' => 'bail|required',
